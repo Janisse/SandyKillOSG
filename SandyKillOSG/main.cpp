@@ -1,18 +1,18 @@
-
 #include "CONSTANTES_LITTERALES.h"
 #include "TestParticles.h"
+#include "TestLoad.h"
 
 int main()
 {
-	//IHM
-
-
-	//scene3D (contenant Camera + list model 3D déjà chargé + particules srpites)
-
-
 	//viewer
 	osgViewer::Viewer * viewer = new osgViewer::Viewer; 
 
+	///////////////////////////////////////test chargement model
+	
+	TestLoad loader;
+	loader.loadOBJ("resources/cubeOSG.obj");
+
+	///////////////////////////////////////////////////
 
 	///////////////////////////////////////test particles sprites
 	// Make the galaxy of points

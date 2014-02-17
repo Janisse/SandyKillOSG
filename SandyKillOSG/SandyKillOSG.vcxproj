@@ -94,12 +94,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(OSG_INCLUDE_PATH)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Cours 2ème année IUT Imagerie Numerique\SandyKillOSG\SandyKillOSG\glm;$(OSG_INCLUDE_PATH);D:\Cours 2ème année IUT Imagerie Numerique\SandyKillOSG\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(OSG_LIB_PATH)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OSG_LIB_PATH);D:\Cours 2ème année IUT Imagerie Numerique\SandyKillOSG\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;osgd.lib;osgGAd.lib;osgDBd.lib;osgViewerd.lib;osgTextd.lib;osgUtild.lib;OpenThreadsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -142,6 +142,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="Scene3D.cpp" />
+    <ClCompile Include="TestLoad.cpp" />
     <ClCompile Include="TestParticles.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +150,7 @@
     <ClInclude Include="IHM.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="Scene3D.h" />
+    <ClInclude Include="TestLoad.h" />
     <ClInclude Include="TestParticles.h" />
   </ItemGroup>
   <ItemGroup>

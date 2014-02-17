@@ -7,6 +7,8 @@ TestLoad::TestLoad(void)
 
 bool TestLoad::loadOBJ(const char * path)
 {
+	model = new Group;
+	
 	vector < Vec3 > out_vertices;
 	vector < Vec2 > out_uvs;
 	vector < Vec3 > out_normals;
@@ -25,7 +27,9 @@ bool TestLoad::loadOBJ(const char * path)
 		// read the first word of the line
 		int res = fscanf(file, "%s", lineHeader);
 		if (res == EOF)
-			break; // EOF = End Of File. Quit the loop.
+		{
+			return true;  // EOF = End Of File. Quit the loop.
+		}
 
 		// else : parse lineHeader
 		if ( strcmp( lineHeader, "v" ) == 0 )

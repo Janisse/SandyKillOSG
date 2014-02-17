@@ -30,4 +30,3 @@ using namespace std;
 using namespace osg;
 using namespace osgGA;
 
-ref_ptr<Group> MaBiche = new Group;

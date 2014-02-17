@@ -13,4 +13,5 @@ private :
 	std::vector< Vec3 > temp_vertices;
 	std::vector< Vec2 > temp_uvs;
 	std::vector< Vec3 > temp_normals;
+	ref_ptr<Group> model;
 };

@@ -6,12 +6,13 @@ class TestLoad
 public:
 	TestLoad(void);//constructor
 
-	bool loadOBJ(const char * path);
+	bool loadOBJ(const char * path, ref_ptr<Geometry> &model);
+	osg::StateSet* TestLoad::makeStateSet(float size);
 
 private :
 	std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
-	std::vector< Vec3 > temp_vertices;
-	std::vector< Vec2 > temp_uvs;
-	std::vector< Vec3 > temp_normals;
-	ref_ptr<Group> model;
+	ref_ptr<Vec3Array> temp_vertices;
+	ref_ptr<Vec2Array> temp_uvs;
+	ref_ptr<Vec3Array> temp_normals;
+
 };

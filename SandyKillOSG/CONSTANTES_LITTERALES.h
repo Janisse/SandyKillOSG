@@ -16,7 +16,6 @@
 #include <osgGA/TrackballManipulator>
 #include <osgGA/NodeTrackerManipulator>
 #include <osg/Node>
-#include <osgDB/ReadFile>
 
 #include <stdio.h> //pour printf, sscanf, stderr, fprintf, fopen, fseek, fread, ftell, fclose, FILE
 #include <stdlib.h>//pour malloc, free
@@ -24,9 +23,6 @@
 #include <conio.h>//pour getch
 #include <time.h>
 
-#include <vector>
-
 using namespace std;
 using namespace osg;
 using namespace osgGA;
-

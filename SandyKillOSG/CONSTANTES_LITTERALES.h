@@ -30,8 +30,4 @@ using namespace std;
 using namespace osg;
 using namespace osgGA;
 
-//Initialisation de la fenêtre
-const GLushort LARGEUR_FENETRE=400;
-const GLushort HAUTEUR_FENETRE=400;
-const GLubyte POS_X_ECRAN=200;
-const GLubyte POS_Y_ECRAN=200;
+ref_ptr<Group> MaBiche = new Group;

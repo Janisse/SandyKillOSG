@@ -7,4 +7,4 @@ int main()
 {
 	osgViewer::Viewer * viewer = new osgViewer::Viewer; 
 	return viewer->run();
-} 
+}  

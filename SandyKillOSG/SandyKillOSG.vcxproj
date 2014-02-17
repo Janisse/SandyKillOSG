@@ -138,7 +138,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="IHM.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PhysicsEngine.cpp" />
+    <ClCompile Include="Scene3D.cpp" />
+    <ClCompile Include="TestLoad.cpp" />
+    <ClCompile Include="TestParticles.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CONSTANTES_LITTERALES.h" />
+    <ClInclude Include="IHM.h" />
+    <ClInclude Include="PhysicsEngine.h" />
+    <ClInclude Include="Scene3D.h" />
+    <ClInclude Include="TestLoad.h" />
+    <ClInclude Include="TestParticles.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\star.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

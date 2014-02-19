@@ -138,22 +138,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="IHM.cpp" />
+    <ClCompile Include="APCallback.cpp" />
+    <ClCompile Include="KeyboardEventhandler.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ObjLoader.cpp" />
+    <ClCompile Include="MouseEvent.cpp" />
+    <ClCompile Include="Node110.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="Scene3D.cpp" />
     <ClCompile Include="TestLoad.cpp" />
     <ClCompile Include="TestParticles.cpp" />
+    <ClCompile Include="Viewer110.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="APCallback.h" />
     <ClInclude Include="CONSTANTES_LITTERALES.h" />
-    <ClInclude Include="IHM.h" />
-    <ClInclude Include="ObjLoader.h" />
+    <ClInclude Include="KeyboardEventhandler.h" />
+    <ClInclude Include="MouseEvent.h" />
+    <ClInclude Include="Node110.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="Scene3D.h" />
     <ClInclude Include="TestLoad.h" />
     <ClInclude Include="TestParticles.h" />
+    <ClInclude Include="Viewer110.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\star.bmp" />

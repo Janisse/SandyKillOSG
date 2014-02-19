@@ -1,13 +1,18 @@
 #include "CONSTANTES_LITTERALES.h"
 #include "TestParticles.h"
 #include "TestLoad.h"
+#include "Viewer110.h"
 
 int main()
 {
-	ref_ptr<Group> grpRoot (new Group);
+	//ref_ptr<Group> grpRoot (new Group);
 
 	//viewer
-	osgViewer::Viewer * viewer = new osgViewer::Viewer; 
+	ref_ptr<Viewer110> viewer = new Viewer110;
+
+	//osgViewer::Viewer * viewer = new osgViewer::Viewer; 
+
+
 
 	///////////////////////////////////////test chargement model
 	
@@ -15,8 +20,8 @@ int main()
 	ref_ptr<Geometry> model;
 	loader.loadOBJ("resources/cubeOSG.obj", model);*/
 
-	ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
-	grpRoot->addChild(myNode);
+	//ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
+	//grpRoot->addChild(myNode);
 	osg::ref_ptr<osg::Array> vertex = myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry()->getVertexArray();
 
 	osg::Geometry::PrimitiveSetList pSet = myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry()->getPrimitiveSetList();
@@ -39,7 +44,6 @@ int main()
 	viewer->setSceneData(node);
 	///////////////////////////////////////////////////*/
 
-	viewer->setSceneData(grpRoot);
 	return viewer->run();
 }
 

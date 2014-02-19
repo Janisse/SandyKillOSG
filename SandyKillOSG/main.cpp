@@ -17,6 +17,10 @@ int main()
 
 	ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
 	grpRoot->addChild(myNode);
+	osg::ref_ptr<osg::Array> vertex = myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry()->getVertexArray();
+
+	osg::Geometry::PrimitiveSetList pSet = myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry()->getPrimitiveSetList();
+	
 	//myNode->asGeode()->getDrawable(0)->asGeometry()->getVertexArray();	//ceci ne fonctionne pas, il faurait voir commment récupérer les vertices
 
 

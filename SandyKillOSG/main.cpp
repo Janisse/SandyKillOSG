@@ -11,16 +11,21 @@ int main()
 
 	///////////////////////////////////////test chargement model
 	
-	TestLoad loader;
+	/*TestLoad loader;
 	ref_ptr<Geometry> model;
-	loader.loadOBJ("resources/cubeOSG.obj", model);
+	loader.loadOBJ("resources/cubeOSG.obj", model);*/
+
+	ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
+	grpRoot->addChild(myNode);
+	//myNode->asGeode()->getDrawable(0)->asGeometry()->getVertexArray();	//ceci ne fonctionne pas, il faurait voir commment récupérer les vertices
+
 
 	/////////////////////////////////////////////////// affichage modèle
 
-	ref_ptr<Geode> gdeModel = new Geode;
+	/*ref_ptr<Geode> gdeModel = new Geode;
 	gdeModel->addDrawable(model.get());
 	gdeModel->setStateSet(loader.makeStateSet(10.0f));
-	grpRoot->addChild(gdeModel);
+	grpRoot->addChild(gdeModel);*/
 
 	/*///////////////////////////////////////test particles sprites
 	// Make the galaxy of points

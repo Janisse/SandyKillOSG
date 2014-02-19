@@ -94,7 +94,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(OSG_INCLUDE_PATH)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./osgModeling/include;$(OSG_INCLUDE_PATH)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,6 +141,7 @@
     <ClCompile Include="APCallback.cpp" />
     <ClCompile Include="IHM.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="Picking_Select.cpp" />
     <ClCompile Include="Scene3D.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="APCallback.h" />
     <ClInclude Include="CONSTANTES_LITTERALES.h" />
     <ClInclude Include="IHM.h" />
+    <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="Picking_Select.h" />
     <ClInclude Include="Scene3D.h" />

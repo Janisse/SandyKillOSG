@@ -138,17 +138,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="APCallback.cpp" />
     <ClCompile Include="IHM.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
+    <ClCompile Include="Picking_Select.cpp" />
     <ClCompile Include="Scene3D.cpp" />
     <ClCompile Include="TestLoad.cpp" />
     <ClCompile Include="TestParticles.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="APCallback.h" />
     <ClInclude Include="CONSTANTES_LITTERALES.h" />
     <ClInclude Include="IHM.h" />
     <ClInclude Include="PhysicsEngine.h" />
+    <ClInclude Include="Picking_Select.h" />
     <ClInclude Include="Scene3D.h" />
     <ClInclude Include="TestLoad.h" />
     <ClInclude Include="TestParticles.h" />

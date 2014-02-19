@@ -1,6 +1,7 @@
 #include "CONSTANTES_LITTERALES.h"
 #include "TestParticles.h"
 #include "TestLoad.h"
+#include "Picking_Select.h"
 
 int main()
 {
@@ -17,10 +18,12 @@ int main()
 
 	/////////////////////////////////////////////////// affichage modèle
 
+	ref_ptr<PositionAttitudeTransform> trfModel = new PositionAttitudeTransform;
 	ref_ptr<Geode> gdeModel = new Geode;
 	gdeModel->addDrawable(model.get());
 	gdeModel->setStateSet(loader.makeStateSet(10.0f));
-	grpRoot->addChild(gdeModel);
+	trfModel->addChild(gdeModel);
+	grpRoot->addChild(trfModel);
 
 	/*///////////////////////////////////////test particles sprites
 	// Make the galaxy of points
@@ -30,6 +33,7 @@ int main()
 	viewer->setSceneData(node);
 	///////////////////////////////////////////////////*/
 
+	viewer->addEventHandler(new Picking_Select);
 	viewer->setSceneData(grpRoot);
 	return viewer->run();
 }

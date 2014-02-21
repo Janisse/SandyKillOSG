@@ -50,8 +50,11 @@ int main()
 	ref_ptr<Geometry> model;
 	loader.loadOBJ("resources/cubeOSG.obj", model);*/
 
-	//ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
-	//grpRoot->addChild(myNode);
+	ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
+	ref_ptr<Node110> myNode110 = new Node110(myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry());
+
+	viewer->setSelected(myNode110);
+	viewer->getScenegraph()->addChild(myNode110);
 	//osg::ref_ptr<osg::Array> vertex = myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry()->getVertexArray();
 
 	//osg::Geometry::PrimitiveSetList pSet = myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry()->getPrimitiveSetList();
@@ -64,7 +67,7 @@ int main()
 	/*ref_ptr<Geode> gdeModel = new Geode;
 	gdeModel->addDrawable(model.get());
 	gdeModel->setStateSet(loader.makeStateSet(10.0f));
-	grpRoot->addChild(gdeModel);*/
+	viewer->getScenegraph()->addChild(gdeModel);*/
 
 	/*///////////////////////////////////////test particles sprites
 	// Make the galaxy of points

@@ -11,7 +11,7 @@ private:
 	ref_ptr<Viewer110> _viewer;
 	
 public:
-	KeyboardEventhandler(void);
+	KeyboardEventhandler(ref_ptr<Viewer110> v);
 
 	bool handle(const GUIEventAdapter& ea, GUIActionAdapter& aa);
 	osg::NodePath pickCible (osgViewer::Viewer* viewer, float mx,float my);

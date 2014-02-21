@@ -23,5 +23,6 @@ public:
 	~Viewer110(void);
 
 	ref_ptr<Node110> getSelected() { return _selected; }
+	void setSelected(ref_ptr<Node110> s) {_selected = s;}
 	ref_ptr<Group> getScenegraph() { return _scenegraph; }
 };

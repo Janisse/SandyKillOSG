@@ -9,7 +9,6 @@ private:
 	ref_ptr<Geode> _gde;
 	ref_ptr<Geometry> _geom;
 
-	float angleRotation;
 
 public:
 	Node110(ref_ptr<Geometry> geom);

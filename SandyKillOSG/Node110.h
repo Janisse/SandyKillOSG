@@ -27,7 +27,9 @@ public:
 
 	//	Accesseurs & Mutateurs		================================================================================================================
 
-	
+	ref_ptr<PositionAttitudeTransform> getTrf() {return _trf;}
+	ref_ptr<Geode> getGde() {return _gde;}
+	ref_ptr<Geometry> getGeometry() {return _geom;}
 
 	//	Fonctionnalités				================================================================================================================
 	

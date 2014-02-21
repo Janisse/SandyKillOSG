@@ -5,7 +5,7 @@
 void subdivide(ref_ptr<Node110> node110)
 {
 	ref_ptr<Geometry> node110Geometry = node110->getGeometry();
-	ref_ptr<Geode> node110Geode = node110->getGeode();
+	ref_ptr<Geode> node110Geode = node110->getGde();
 	ref_ptr<Vec3Array> vertexArray = (Vec3Array*)node110Geometry->getVertexArray();
 	ref_ptr<osg::PrimitiveSet> nextPrimitiveSet;
 

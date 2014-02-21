@@ -6,6 +6,7 @@ class MouseEvent : public osgGA::GUIEventHandler
 {
 private:
 	ref_ptr<osg::Node> _picked;
+	ref_ptr<osgViewer::Viewer> _viewer;
 	bool isDragging;
 
 public:

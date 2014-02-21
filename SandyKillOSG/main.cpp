@@ -20,8 +20,8 @@ int main()
 	ref_ptr<Geometry> model;
 	loader.loadOBJ("resources/cubeOSG.obj", model);*/
 
-	//ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
-	//grpRoot->addChild(myNode);
+	ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
+	viewer->getScenegraph()->addChild(myNode);
 	//myNode->asGeode()->getDrawable(0)->asGeometry()->getVertexArray();	//ceci ne fonctionne pas, il faurait voir commment récupérer les vertices
 
 
@@ -30,7 +30,7 @@ int main()
 	/*ref_ptr<Geode> gdeModel = new Geode;
 	gdeModel->addDrawable(model.get());
 	gdeModel->setStateSet(loader.makeStateSet(10.0f));
-	grpRoot->addChild(gdeModel);*/
+	viewer->getScenegraph()->addChild(gdeModel);*/
 
 	/*///////////////////////////////////////test particles sprites
 	// Make the galaxy of points

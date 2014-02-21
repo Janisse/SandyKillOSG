@@ -9,8 +9,15 @@ private:
 	ref_ptr<Geode> _gde;
 	ref_ptr<Geometry> _geom;
 
+	float angleRotation;
+
 public:
 	Node110(ref_ptr<Geometry> geom);
 	~Node110(void);
+
+	void Node110::event_RotationHaut(bool acceleration);
+	void Node110::event_RotationBas(bool acceleration);
+	void Node110::event_RotationGauche(bool acceleration);
+	void Node110::event_RotationDroite(bool acceleration);
 };
 

@@ -2,8 +2,10 @@
 
 #include "CONSTANTES_LITTERALES.h"
 
-class Node110 :
-	public Group
+#include "World110.h"
+
+class KeyboardHandler
+	: public osgGA::GUIEventHandler
 {
 public :
 
@@ -13,27 +15,25 @@ public :
 private:
 	//	Variables membres			================================================================================================================
 	
-	ref_ptr<PositionAttitudeTransform> _trf;
-	ref_ptr<Geode> _gde;
-	ref_ptr<Geometry> _geom;
+	ref_ptr<World110> _world;		// Le graphe à visiter
 
 public:
 
 
 	//	Constructeurs & Destructeur	================================================================================================================
 
-	Node110(ref_ptr<Geometry> geom);
-	~Node110(void);
+	KeyboardHandler(ref_ptr<World110> w);
+	~KeyboardHandler(void);
 
 	//	Accesseurs & Mutateurs		================================================================================================================
 
 	
 
 	//	Fonctionnalités				================================================================================================================
-	
-	void Node110::event_RotationHaut(bool acceleration);
-	void Node110::event_RotationBas(bool acceleration);
-	void Node110::event_RotationGauche(bool acceleration);
-	void Node110::event_RotationDroite(bool acceleration);
+
+	bool handle(const GUIEventAdapter& ea, GUIActionAdapter& aa);
+	osg::NodePath pickCible (osgViewer::Viewer* viewer, float mx,float my);
+
+
 };
 

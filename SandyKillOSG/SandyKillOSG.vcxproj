@@ -138,28 +138,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="APCallback.cpp" />
-    <ClCompile Include="KeyboardEventhandler.cpp" />
+    <ClCompile Include="KeyboardHandler.cpp" />
+    <ClCompile Include="Loader110.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MouseEvent.cpp" />
+    <ClCompile Include="MouseHandler.cpp" />
     <ClCompile Include="Node110.cpp" />
-    <ClCompile Include="PhysicsEngine.cpp" />
-    <ClCompile Include="Scene3D.cpp" />
-    <ClCompile Include="TestLoad.cpp" />
-    <ClCompile Include="TestParticles.cpp" />
-    <ClCompile Include="Viewer110.cpp" />
+    <ClCompile Include="Physics110.cpp" />
+    <ClCompile Include="Subdivisor.cpp" />
+    <ClCompile Include="World110.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="APCallback.h" />
     <ClInclude Include="CONSTANTES_LITTERALES.h" />
-    <ClInclude Include="KeyboardEventhandler.h" />
-    <ClInclude Include="MouseEvent.h" />
+    <ClInclude Include="KeyboardHandler.h" />
+    <ClInclude Include="Loader110.h" />
+    <ClInclude Include="MouseHandler.h" />
     <ClInclude Include="Node110.h" />
-    <ClInclude Include="PhysicsEngine.h" />
-    <ClInclude Include="Scene3D.h" />
-    <ClInclude Include="TestLoad.h" />
-    <ClInclude Include="TestParticles.h" />
-    <ClInclude Include="Viewer110.h" />
+    <ClInclude Include="Physics110.h" />
+    <ClInclude Include="Subdivisor.h" />
+    <ClInclude Include="World110.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\star.bmp" />

@@ -2,38 +2,33 @@
 
 #include "CONSTANTES_LITTERALES.h"
 
-class Node110 :
-	public Group
+#include "Node110.h"
+
+class World110 : public Referenced
 {
-public :
+private:
 
 	//	Constantes & Enumerations	================================================================================================================
 	
-	
-private:
+	ref_ptr<Group> _scenegraph;
+	ref_ptr<Node110> _selected;
+
 	//	Variables membres			================================================================================================================
-	
-	ref_ptr<PositionAttitudeTransform> _trf;
-	ref_ptr<Geode> _gde;
-	ref_ptr<Geometry> _geom;
 
 public:
 
-
 	//	Constructeurs & Destructeur	================================================================================================================
 
-	Node110(ref_ptr<Geometry> geom);
-	~Node110(void);
+	World110(void);
+	~World110(void);
 
 	//	Accesseurs & Mutateurs		================================================================================================================
 
-	
+	ref_ptr<Group> getScenegraph() {return _scenegraph;}
+	ref_ptr<Node110> getSelected() {return _selected;}
+	void setSelected(ref_ptr<Node110> s) { _selected = s;}
 
 	//	Fonctionnalités				================================================================================================================
-	
-	void Node110::event_RotationHaut(bool acceleration);
-	void Node110::event_RotationBas(bool acceleration);
-	void Node110::event_RotationGauche(bool acceleration);
-	void Node110::event_RotationDroite(bool acceleration);
+
 };
 

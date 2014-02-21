@@ -145,6 +145,7 @@
     <ClCompile Include="Node110.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="Scene3D.cpp" />
+    <ClCompile Include="Subdivisor.cpp" />
     <ClCompile Include="TestLoad.cpp" />
     <ClCompile Include="TestParticles.cpp" />
     <ClCompile Include="Viewer110.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Node110.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="Scene3D.h" />
+    <ClInclude Include="Subdivisor.h" />
     <ClInclude Include="TestLoad.h" />
     <ClInclude Include="TestParticles.h" />
     <ClInclude Include="Viewer110.h" />

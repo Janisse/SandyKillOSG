@@ -19,5 +19,9 @@ public:
 	void Node110::event_RotationBas(bool acceleration);
 	void Node110::event_RotationGauche(bool acceleration);
 	void Node110::event_RotationDroite(bool acceleration);
+
+	//Getter
+	ref_ptr<Geometry> getGeometry () {return _geom;}
+	ref_ptr<Geode> getGeode () {return _gde;}
 };
 

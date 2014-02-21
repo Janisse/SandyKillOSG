@@ -3,8 +3,7 @@
 
 Node110::Node110(ref_ptr<Geometry> geom)
 {
-
-
+	
 }
 
 

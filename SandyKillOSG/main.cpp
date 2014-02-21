@@ -21,7 +21,10 @@ int main()
 	loader.loadOBJ("resources/cubeOSG.obj", model);*/
 
 	ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
-	viewer->getScenegraph()->addChild(myNode);
+	ref_ptr<Node110> myNode110 = new Node110(myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry());
+
+	viewer->setSelected(myNode110);
+	viewer->getScenegraph()->addChild(myNode110);
 	//myNode->asGeode()->getDrawable(0)->asGeometry()->getVertexArray();	//ceci ne fonctionne pas, il faurait voir commment récupérer les vertices
 
 

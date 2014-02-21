@@ -7,7 +7,7 @@ Viewer110::Viewer110(void)
 	_selected = 0;
 
 	//création des teneurs d'évéements + affectation des événeemnts sur eux
-	_keyboardEventHandler = new KeyboardEventhandler;
+	_keyboardEventHandler = new KeyboardEventhandler(this);
 	_mouseEventHandler = new MouseEvent;
 	addEventHandler(_keyboardEventHandler);
 	addEventHandler(_mouseEventHandler);

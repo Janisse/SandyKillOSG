@@ -69,13 +69,8 @@ bool MouseHandler::pickCible (osgViewer::Viewer* viewer, float mx, float my)
 	if (picker->containsIntersections())
 	{
 		const osg::NodePath& nodePath = picker->getFirstIntersection().nodePath;
-		if (!_picked.valid())
-			osg::notify() << "Pick failed." << std::endl;
-	}
-	else if (_picked.valid())
-	{
-		_picked->setUpdateCallback( NULL );
-		_picked = NULL;
+		ref_ptr<osg::Node> nde = nodePath.at(0);
+		//_picked = dynamic_cast<Node110*>(nde);
 	}
 	return _picked.valid();
 }

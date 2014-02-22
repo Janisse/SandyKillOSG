@@ -4,6 +4,8 @@
 #include "MouseHandler.h"
 #include "KeyboardHandler.h"
 #include "Physics110.h"
+#include "Loader110.h"
+#include "Node110.h"
 
 int main()
 {
@@ -23,10 +25,14 @@ int main()
 
 	// Chargement d'un cube
 	ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
-	ref_ptr<Node110> myNode110 = new Node110(myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry());
+	ref_ptr<Node110> myNode110auto = new Node110(myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry());
+	ref_ptr<Node110> myNode110 = new Node110();
 
-	world->setSelected(myNode110);
-	world->getScenegraph()->addChild(myNode110);
+	myNode110->loadFromFile("resources/cubeOSG.obj");
+
+	//world->setSelected(myNode110);
+	//world->getScenegraph()->addChild(myNode110auto.get());
+	world->getScenegraph()->addChild(myNode110.get());
 
 
 	// Evénements

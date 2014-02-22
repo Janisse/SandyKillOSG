@@ -22,7 +22,8 @@ public:
 
 	//	Constructeurs & Destructeur	================================================================================================================
 
-	Node110(ref_ptr<Geometry> geom);
+	Node110();
+	Node110::Node110(ref_ptr<Geometry> geom);
 	~Node110(void);
 
 	//	Accesseurs & Mutateurs		================================================================================================================
@@ -37,5 +38,7 @@ public:
 	void Node110::event_RotationBas(bool acceleration);
 	void Node110::event_RotationGauche(bool acceleration);
 	void Node110::event_RotationDroite(bool acceleration);
+
+	bool loadFromFile(const char * path);
 };
 

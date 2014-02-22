@@ -39,6 +39,6 @@ public:
 	void Node110::event_RotationGauche(bool acceleration);
 	void Node110::event_RotationDroite(bool acceleration);
 
-	bool loadFromFile(const char * path);
+	//bool loadFromFile(const char * path);
 };
 

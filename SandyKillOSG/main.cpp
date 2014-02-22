@@ -31,9 +31,10 @@ int main()
 
 	// Chargement d'un cube A LA MAIN (Changer le constructeur de Node110)
 	ref_ptr<Node110> myNode110 = new Node110();
-	myNode110->loadFromFile("resources/cubeOSG.obj");
+	Loader110::loadFromFile("resources/cubeOSG.obj", myNode110);
+	//myNode110->loadFromFile("resources/cubeOSG.obj");
 	world->setSelected(myNode110);
-	world->getScenegraph()->addChild(myNode110.get());
+	world->getScenegraph()->addChild(myNode110);
 
 
 	// Evénements

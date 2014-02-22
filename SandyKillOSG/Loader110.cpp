@@ -11,12 +11,13 @@ Loader110::~Loader110(void)
 }
 
 
-bool Loader110::loadFromFile(const char * path, ref_ptr<Node110> node110)
+bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 {
+
+	node110 = new Node110;
 	//node110->getGeometry() = new Geometry();
 	ref_ptr<Geometry> newGeom = new Geometry();
 	//node110->setGeometry(newGeom);
-	node110->getGeometry();
 
 	ref_ptr<Vec3Array> vertices = new Vec3Array();
 	ref_ptr<Vec3Array> faces = new Vec3Array();
@@ -33,12 +34,12 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110> node110)
 	while( quitLoop == false )
 	{
 		char lineHeader[128];
-		// read the first word of the line
+		// Lecture de la première ligne
 		int res = fscanf(file, "%s", lineHeader);
 		if (res == EOF)
 		{
-			quitLoop = true;  // EOF = End Of File. Quit the loop.
-			continue;
+			quitLoop = true; // EOF = End Of File. Quit the loop.
+			break;
 		}
 		// else : parse lineHeader
 		if ( strcmp( lineHeader, "v" ) == 0 )
@@ -47,8 +48,7 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110> node110)
 			float y;
 			float z;
 			fscanf(file, "%f %f %f\n", &x, &y, &z);
-			Vec3f vertex(x, y, z);
-			vertices->push_back(vertex);
+			vertices->push_back(Vec3f(x, y, z));
 		}
 		else if ( strcmp( lineHeader, "f" ) == 0 )
 		{
@@ -65,7 +65,7 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110> node110)
 	}
 
 	//On crée la geometry à partir des données chargées
-	newGeom->setVertexArray(vertices);
+	node110->getGeometry()->setVertexArray(vertices);
 	for (int i=0; i<faces->size(); i++)
 	{
 		ref_ptr<DrawElementsUInt> face =
@@ -74,10 +74,12 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110> node110)
 		face->push_back(faces->at(i).y());
 		face->push_back(faces->at(i).z());
 
-		newGeom->addPrimitiveSet(face);
+		//newGeom->addPrimitiveSet(face);
+		node110->getGeometry()->addPrimitiveSet(face);
 	}
 
-	node110->getGde()->addDrawable(newGeom);
-	node110->getGde()->addDrawable(node110.get()->getGeometry());
-	//return true;
+	
+	//node110->getGde()->addDrawable(newGeom);
+	//node110->getGde()->addDrawable(node110.get()->getGeometry());
+	return true;
 }

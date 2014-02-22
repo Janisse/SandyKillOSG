@@ -5,6 +5,8 @@ Node110::Node110()
 {
 	_trf = new PositionAttitudeTransform;
 	_gde = new Geode;
+	_geom = new Geometry;
+	_gde->addDrawable(_geom);
 	_trf->addChild(_gde);
 	this->addChild(_trf);
 }
@@ -63,7 +65,7 @@ void Node110::event_RotationDroite(bool acceleration)
 	}
 }
 
-bool Node110::loadFromFile(const char * path)
+/* bool Node110::loadFromFile(const char * path)
 {
 	//node110->getGeometry() = new Geometry();
 	_geom = new Geometry();
@@ -144,4 +146,4 @@ bool Node110::loadFromFile(const char * path)
 	_geom->setUseDisplayList(true);
 	_gde->addDrawable(_geom->asGeometry());
 	return true;
-}
+}*/

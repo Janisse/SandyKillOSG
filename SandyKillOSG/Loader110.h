@@ -8,6 +8,7 @@ class Loader110
 public:
 	Loader110(void);
 	~Loader110(void);
+
 	bool loadFromFile(const char * path, ref_ptr<Node110> node110);
 };
 

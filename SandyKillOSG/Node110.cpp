@@ -1,6 +1,6 @@
 #include "Node110.h"
 
-
+////////////// CODE A COMMENTER/DECOMMENTER POUR Chargement d'un cube A LA MAIN
 Node110::Node110()
 {
 	_trf = new PositionAttitudeTransform;
@@ -8,7 +8,10 @@ Node110::Node110()
 	_trf->addChild(_gde);
 	this->addChild(_trf);
 }
+///////////////////////////////////////////////////////////////////////
 
+////////////// CODE A COMMENTER/DECOMMENTER POUR Chargement d'un cube AUTOMATIQUE
+/*
 Node110::Node110(ref_ptr<Geometry> geom)
 {
 	_trf = new PositionAttitudeTransform;
@@ -17,8 +20,8 @@ Node110::Node110(ref_ptr<Geometry> geom)
 	_gde->addDrawable(_geom);
 	_trf->addChild(_gde);
 	this->addChild(_trf);
-}
-
+}*/
+///////////////////////////////////////////////////////////////////////
 
 Node110::~Node110(void)
 {

@@ -23,15 +23,16 @@ int main()
 	Physics110 physicsEngine;
 
 
-	// Chargement d'un cube
-	ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
+	// Chargement d'un cube AUTOMATIQUE (Changer le constructeur de Node110)
+	/*ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
 	ref_ptr<Node110> myNode110auto = new Node110(myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry());
+	world->setSelected(myNode110auto);
+	world->getScenegraph()->addChild(myNode110auto.get());*/
+
+	// Chargement d'un cube A LA MAIN (Changer le constructeur de Node110)
 	ref_ptr<Node110> myNode110 = new Node110();
-
 	myNode110->loadFromFile("resources/cubeOSG.obj");
-
-	//world->setSelected(myNode110);
-	//world->getScenegraph()->addChild(myNode110auto.get());
+	world->setSelected(myNode110);
 	world->getScenegraph()->addChild(myNode110.get());
 
 

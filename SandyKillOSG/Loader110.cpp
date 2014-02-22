@@ -13,9 +13,10 @@ Loader110::~Loader110(void)
 
 bool Loader110::loadFromFile(const char * path, ref_ptr<Node110> node110)
 {
-	/*//node110->getGeometry() = new Geometry();
+	//node110->getGeometry() = new Geometry();
 	ref_ptr<Geometry> newGeom = new Geometry();
-	node110->setGeometry(newGeom);
+	//node110->setGeometry(newGeom);
+	node110->getGeometry();
 
 	ref_ptr<Vec3Array> vertices = new Vec3Array();
 	ref_ptr<Vec3Array> faces = new Vec3Array();
@@ -67,7 +68,8 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110> node110)
 	newGeom->setVertexArray(vertices);
 	for (int i=0; i<faces->size(); i++)
 	{
-		ref_ptr<DrawElementsUInt> face = new osg::DrawElementsUInt(osg::PrimitiveSet::TRIANGLES, 0);
+		ref_ptr<DrawElementsUInt> face =
+			new osg::DrawElementsUInt(osg::PrimitiveSet::TRIANGLES, 0);
 		face->push_back(faces->at(i).x());
 		face->push_back(faces->at(i).y());
 		face->push_back(faces->at(i).z());
@@ -75,6 +77,7 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110> node110)
 		newGeom->addPrimitiveSet(face);
 	}
 
-	//node110->getGde()->addDrawable(node110.get()->getGeometry());*/
-	return true;
+	node110->getGde()->addDrawable(newGeom);
+	node110->getGde()->addDrawable(node110.get()->getGeometry());
+	//return true;
 }

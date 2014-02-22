@@ -21,6 +21,8 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 
 	ref_ptr<Vec3Array> vertices = new Vec3Array();
 	ref_ptr<Vec3Array> faces = new Vec3Array();
+	ref_ptr<Vec3Array> normals = new Vec3Array();
+	ref_ptr<Vec4Array> colors = new Vec4Array();
 
 	FILE * file = fopen(path, "r");
 	if( file == NULL )
@@ -50,6 +52,14 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 			fscanf(file, "%f %f %f\n", &x, &y, &z);
 			vertices->push_back(Vec3f(x, y, z));
 		}
+		else if ( strcmp( lineHeader, "vn" ) == 0 )
+		{
+			float x;
+			float y;
+			float z;
+			fscanf(file, "%f %f %f\n", &x, &y, &z);
+			normals->push_back(Vec3f(x, y, z));
+		}
 		else if ( strcmp( lineHeader, "f" ) == 0 )
 		{
 			std::string vertex1, vertex2, vertex3;
@@ -66,6 +76,10 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 
 	//On crée la geometry à partir des données chargées
 	node110->getGeometry()->setVertexArray(vertices);
+	node110->getGeometry()->setNormalArray(normals);
+
+	Vec4 couleur(1,0,1,1);
+
 	for (int i=0; i<faces->size(); i++)
 	{
 		ref_ptr<DrawElementsUInt> face =
@@ -74,12 +88,15 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 		face->push_back(faces->at(i).y());
 		face->push_back(faces->at(i).z());
 
+		colors->push_back(couleur);
+
 		//newGeom->addPrimitiveSet(face);
 		node110->getGeometry()->addPrimitiveSet(face);
 	}
 
-	
-	//node110->getGde()->addDrawable(newGeom);
-	//node110->getGde()->addDrawable(node110.get()->getGeometry());
+	node110->getGeometry()->setColorArray(colors);
+	node110->getGeometry()->setColorBinding(Geometry::BIND_PER_PRIMITIVE_SET);
+	//node110->getGde()->addDrawable(node110->getGeometry());
+
 	return true;
 }

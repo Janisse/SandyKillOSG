@@ -43,7 +43,7 @@ int main()
 	viewer->addEventHandler(mouseHandler);
 
 	//paramétrage de la scène
-	viewer->setSceneData(world->getScenegraph());
+	viewer->setSceneData(world->getScenegraph().get());
 
 	return viewer->run();
 }

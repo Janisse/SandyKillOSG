@@ -22,20 +22,25 @@ int main()
 	//Physics
 	Physics110 physicsEngine;
 
+	Loader110 load;
 
-	// Chargement d'un cube AUTOMATIQUE (Changer le constructeur de Node110)
-	/*ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
+	// Chargement d'un cube AUTOMATIQUE
+	/*
+	ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
 	ref_ptr<Node110> myNode110auto = new Node110(myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry());
+	myNode110auto->setStateSet(load.makeStateSet(10.f));
 	world->setSelected(myNode110auto);
 	world->getScenegraph()->addChild(myNode110auto.get());*/
 
-	// Chargement d'un cube A LA MAIN (Changer le constructeur de Node110)
+	// Chargement d'un cube A LA MAIN
 	ref_ptr<Node110> myNode110 = new Node110();
 	Loader110::loadFromFile("resources/cubeOSG.obj", myNode110);
-	//myNode110->loadFromFile("resources/cubeOSG.obj");
+	myNode110->setStateSet(load.makeStateSet(10.f));
 	world->setSelected(myNode110);
 	world->getScenegraph()->addChild(myNode110);
 
+	// convertion vertice en sprites
+	//myNode110->convertToSprites();
 
 	// Evénements
 

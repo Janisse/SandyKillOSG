@@ -12,7 +12,7 @@ void subdivide(ref_ptr<Node110> node110)
 	//node110Geometry->getVertexArray()->getNumElements();
 	
 	//On parcourt toute les faces
-	for (int i=0; i<node110Geometry->getNumPrimitiveSets(); i++)
+	for (unsigned int i=0; i<node110Geometry->getNumPrimitiveSets(); i++)
 	{
 		nextPrimitiveSet = node110Geometry->getPrimitiveSet(i);
 

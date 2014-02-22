@@ -83,7 +83,7 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 	for (int i=0; i<faces->size(); i++)
 	{
 		ref_ptr<DrawElementsUInt> face =
-			new osg::DrawElementsUInt(osg::PrimitiveSet::TRIANGLES, 0);
+			new osg::DrawElementsUInt(osg::PrimitiveSet::POINTS, 0);
 		face->push_back(faces->at(i).x());
 		face->push_back(faces->at(i).y());
 		face->push_back(faces->at(i).z());
@@ -95,8 +95,40 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 	}
 
 	node110->getGeometry()->setColorArray(colors);
-	node110->getGeometry()->setColorBinding(Geometry::BIND_PER_PRIMITIVE_SET);
+	node110->getGeometry()->setColorBinding(Geometry::BIND_PER_VERTEX);
 	//node110->getGde()->addDrawable(node110->getGeometry());
 
+	//node110->addPrimitiveSet(new osg::DrawArrays(osg::PrimitiveSet::POINTS, 0, nvertices));
+
 	return true;
+}
+
+osg::StateSet* Loader110::makeStateSet(float size)
+{
+	osg::StateSet *set = new osg::StateSet();
+
+	/// Setup cool blending
+	set->setMode(GL_BLEND, osg::StateAttribute::ON);
+	osg::BlendFunc *fn = new osg::BlendFunc();
+	fn->setFunction(osg::BlendFunc::SRC_ALPHA, osg::BlendFunc::DST_ALPHA);
+	set->setAttributeAndModes(fn, osg::StateAttribute::ON);
+
+	/// Setup the point sprites
+	osg::PointSprite *sprite = new osg::PointSprite();
+	set->setTextureAttributeAndModes(0, sprite, osg::StateAttribute::ON);
+
+	/// Give some size to the points to be able to see the sprite
+	osg::Point *point = new osg::Point();
+	point->setSize(size);
+	set->setAttribute(point);
+
+	/// Disable depth test to avoid sort problems and Lighting
+	set->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
+	set->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
+
+	/// The texture for the sprites
+	osg::Texture2D *tex = new osg::Texture2D();
+	tex->setImage(osgDB::readImageFile("resources/star.bmp"));
+	set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);
+	return set;
 }

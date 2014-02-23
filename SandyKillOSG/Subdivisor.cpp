@@ -5,7 +5,7 @@
 void subdivide(ref_ptr<Node110> node110)
 {
 	//Init
-	ref_ptr<DrawElementsUInt> face = new DrawElementsUInt(PrimitiveSet::POINTS);
+	ref_ptr<DrawElementsUInt> face = new DrawElementsUInt(PrimitiveSet::TRIANGLES);
 
 	//Vide les faces de la geometry
 	node110->getGeometry()->getPrimitiveSetList().clear();
@@ -21,8 +21,8 @@ void subdivide(ref_ptr<Node110> node110)
 
 		//On crée les 3 nouveaux points
 		Vec3 pt4 = middlePoint(pt1, pt2);
-		Vec3 pt5 = middlePoint(pt1, pt3);
-		Vec3 pt6 = middlePoint(pt3, pt2);
+		Vec3 pt5 = middlePoint(pt2, pt3);
+		Vec3 pt6 = middlePoint(pt1, pt3);
 
 		//On ajoute les nouveaux points a la geometry
 		node110->getVertexs()->push_back(pt4);

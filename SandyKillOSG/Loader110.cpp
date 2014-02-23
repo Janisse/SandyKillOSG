@@ -17,7 +17,7 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 	node110 = new Node110;
 	ref_ptr<Vec3Array> vertices = node110->getVertexs();
 	ref_ptr<Vec3Array> faces = node110->getFaces();
-	ref_ptr<DrawElementsUInt> face = new osg::DrawElementsUInt(osg::PrimitiveSet::POINTS);
+	ref_ptr<DrawElementsUInt> face = new osg::DrawElementsUInt(osg::PrimitiveSet::TRIANGLES);
 
 	//On charge les elements du fichier
 	FILE * file = fopen(path, "r");

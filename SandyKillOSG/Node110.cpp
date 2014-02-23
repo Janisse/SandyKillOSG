@@ -10,6 +10,8 @@ Node110::Node110()
 	_gde->addDrawable(_geom);
 	_trf->addChild(_gde);
 	this->addChild(_trf);
+	_vertexs = new Vec3Array();
+	_faces = new Vec3Array();
 }
 
 Node110::Node110(ref_ptr<Geometry> geom)

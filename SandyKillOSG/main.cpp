@@ -37,7 +37,7 @@ int main()
 	int nbSubdivision;
 	// Chargement d'un cube A LA MAIN
 	ref_ptr<Node110> myNode110 = new Node110();
-	Loader110::loadFromFile("resources/cubeOSG.obj", myNode110);
+	Loader110::loadFromFile("resources/icosphere.obj", myNode110);
 
 	cout<<"Entrer le nombre de Subdivision souaite: ";
 	cin>>nbSubdivision;
@@ -47,7 +47,7 @@ int main()
 		subdivide(myNode110);
 	}
 
-	myNode110->setStateSet(load.makeStateSet(10.f));
+	myNode110->setStateSet(load.makeStateSet(2.f));
 	world->setSelected(myNode110);
 	world->getScenegraph()->addChild(myNode110);
 

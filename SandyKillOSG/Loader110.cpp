@@ -70,20 +70,20 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 				printf("File can't be read by our simple parser : ( Try exporting with other options\n");
 				return false;
 			}
-			faces->push_back(Vec3(vertexIndex[0], vertexIndex[1], vertexIndex[2]));
+			faces->push_back(Vec3(vertexIndex[0]-1, vertexIndex[1]-1, vertexIndex[2]-1));
 		}
 	}
 
 	//On crée la geometry à partir des données chargées
 	node110->getGeometry()->setVertexArray(vertices);
-	node110->getGeometry()->setNormalArray(normals);
+	//node110->getGeometry()->setNormalArray(normals);
 
 	Vec4 couleur(1,0,1,1);
 
 	for (int i=0; i<faces->size(); i++)
 	{
 		ref_ptr<DrawElementsUInt> face =
-			new osg::DrawElementsUInt(osg::PrimitiveSet::POINTS, 0);
+			new osg::DrawElementsUInt(osg::PrimitiveSet::TRIANGLES, 0);
 		face->push_back(faces->at(i).x());
 		face->push_back(faces->at(i).y());
 		face->push_back(faces->at(i).z());

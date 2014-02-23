@@ -95,7 +95,7 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 	}
 
 	node110->getGeometry()->setColorArray(colors);
-	node110->getGeometry()->setColorBinding(Geometry::BIND_PER_VERTEX);
+	node110->getGeometry()->setColorBinding(Geometry::BIND_PER_PRIMITIVE_SET);
 	//node110->getGde()->addDrawable(node110->getGeometry());
 
 	//node110->addPrimitiveSet(new osg::DrawArrays(osg::PrimitiveSet::POINTS, 0, nvertices));

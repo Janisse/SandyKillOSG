@@ -4,7 +4,7 @@
 
 #include "Node110.h"
 
-class World110 : public Referenced
+class World110 : public Group
 {
 private:
 

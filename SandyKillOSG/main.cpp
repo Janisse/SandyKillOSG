@@ -35,7 +35,7 @@ int main()
 	// Chargement d'un cube A LA MAIN
 	ref_ptr<Node110> myNode110 = new Node110();
 	Loader110::loadFromFile("resources/cubeOSG.obj", myNode110);
-	myNode110->setStateSet(load.makeStateSet(10.f));
+	//myNode110->setStateSet(load.makeStateSet(10.f));
 	world->setSelected(myNode110);
 	world->getScenegraph()->addChild(myNode110);
 

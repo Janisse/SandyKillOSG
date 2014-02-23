@@ -37,7 +37,7 @@ int main()
 	int nbSubdivision;
 	// Chargement d'un cube A LA MAIN
 	ref_ptr<Node110> myNode110 = new Node110();
-	Loader110::loadFromFile("resources/icosphere.obj", myNode110);
+	Loader110::loadFromFile("resources/suzanne.obj", myNode110);
 
 	cout<<"Entrer le nombre de Subdivision souaite: ";
 	cin>>nbSubdivision;

@@ -38,6 +38,8 @@ public:
 	ref_ptr<Vec3Array> getVertexs() {return _vertexs;}
 	ref_ptr<Vec3Array> getFaces() {return _faces;}
 
+	void setFaces(ref_ptr<Vec3Array> faces) {_faces = faces;}
+
 	//	Fonctionnalités				================================================================================================================
 	
 	void event_RotationHaut(bool acceleration);

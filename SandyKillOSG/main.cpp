@@ -47,7 +47,7 @@ int main()
 		subdivide(myNode110);
 	}
 
-	myNode110->setStateSet(load.makeStateSet(10.f));
+	myNode110->setStateSet(load.makeStateSet(2.f));
 	world->setSelected(myNode110);
 	world->getScenegraph()->addChild(myNode110);
 

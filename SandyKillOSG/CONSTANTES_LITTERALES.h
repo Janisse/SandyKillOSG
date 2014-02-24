@@ -16,6 +16,7 @@
 #include <osgGA/TrackballManipulator>
 #include <osgGA/NodeTrackerManipulator>
 #include <osg/Node>
+#include <osg/NodeCallback>
 #include <RefPtrCo.h>
 
 #include <stdio.h> //pour printf, sscanf, stderr, fprintf, fopen, fseek, fread, ftell, fclose, FILE

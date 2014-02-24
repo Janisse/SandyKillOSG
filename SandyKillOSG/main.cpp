@@ -42,10 +42,7 @@ int main()
 	cout<<"Entrer le nombre de Subdivision souaite: ";
 	cin>>nbSubdivision;
 
-	for(int i = 0; i<nbSubdivision; i++)
-	{
-		subdivide(myNode110);
-	}
+	subdivide(myNode110, nbSubdivision);
 
 	myNode110->setStateSet(load.makeStateSet(2.f));
 	world->setSelected(myNode110);

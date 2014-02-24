@@ -7,6 +7,7 @@
 #include "Loader110.h"
 #include "Node110.h"
 #include "Subdivisor.h"
+#include "PhysicsSand.h"
 
 int main()
 {
@@ -47,12 +48,13 @@ int main()
 		subdivide(myNode110);
 	}
 
-	myNode110->setStateSet(load.makeStateSet(2.f));
+	myNode110->setStateSet(load.makeStateSet(TAILLE_SPRITES));
 	world->setSelected(myNode110);
 	world->getScenegraph()->addChild(myNode110);
 
-	// convertion vertice en sprites
-	//myNode110->convertToSprites();
+	// Fonction effet sable
+	PhysicsSand sand;
+	sand.update(TEMPS, myNode110);
 
 	// Evénements
 

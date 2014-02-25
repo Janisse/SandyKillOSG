@@ -8,6 +8,7 @@
 #include "Node110.h"
 #include "Subdivisor.h"
 #include "PhysicsSand.h"
+#include "PhysicsExplosion.h"
 
 
 
@@ -24,7 +25,7 @@ int main()
 	ref_ptr<KeyboardHandler> keyboardHandler = new KeyboardHandler(world);
 
 	//Physics
-	ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
+	ref_ptr<PhysicsExplosion> physicsEngine = new PhysicsExplosion;
 
 	Loader110 load;
 
@@ -40,7 +41,7 @@ int main()
 	int nbSubdivision;
 	// Chargement d'un cube A LA MAIN
 	ref_ptr<Node110> myNode110 = new Node110();
-	Loader110::loadFromFile("resources/suzanne.obj", myNode110);
+	Loader110::loadFromFile("resources/cubeOSG.obj", myNode110);
 
 	cout<<"Entrer le nombre de Subdivision souhaite: ";
 	cin>>nbSubdivision;
@@ -65,12 +66,14 @@ int main()
 	viewer->setSceneData(world->getScenegraph());
 
 	//Caméra
-	/*ref_ptr<osgGA::TrackballManipulator> manipCameraLibre = new osgGA::TrackballManipulator;
+	ref_ptr<osgGA::TrackballManipulator> manipCameraLibre = new osgGA::TrackballManipulator;
 	viewer->setCameraManipulator(manipCameraLibre);
+	viewer->getCamera()->setProjectionMatrixAsPerspective(45, 1, 0.5, 1000); 
+	viewer->getCamera()->setComputeNearFarMode(CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
 
 	while(!viewer->done()){
 		viewer->frame();
-	}*/
+	}
 
 	return viewer->run();
 }

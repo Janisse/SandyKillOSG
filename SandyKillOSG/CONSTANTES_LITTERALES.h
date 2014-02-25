@@ -1,9 +1,14 @@
 #pragma once
 
+#include <stdio.h> //pour printf, sscanf, stderr, fprintf, fopen, fseek, fread, ftell, fclose, FILE
+#include <stdlib.h>//pour malloc, free
+#include <string.h>//pour strstr
+#include <conio.h>//pour getch
 #include <time.h>
 #include <windows.h> 
-#include <string>
 #include <RefPtrCo.h>
+#include <sstream>
+#include <iostream>
 
 #include <osgViewer/Viewer>
 
@@ -34,6 +39,8 @@
 #include <osg/TexEnvCombine>
 #include <osg/TextureCubeMap>
 #include <osg/VertexProgram>
+#include <osg/Projection>
+#include <osg/MatrixTransform>
 
 #include <osgGA/TrackballManipulator>
 #include <osgGA/NodeTrackerManipulator>
@@ -45,12 +52,7 @@
 #include <osgUtil/Optimizer>
 #include <osgUtil/CullVisitor>
 
-
-#include <stdio.h> //pour printf, sscanf, stderr, fprintf, fopen, fseek, fread, ftell, fclose, FILE
-#include <stdlib.h>//pour malloc, free
-#include <string.h>//pour strstr
-#include <conio.h>//pour getch
-#include <time.h>
+#include <osgText/Text>
 
 using namespace std;
 using namespace osg;

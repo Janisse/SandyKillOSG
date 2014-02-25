@@ -9,7 +9,7 @@
 #include "Subdivisor.h"
 #include "PhysicsSand.h"
 #include "PhysicsExplosion.h"
-
+#include "HUD110.h"
 
 
 int main()
@@ -41,7 +41,7 @@ int main()
 	int nbSubdivision;
 	// Chargement d'un cube A LA MAIN
 	ref_ptr<Node110> myNode110 = new Node110();
-	Loader110::loadFromFile("resources/requin.obj", myNode110);
+	Loader110::loadFromFile("resources/cubeOSG.obj", myNode110);
 
 	cout<<"Entrer le nombre de Subdivision souhaite: ";
 	cin>>nbSubdivision;
@@ -65,13 +65,28 @@ int main()
 	//paramétrage de la scène
 	viewer->setSceneData(world->getScenegraph());
 
+	//geode
+	ref_ptr<Geode> gdeHUD = new Geode;
+	HUD110 hud;
+	hud.createLabel();
+	for(int i=0; i<hud.getTabLabel().size(); i++)
+	{
+		gdeHUD->addDrawable(hud.getTabLabel()[i]);
+	}
+
 	//Caméra
 	ref_ptr<osgGA::TrackballManipulator> manipCameraLibre = new osgGA::TrackballManipulator;
 	viewer->setCameraManipulator(manipCameraLibre);
 	viewer->getCamera()->setProjectionMatrixAsPerspective(45, 1, 0.5, 1000); 
 	viewer->getCamera()->setComputeNearFarMode(CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
 
-	while(!viewer->done()){
+	ref_ptr<osg::Camera> camera = hud.createOrthoCamera(1280.0f, 1024.0f);
+
+	camera->addChild(gdeHUD);
+	world->getScenegraph()->addChild(camera);
+
+	while(!viewer->done())
+	{
 		viewer->frame();
 	}
 

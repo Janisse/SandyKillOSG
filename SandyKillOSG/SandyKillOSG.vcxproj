@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HUD110.cpp" />
     <ClCompile Include="KeyboardHandler.cpp" />
     <ClCompile Include="Loader110.cpp" />
     <ClCompile Include="main.cpp" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CONSTANTES_LITTERALES.h" />
+    <ClInclude Include="HUD110.h" />
     <ClInclude Include="KeyboardHandler.h" />
     <ClInclude Include="Loader110.h" />
     <ClInclude Include="MouseHandler.h" />

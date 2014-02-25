@@ -22,16 +22,12 @@ void PhysicsExplosion::explosionEffect(double temps, ref_ptr<Node110> node110)
 
 	for(int i = 0; i < node110->getVertexs()->size(); i++)
 	{
-		if(node110->getVertexs()->at(i).z() > -2.0)
-		{
-			//Projection dans la direction opposé au centre de l'explosion
-			node110->getVertexs()->at(i) += _directionExplosion->at(i)*(1/time);
+		//Projection dans la direction opposé au centre de l'explosion
+		node110->getVertexs()->at(i) += _directionExplosion->at(i)*(1/time);
 
-			//Attraction au sol
-			node110->getVertexs()->at(i).z() -= 1.0 * temps + (rand()%100)/8000.;
-		}
-		else
-			node110->getVertexs()->at(i).z() = -2;
+		//Attraction au sol
+		node110->getVertexs()->at(i).z() -= 1.0 * temps + (rand()%100)/8000.;
+
 	}
 	time += 1;
 }

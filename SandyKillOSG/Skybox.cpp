@@ -16,8 +16,8 @@ osg::TextureCubeMap* SkyBox::readCubeMap()
 	osg::TextureCubeMap* cubemap = new osg::TextureCubeMap;
 	//#define CUBEMAP_FILENAME(face) "nvlobby_" #face ".png"
 	//#define CUBEMAP_FILENAME(face) "Cubemap_axis/" #face ".png"
-//#define CUBEMAP_FILENAME(face) "CubemapFireworks/" #face ".bmp"
-#define CUBEMAP_FILENAME(face) "CubemapSand/" #face ".bmp"
+#define CUBEMAP_FILENAME(face) "CubemapFireworks/" #face ".bmp"
+//#define CUBEMAP_FILENAME(face) "CubemapSand/" #face ".bmp"
 	try{
 		osg::Image* imagePosX = osgDB::readImageFile(CUBEMAP_FILENAME(posx));
 		osg::Image* imageNegX = osgDB::readImageFile(CUBEMAP_FILENAME(negx));

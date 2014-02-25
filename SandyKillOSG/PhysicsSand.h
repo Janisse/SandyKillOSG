@@ -1,5 +1,5 @@
 #pragma once
-#include "physics110.h"
+#include "Physics110.h"
 #include "Node110.h"
 #include "CONSTANTES_LITTERALES.h"
 
@@ -10,6 +10,6 @@ public:
 	~PhysicsSand(void);
 
 	void sandEffect(double temps, ref_ptr<Node110> node110);
-	void update(double time, ref_ptr<Node110> node110);
+	void run(double temps, ref_ptr<Node110> node110);
 };
 

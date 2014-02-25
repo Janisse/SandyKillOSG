@@ -30,5 +30,5 @@ using namespace std;
 using namespace osg;
 using namespace osgGA;
 
-float TAILLE_SPRITES = 2.f;
-double TEMPS = 10;
+#define TAILLE_SPRITES 2.0
+#define TEMPS 10

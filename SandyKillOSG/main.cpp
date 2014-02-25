@@ -9,6 +9,8 @@
 #include "Subdivisor.h"
 #include "PhysicsSand.h"
 
+
+
 int main()
 {
 	//viewer
@@ -22,7 +24,7 @@ int main()
 	ref_ptr<KeyboardHandler> keyboardHandler = new KeyboardHandler(world);
 
 	//Physics
-	Physics110 physicsEngine;
+	ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
 
 	Loader110 load;
 
@@ -40,18 +42,19 @@ int main()
 	ref_ptr<Node110> myNode110 = new Node110();
 	Loader110::loadFromFile("resources/suzanne.obj", myNode110);
 
-	cout<<"Entrer le nombre de Subdivision souaite: ";
+	cout<<"Entrer le nombre de Subdivision souhaite: ";
 	cin>>nbSubdivision;
 
 	subdivide(myNode110, nbSubdivision);
+
+	myNode110->getGeometry()->setUseDisplayList(false);
 
 	myNode110->setStateSet(load.makeStateSet(TAILLE_SPRITES));
 	world->setSelected(myNode110);
 	world->getScenegraph()->addChild(myNode110);
 
 	// Fonction effet sable
-	PhysicsSand sand;
-	sand.update(TEMPS, myNode110);
+	myNode110->addUpdateCallback(new Physics110CallBack(physicsEngine));
 
 	// Evénements
 
@@ -59,7 +62,15 @@ int main()
 	viewer->addEventHandler(mouseHandler);
 
 	//paramétrage de la scène
-	viewer->setSceneData(world->getScenegraph().get());
+	viewer->setSceneData(world->getScenegraph());
+
+	//Caméra
+	/*ref_ptr<osgGA::TrackballManipulator> manipCameraLibre = new osgGA::TrackballManipulator;
+	viewer->setCameraManipulator(manipCameraLibre);
+
+	while(!viewer->done()){
+		viewer->frame();
+	}*/
 
 	return viewer->run();
 }

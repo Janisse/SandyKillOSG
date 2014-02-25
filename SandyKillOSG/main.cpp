@@ -41,7 +41,7 @@ int main()
 	int nbSubdivision;
 	// Chargement d'un cube A LA MAIN
 	ref_ptr<Node110> myNode110 = new Node110();
-	Loader110::loadFromFile("resources/cubeOSG.obj", myNode110);
+	Loader110::loadFromFile("resources/requin.obj", myNode110);
 
 	cout<<"Entrer le nombre de Subdivision souhaite: ";
 	cin>>nbSubdivision;

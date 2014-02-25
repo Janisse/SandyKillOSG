@@ -58,3 +58,4 @@ using namespace osgGA;
 
 #define TAILLE_SPRITES 2.0
 #define TEMPS 10
+#define HAUTEUR_SOL -2.0

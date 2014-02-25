@@ -16,7 +16,8 @@ osg::TextureCubeMap* SkyBox::readCubeMap()
 	osg::TextureCubeMap* cubemap = new osg::TextureCubeMap;
 	//#define CUBEMAP_FILENAME(face) "nvlobby_" #face ".png"
 	//#define CUBEMAP_FILENAME(face) "Cubemap_axis/" #face ".png"
-#define CUBEMAP_FILENAME(face) "Cubemap/" #face ".bmp"
+//#define CUBEMAP_FILENAME(face) "CubemapFireworks/" #face ".bmp"
+#define CUBEMAP_FILENAME(face) "CubemapSand/" #face ".bmp"
 	try{
 		osg::Image* imagePosX = osgDB::readImageFile(CUBEMAP_FILENAME(posx));
 		osg::Image* imageNegX = osgDB::readImageFile(CUBEMAP_FILENAME(negx));
@@ -140,7 +141,7 @@ osg::Node* SkyBox::createSkyBox()
 
 	stateset->setRenderBinDetails(6,"RenderBin");
 
-	osg::Drawable* drawable = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0.0f,0.0f,0.0f),100));
+	osg::Drawable* drawable = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0.0f,0.0f,0.0f),5));
 
 	osg::Geode* geode = new osg::Geode;
 	geode->setCullingActive(false);

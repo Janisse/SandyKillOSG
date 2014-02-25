@@ -4,6 +4,7 @@
 
 #include "Node110.h"
 
+
 class World110 : public Group
 {
 private:
@@ -12,6 +13,7 @@ private:
 	
 	ref_ptr<Group> _scenegraph;
 	ref_ptr<Node110> _selected;
+	ref_ptr<Node> _skybox;
 
 	//	Variables membres			================================================================================================================
 

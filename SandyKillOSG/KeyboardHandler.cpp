@@ -15,9 +15,12 @@ KeyboardHandler::~KeyboardHandler(void)
 
 bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 {
-	switch(ea.getEventType()) {
+	switch(ea.getEventType())
+	{
 	case(osgGA::GUIEventAdapter::KEYDOWN):
-		switch(ea.getKey()) {
+		switch(ea.getKey())
+		{
+			// Fleche : Rotation///////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Up :
 			_world->getSelected()->event_RotationHaut(true);
 			return false;
@@ -30,11 +33,43 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 		case osgGA::GUIEventAdapter::KEY_Down :
 			_world->getSelected()->event_RotationBas(true);
 			return false;
+			// a : Effet Sable/////////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_A :
+			//_world->getSelected()->FONCTION(true);
+			return false;
+			// z : Effet Fireworks/////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_Z :
+			//_world->getSelected()->FONCTION(true);
+			return false;
+			// r : Rejouer animation///////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_R :
+			//_world->getSelected()->FONCTION(true);
+			return false;
+			// w : Cube////////////////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_W :
+			//_world->getSelected()->FONCTION(true);
+			return false;
+			// x : Isosphere///////////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_X :
+			//_world->getSelected()->FONCTION(true);
+			return false;
+			// c : Suzanne/////////////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_C :
+			//_world->getSelected()->FONCTION(true);
+			return false;
+			// v : Requin//////////////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_V :
+			//_world->getSelected()->FONCTION(true);
+			return false;
 		default:
 			break;
 		}
+
+
 	case(osgGA::GUIEventAdapter::KEYUP):
-		switch(ea.getKey()) {
+		switch(ea.getKey())
+		{
+			// Fleche : Rotation///////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Up :
 			_world->getSelected()->event_RotationHaut(false);
 			return false;
@@ -46,6 +81,34 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			return false;
 		case osgGA::GUIEventAdapter::KEY_Down :
 			_world->getSelected()->event_RotationBas(false);
+			return false;
+			// a : Effet Sable/////////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_A :
+			//_world->getSelected()->FONCTION(false);
+			return false;
+			// z : Effet Fireworks/////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_Z :
+			//_world->getSelected()->FONCTION(false);
+			return false;
+			// r : Rejouer animation///////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_R :
+			//_world->getSelected()->FONCTION(false);
+			return false;
+			// w : Cube////////////////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_W :
+			//_world->getSelected()->FONCTION(false);
+			return false;
+			// x : Isosphere///////////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_X :
+			//_world->getSelected()->FONCTION(false);
+			return false;
+			// c : Suzanne/////////////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_C :
+			//_world->getSelected()->FONCTION(false);
+			return false;
+			// v : Requin//////////////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_V :
+			//_world->getSelected()->FONCTION(false);
 			return false;
 		default:
 			break;

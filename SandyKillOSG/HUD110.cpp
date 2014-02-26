@@ -13,7 +13,7 @@ void HUD110::createLabel()
 {
 	double size = 20;
 	Vec4 color(1.0f, 1.0f, 1.0f, 1.0f);
-    osgText::Font* font  = osgText::readFontFile("fonts/courbd.ttf");
+    osgText::Font* font  = osgText::readFontFile("fonts/arial.ttf");
 
 	///////////////////////////// Effet Sable ///////////////////////////////////////////////
 	static osg::Vec3 pos(10.0f, 10.0f, 0.0f);
@@ -23,7 +23,7 @@ void HUD110::createLabel()
     labelSableEffect->setCharacterSize(size);
     labelSableEffect->setFontResolution(size, size);
     labelSableEffect->setColor(color);
-    labelSableEffect->setPosition(Vec3(20.0f, 900.0f, 0.0f));
+    labelSableEffect->setPosition(Vec3(20.0f, 970.0f, 0.0f));
 
 	_tabLabel.push_back(labelSableEffect);
 
@@ -34,7 +34,7 @@ void HUD110::createLabel()
     labelFireworksEffect->setCharacterSize(size);
     labelFireworksEffect->setFontResolution(size, size);
     labelFireworksEffect->setColor(color);
-    labelFireworksEffect->setPosition(Vec3(20.0f, 860.0f, 0.0f));
+    labelFireworksEffect->setPosition(Vec3(20.0f, 920.0f, 0.0f));
 
 	_tabLabel.push_back(labelFireworksEffect);
 		///////////////////////////// Rejouer l'animation ///////////////////////////////////////////////

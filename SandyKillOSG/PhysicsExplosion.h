@@ -9,6 +9,8 @@ private:
 	bool haveComputeExplosion;
 	Vec3 _center;
 	ref_ptr<Vec3Array> _directionExplosion;
+	ref_ptr<FloatArray> _randomSpeedFall;
+	ref_ptr<FloatArray> _randomSpeedExplosion;
 	float time;
 
 public:

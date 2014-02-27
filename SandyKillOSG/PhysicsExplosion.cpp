@@ -19,17 +19,19 @@ PhysicsExplosion::~PhysicsExplosion(void)
 
 void PhysicsExplosion::explosionEffect(double temps, ref_ptr<Node110> node110)
 {
+	ref_ptr<Vec3Array> vertexs = node110->getVertexs();
+
 	if(haveComputeExplosion == false)
 		computeExplosion(node110);
 
-	for(int i = 0; i < node110->getVertexs()->size(); i++)
+	#pragma omp parallel for schedule(dynamic)
+	for(int i = 0; i < vertexs->size(); i++)
 	{
 		//Projection dans la direction opposé au centre de l'explosion
-		node110->getVertexs()->at(i) += _directionExplosion->at(i)*(1/time)*_randomSpeedExplosion->at(i);
+		vertexs->at(i) += _directionExplosion->at(i)*(1/time)*_randomSpeedExplosion->at(i);
 
 		//Attraction au sol
-		node110->getVertexs()->at(i).z() -= 1.0 * temps + _randomSpeedFall->at(i);
-
+		vertexs->at(i).z() -= 1.0 * temps + _randomSpeedFall->at(i);
 	}
 	time += 1;
 }
@@ -57,6 +59,6 @@ void PhysicsExplosion::computeExplosion(ref_ptr<Node110> node110)
 	{
 		_directionExplosion->push_back(node110->getVertexs()->at(i) - _center);
 		_randomSpeedFall->push_back((rand()%100)/8000.);
-		_randomSpeedExplosion->push_back((rand()%100)/80.);
+		_randomSpeedExplosion->push_back((rand()%100)/20.);
 	}
 }

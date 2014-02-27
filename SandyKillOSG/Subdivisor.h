@@ -9,7 +9,6 @@ public:
 	Subdivisor(ref_ptr<Node110> in_node110);
 
 private:
-	Vec3f middlePoint(Vec3f pt1, Vec3f pt2);
 	void searchPoint();
 
 	int endIndexOldArray;

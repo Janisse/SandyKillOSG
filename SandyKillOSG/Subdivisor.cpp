@@ -40,9 +40,9 @@ void Subdivisor::subdivide(int nbSub)
 			//On crée les 3 nouveaux points
 
 			//Calcul du milieu des points
-			pt4 = middlePoint(pt1, pt2);
-			pt5 = middlePoint(pt2, pt3);
-			pt6 = middlePoint(pt1, pt3);
+			pt4 = (pt1+pt2)/2.0;
+			pt5 = (pt2+pt3)/2.0;
+			pt6 = (pt1+pt3)/2.0;
 
 			//Test si des points sont deja present dans la geometry
 			searchPoint();
@@ -109,11 +109,6 @@ void Subdivisor::subdivide(int nbSub)
 	}
 }
 
-Vec3f Subdivisor::middlePoint(Vec3f in_pt1, Vec3f in_pt2)
-{
-	return (in_pt1+in_pt2)/2.0;
-}
-
 void Subdivisor::searchPoint()
 {
 	index4 = -1;
@@ -121,32 +116,23 @@ void Subdivisor::searchPoint()
 	index6 = -1;
 
 	//Optimisation: Repartition de la recherche sur plusieur processeur
-	#pragma omp parallel for schedule(dynamic)
-	for (int i=endIndexOldArray; i<vertexs->size(); i++)
+	#pragma omp parallel
 	{
-		Vec3f vecTemp = vertexs->at(i);
-		//test pt4
-		if(pt4.x() == vecTemp.x())
-			if(pt4.y() == vecTemp.y())	
-				if(pt4.z() == vecTemp.z())
-				{
-					index4 = i;
-				}
+		#pragma omp for
+		for (int i=endIndexOldArray; i<vertexs->size(); i++)
+		{
+			Vec3f vecTemp = vertexs->at(i);
+			//test pt4
+			if(pt4 == vecTemp)
+				index4 = i;
 
-		//test pt5
-		if(pt5.x() == vecTemp.x())
-			if(pt5.y() == vecTemp.y())	
-				if(pt5.z() == vecTemp.z())
-				{
-					index5 = i;
-				}
+			//test pt5
+			if(pt5 == vecTemp)
+				index5 = i;
 
-		//test pt6
-		if(pt6.x() == vecTemp.x())
-			if(pt6.y() == vecTemp.y())	
-				if(pt6.z() == vecTemp.z())
-				{
-					index6 = i;
-				}
+			//test pt6
+			if(pt6 == vecTemp)
+				index6 = i;
+		}
 	}
 }

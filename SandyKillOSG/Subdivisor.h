@@ -2,6 +2,35 @@
 
 #include "Node110.h"
 
-void subdivide(ref_ptr<Node110> node110, int nbSub);
-Vec3f middlePoint(Vec3f pt1, Vec3f pt2);
-int searchPoint(Vec3 pt, ref_ptr<Node110> node110, int endIndexOldArray);
+class Subdivisor
+{
+public:
+	void subdivide(int nbSub);
+	Subdivisor(ref_ptr<Node110> in_node110);
+
+private:
+	Vec3f middlePoint(Vec3f pt1, Vec3f pt2);
+	void searchPoint();
+
+	int endIndexOldArray;
+	int endIndexArray;
+
+	int index1;
+	int index2;
+	int index3;
+	int index4;
+	int index5;
+	int index6;
+
+	Vec3 pt1;
+	Vec3 pt2;
+	Vec3 pt3;
+	Vec3 pt4;
+	Vec3 pt5;
+	Vec3 pt6;
+
+	ref_ptr<Node110> node110;
+	ref_ptr<Geometry> geom;
+	ref_ptr<Vec3Array> vertexs;
+	ref_ptr<Vec3Array> faces;
+};

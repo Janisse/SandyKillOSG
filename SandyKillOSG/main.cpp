@@ -46,7 +46,9 @@ int main()
 	cout<<"Entrer le nombre de Subdivision souhaite: ";
 	cin>>nbSubdivision;
 
-	subdivide(myNode110, nbSubdivision);
+	Subdivisor subdivisor(myNode110);
+	subdivisor.subdivide(nbSubdivision);
+	//subdivide(myNode110, nbSubdivision);
 
 	myNode110->getGeometry()->setUseDisplayList(false);
 

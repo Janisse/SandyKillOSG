@@ -9,6 +9,8 @@
 #include <RefPtrCo.h>
 #include <sstream>
 #include <iostream>
+#include <omp.h>
+#include <list>
 
 #include <osgViewer/Viewer>
 

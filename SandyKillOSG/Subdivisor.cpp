@@ -1,64 +1,75 @@
 #include "CONSTANTES_LITTERALES.h"
 #include "Subdivisor.h"
 
-
-void subdivide(ref_ptr<Node110> node110, int nbSub)
+Subdivisor::Subdivisor(ref_ptr<Node110> in_node110)
 {
+	node110 = in_node110;
+	geom = node110->getGeometry();
+	vertexs = node110->getVertexs();
+	faces = node110->getFaces();
+}
+
+void Subdivisor::subdivide(int nbSub)
+{
+	//Variable temps
+	Timer time;
 	for (int k = 0; k<nbSub; k++)
 	{
 		//Init
 		ref_ptr<DrawElementsUInt> face = new DrawElementsUInt(PrimitiveSet::POINTS);
 
 		//Vide les faces de la geometry
-		node110->getGeometry()->getPrimitiveSetList().clear();
+		geom->getPrimitiveSetList().clear();
 		ref_ptr<Vec3Array> newFaces = new Vec3Array;
 
-		int endIndexOldArray = node110->getVertexs()->size();
+		endIndexOldArray = vertexs->size();
+		endIndexArray = vertexs->size();
 
 		//On parcourt toutes les faces
-		for(int i=0; i<node110->getFaces()->size(); i++)
+		for(int i=0; i<faces->size(); i++)
 		{
+			//printf("tour %d from thread %d\n", i, omp_get_thread_num());
 			//On parcourt les 3 points de la face
-			int index1 = node110->getFaces()->at(i).x();
-			Vec3 pt1 = node110->getVertexs()->at(index1);
-			int index2 = node110->getFaces()->at(i).y();
-			Vec3 pt2 = node110->getVertexs()->at(index2);
-			int index3 = node110->getFaces()->at(i).z();
-			Vec3 pt3 = node110->getVertexs()->at(index3);
+			index1 = faces->at(i).x();
+			pt1 = vertexs->at(index1);
+			index2 = faces->at(i).y();
+			pt2 = vertexs->at(index2);
+			index3 = faces->at(i).z();
+			pt3 = vertexs->at(index3);
 
 			//On crée les 3 nouveaux points
-			int index4;
-			Vec3 pt4 = middlePoint(pt1, pt2);
-			int result4 = searchPoint(pt4, node110, endIndexOldArray);
-			if(result4 != -1)
-				index4 = result4;
-			else
+
+			//Calcul du milieu des points
+			pt4 = middlePoint(pt1, pt2);
+			pt5 = middlePoint(pt2, pt3);
+			pt6 = middlePoint(pt1, pt3);
+
+			//Test si des points sont deja present dans la geometry
+			searchPoint();
+
+			//En fonction de vecRes, creation ou non des indexs
+			if(index4 == -1)
 			{
-				index4 = node110->getVertexs()->size();
+				index4 = endIndexArray;
 				//On ajoute les nouveaux points a la geometry
-				node110->getVertexs()->push_back(pt4);
+				vertexs->push_back(pt4);
+				endIndexArray++;
 			}
-			int index5;
-			Vec3 pt5 = middlePoint(pt2, pt3);
-			int result5 = searchPoint(pt5, node110, endIndexOldArray);
-			if(result5 != -1)
-				index5 = result5;
-			else
+			
+			if(index5 == -1)
 			{
-				index5 = node110->getVertexs()->size();
+				index5 = endIndexArray;
 				//On ajoute les nouveaux points a la geometry
-				node110->getVertexs()->push_back(pt5);
+				vertexs->push_back(pt5);
+				endIndexArray++;
 			}
-			int index6;
-			Vec3 pt6 = middlePoint(pt1, pt3);
-			int result6 = searchPoint(pt6, node110, endIndexOldArray);
-			if(result6 != -1)
-				index6 = result6;
-			else
+
+			if(index6 == -1)
 			{
-				index6 = node110->getVertexs()->size();
+				index6 = endIndexArray;
 				//On ajoute les nouveaux points a la geometry
-				node110->getVertexs()->push_back(pt6);
+				vertexs->push_back(pt6);
+				endIndexArray++;
 			}
 
 			//On creer les 4 nouvelles faces
@@ -88,31 +99,54 @@ void subdivide(ref_ptr<Node110> node110, int nbSub)
 		}
 
 		//On ajoute les faces mises a jour a la geometry
-		node110->getGeometry()->addPrimitiveSet(face);
-		node110->setFaces(newFaces);
+		geom->addPrimitiveSet(face);
+		faces = newFaces;
+		//node110->setFaces(newFaces);
 
 		//Affichage console
-		std::cout<<"Subdivision "<<k<<" Fait"<<endl;
-		std::cout<<node110->getVertexs()->size()<<endl;
+		std::cout<<"Subdivision "<<k+1<<" Fait en "<<time.time_s()<<endl;
+		std::cout<<vertexs->size()<<endl;
 	}
 }
 
-Vec3f middlePoint(Vec3f pt1, Vec3f pt2)
+Vec3f Subdivisor::middlePoint(Vec3f in_pt1, Vec3f in_pt2)
 {
-	return (pt1+pt2)/2.0;
+	return (in_pt1+in_pt2)/2.0;
 }
 
-int searchPoint(Vec3 pt, ref_ptr<Node110> node110, int endIndexOldArray)
+void Subdivisor::searchPoint()
 {
-	for (int i=endIndexOldArray; i<node110->getVertexs()->size(); i++)
+	index4 = -1;
+	index5 = -1;
+	index6 = -1;
+
+	//Optimisation: Repartition de la recherche sur plusieur processeur
+	#pragma omp parallel for schedule(dynamic)
+	for (int i=endIndexOldArray; i<vertexs->size(); i++)
 	{
-		if(pt.x() != node110->getVertexs()->at(i).x())
-			continue;
-		if(pt.y() != node110->getVertexs()->at(i).y())
-			continue;
-		if(pt.z() != node110->getVertexs()->at(i).z())
-			continue;
-		return i;
+		Vec3f vecTemp = vertexs->at(i);
+		//test pt4
+		if(pt4.x() == vecTemp.x())
+			if(pt4.y() == vecTemp.y())	
+				if(pt4.z() == vecTemp.z())
+				{
+					index4 = i;
+				}
+
+		//test pt5
+		if(pt5.x() == vecTemp.x())
+			if(pt5.y() == vecTemp.y())	
+				if(pt5.z() == vecTemp.z())
+				{
+					index5 = i;
+				}
+
+		//test pt6
+		if(pt6.x() == vecTemp.x())
+			if(pt6.y() == vecTemp.y())	
+				if(pt6.z() == vecTemp.z())
+				{
+					index6 = i;
+				}
 	}
-	return -1;
 }

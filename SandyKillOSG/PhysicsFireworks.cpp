@@ -2,13 +2,12 @@
 
 
 PhysicsFireworks::PhysicsFireworks(void)
+	: _luminance_attenuation(0.9)
+	, _explosion_size(0.06)
+	, _frottements(0.9984)
 {
-	haveComputeFireworks = false;
 	_center = Vec3(0,0,0);
-	_directionFireworks = new Vec3Array();
-	_randomSpeedFall = new FloatArray();
-	_randomSpeedFireworks = new FloatArray();
-	time = 25;
+	_mass = 0.02;
 }
 
 
@@ -17,12 +16,9 @@ PhysicsFireworks::~PhysicsFireworks(void)
 }
 
 
-void PhysicsFireworks::fireworksEffect(double temps, ref_ptr<Node110> node110)
+/*void PhysicsFireworks::fireworksEffect(double temps)
 {
 	ref_ptr<Vec3Array> vertexs = node110->getVertexs();
-
-	if(haveComputeFireworks == false)
-		computeFireworks(node110);
 
 	#pragma omp parallel for schedule(dynamic)
 	for(int i = 0; i < vertexs->size(); i++)
@@ -34,26 +30,64 @@ void PhysicsFireworks::fireworksEffect(double temps, ref_ptr<Node110> node110)
 		vertexs->at(i).z() -= 1.0 * temps + _randomSpeedFall->at(i);
 	}
 	time += 1;
-}
+}*/
 
-void PhysicsFireworks::run(double temps, ref_ptr<Node110> node110)
+void PhysicsFireworks::run(double temps)
 {
-	fireworksEffect(temps, node110);
-}
-
-void PhysicsFireworks::computeFireworks(ref_ptr<Node110> node110)
-{
-	std::srand(std::time(NULL));
-	//On calcule le centre de l'explosion
-	//On ajoute tout les points dans un vecteur
-	for (int i=0; i<node110->getVertexs()->size(); i++)
+	#pragma omp parallel for
+	for (int i=0; i<_nbVertices; i++)
 	{
-		_center += node110->getVertexs()->at(i);
+		//On calcule la nouvelle vitesse
+		_speed->at(i) += _projection->at(i);
+		_speed->at(i) += _movement->at(i);
+		_speed->at(i) += _gravity*_mass*temps;
+		_speed->at(i) *= _speed_attenuation * _frottements;
+
+		//On met à jour les accélérations
+		_projection->at(i) = Vec3(0,0,0);
+
+		//On actualise la position
+		_vertices->at(i) += _speed->at(i);
 	}
-	//Et on le divise pour obtenir la moyenne de tout les points
-	_center /= node110->getVertexs()->size();
 
+	#pragma omp parallel for
+	for (int i=0; i<_colors->size(); i++)
+	{
+		//On actualise la couleur
+		_colors->at(i).a() /= _luminance_attenuation;
+	}
+}
 
+void PhysicsFireworks::init(ref_ptr<Node110> node110)
+{
+	Physics110::init(node110);
+	_projection = new Vec3Array(_nbVertices);
+	_movement = new Vec3Array(_nbVertices);
+	_speed = new Vec3Array(_nbVertices);
+	_colors = node110->getColors();
+
+	std::srand(std::time(NULL));
+
+	//On calcule le centre de l'explosion
+	#pragma omp parallel for
+	for (int i=0; i<_nbVertices; i++)
+	{
+		_center += _vertices->at(i);
+	}
+	_center /= _vertices->size();
+
+	// On calcule les vecteurs de départ
+	#pragma omp parallel for
+	for (int i=0; i<_nbVertices; i++)
+	{
+		_projection->at(i) = Vec3(_vertices->at(i) - _center) * _explosion_size;
+		_movement->at(i) = Vec3(0,0,0);
+		_speed->at(i) = Vec3(0,0,0);
+	}
+}
+
+/*void PhysicsFireworks::computeFireworks()
+{
 	//On creer un tableau des direction opposées au centre de l'explosion pour chaque point
 	//Et un tableau de vitesse aleatiore pour chaque point
 	for (int i=0; i<node110->getVertexs()->size(); i++)
@@ -79,6 +113,5 @@ void PhysicsFireworks::computeFireworks(ref_ptr<Node110> node110)
 			1.0);
 	}
 
-	haveComputeFireworks = true;
 
-}
+}*/

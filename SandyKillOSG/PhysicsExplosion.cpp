@@ -24,7 +24,7 @@ void PhysicsExplosion::explosionEffect(double temps, ref_ptr<Node110> node110)
 	if(haveComputeExplosion == false)
 		computeExplosion(node110);
 
-	#pragma omp parallel for schedule(dynamic)
+	#pragma omp parallel for
 	for(int i = 0; i < vertexs->size(); i++)
 	{
 		//Projection dans la direction opposé au centre de l'explosion

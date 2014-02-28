@@ -5,19 +5,20 @@ class PhysicsFireworks :
 	public Physics110
 {
 private:
-	bool haveComputeFireworks;
+
 	Vec3 _center;
-	ref_ptr<Vec3Array> _directionFireworks;
-	ref_ptr<FloatArray> _randomSpeedFall;
-	ref_ptr<FloatArray> _randomSpeedFireworks;
-	float time;
+	ref_ptr<Vec4Array> _colors;
+	float _luminance_attenuation;
+	float _explosion_size;
+	float _frottements;
 
 public:
 	PhysicsFireworks(void);
 	~PhysicsFireworks(void);
 
-	void fireworksEffect(double temps, ref_ptr<Node110> node110);
-	void run(double temps, ref_ptr<Node110> node110);
-	void computeFireworks(ref_ptr<Node110> node110);
+	//void fireworksEffect(double temps);
+	void run(double temps);
+	void init(ref_ptr<Node110> node110);
+	//void computeFireworks();
 };
 

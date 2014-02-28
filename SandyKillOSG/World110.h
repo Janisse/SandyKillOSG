@@ -3,6 +3,8 @@
 #include "CONSTANTES_LITTERALES.h"
 
 #include "Node110.h"
+#include "PhysicsSand.h"
+#include "Loader110.h"
 
 
 class World110 : public Group
@@ -31,6 +33,9 @@ public:
 	void setSelected(ref_ptr<Node110> s) { _selected = s;}
 
 	//	Fonctionnalités				================================================================================================================
+
+	void setSandWorld(ref_ptr<Physics110> p);
+	void reset();
 
 };
 

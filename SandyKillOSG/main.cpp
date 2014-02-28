@@ -21,13 +21,9 @@ int main()
 	//World
 	ref_ptr<World110> world = new World110;
 
-	//Handlers
-	ref_ptr<MouseHandler> mouseHandler = new MouseHandler(world);
-	ref_ptr<KeyboardHandler> keyboardHandler = new KeyboardHandler(world);
-
 	//Physics
-	//ref_ptr<PhysicsExplosion> physicsEngine = new PhysicsExplosion;
-	ref_ptr<PhysicsFireworks> physicsEngine = new PhysicsFireworks;
+	ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
+	//ref_ptr<PhysicsFireworks> physicsEngine = new PhysicsFireworks;
 
 	Loader110 load;
 
@@ -43,7 +39,7 @@ int main()
 	int nbSubdivision;
 	// Chargement d'un cube A LA MAIN
 	ref_ptr<Node110> myNode110 = new Node110();
-	Loader110::loadFromFile("resources/cubeOSG.obj", myNode110);
+	Loader110::loadFromFile("resources/suzanne.obj", myNode110);
 
 	cout<<"Entrer le nombre de Subdivision souhaite: ";
 	cin>>nbSubdivision;
@@ -62,6 +58,10 @@ int main()
 	myNode110->addUpdateCallback(new Physics110CallBack(physicsEngine));
 
 	// Evénements
+
+	//Handlers
+	ref_ptr<MouseHandler> mouseHandler = new MouseHandler(world);
+	ref_ptr<KeyboardHandler> keyboardHandler = new KeyboardHandler(world, physicsEngine);
 
 	viewer->addEventHandler(keyboardHandler);
 	viewer->addEventHandler(mouseHandler);

@@ -14,3 +14,19 @@ World110::World110(void)
 World110::~World110(void)
 {
 }
+
+
+void World110::setSandWorld(ref_ptr<Physics110> p)
+{
+	reset();
+	//skybox
+
+	//changement de physique
+	p = new PhysicsSand;
+}
+
+void World110::reset()
+{
+	Loader110::loadFromFile("resources/cubeOSG.obj", _selected);
+	_selected->setUpdateCallback(new Physics110CallBack(new PhysicsSand));
+}

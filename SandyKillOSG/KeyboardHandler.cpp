@@ -1,8 +1,9 @@
 #include "KeyboardHandler.h"
 
 
-KeyboardHandler::KeyboardHandler(ref_ptr<World110> w)
+KeyboardHandler::KeyboardHandler(ref_ptr<World110> w, ref_ptr<Physics110> p)
 	: _world(w)
+	, _physics(p)
 {
 
 }
@@ -35,7 +36,7 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			return false;
 			// a : Effet Sable/////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_A :
-			//_world->getSelected()->FONCTION(true);
+			_world->setSandWorld(_physics);
 			return false;
 			// z : Effet Fireworks/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Z :
@@ -46,7 +47,7 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			return false;
 			// r : Rejouer animation///////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_R :
-			//_world->getSelected()->FONCTION(true);
+			_world->reset();
 			return false;
 			// w : Cube////////////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_W :
@@ -69,57 +70,57 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 		}
 
 
-	case(osgGA::GUIEventAdapter::KEYUP):
-		switch(ea.getKey())
-		{
-			// Fleche : Rotation///////////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_Up :
-			_world->getSelected()->event_RotationHaut(false);
-			return false;
-		case osgGA::GUIEventAdapter::KEY_Right :
-			_world->getSelected()->event_RotationDroite(false);
-			return false;
-		case osgGA::GUIEventAdapter::KEY_Left :
-			_world->getSelected()->event_RotationGauche(false);
-			return false;
-		case osgGA::GUIEventAdapter::KEY_Down :
-			_world->getSelected()->event_RotationBas(false);
-			return false;
-			// a : Effet Sable/////////////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_A :
-			//_world->getSelected()->FONCTION(false);
-			return false;
-			// z : Effet Fireworks/////////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_Z :
-			//_world->getSelected()->FONCTION(false);
-			return false;
-			// z : Effet Explosion/////////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_Q :
-			//_world->getSelected()->FONCTION(false);
-			return false;
-			// r : Rejouer animation///////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_R :
-			//_world->getSelected()->FONCTION(false);
-			return false;
-			// w : Cube////////////////////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_W :
-			//_world->getSelected()->FONCTION(false);
-			return false;
-			// x : Isosphere///////////////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_X :
-			//_world->getSelected()->FONCTION(false);
-			return false;
-			// c : Suzanne/////////////////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_C :
-			//_world->getSelected()->FONCTION(false);
-			return false;
-			// v : Requin//////////////////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_V :
-			//_world->getSelected()->FONCTION(false);
-			return false;
-		default:
-			break;
-		}
+		//case(osgGA::GUIEventAdapter::KEYUP):
+		//	switch(ea.getKey())
+		//	{
+		//		// Fleche : Rotation///////////////////////////////////////////////////////////////////////////////
+		//	case osgGA::GUIEventAdapter::KEY_Up :
+		//		_world->getSelected()->event_RotationHaut(false);
+		//		return false;
+		//	case osgGA::GUIEventAdapter::KEY_Right :
+		//		_world->getSelected()->event_RotationDroite(false);
+		//		return false;
+		//	case osgGA::GUIEventAdapter::KEY_Left :
+		//		_world->getSelected()->event_RotationGauche(false);
+		//		return false;
+		//	case osgGA::GUIEventAdapter::KEY_Down :
+		//		_world->getSelected()->event_RotationBas(false);
+		//		return false;
+		//		// a : Effet Sable/////////////////////////////////////////////////////////////////////////////////
+		//	case osgGA::GUIEventAdapter::KEY_A :
+		//		_world->setSandWorld(_physics);
+		//		return false;
+		//		// z : Effet Fireworks/////////////////////////////////////////////////////////////////////////////
+		//	case osgGA::GUIEventAdapter::KEY_Z :
+		//		//_world->getSelected()->FONCTION(false);
+		//		return false;
+		//		// z : Effet Explosion/////////////////////////////////////////////////////////////////////////////
+		//	case osgGA::GUIEventAdapter::KEY_Q :
+		//		//_world->getSelected()->FONCTION(false);
+		//		return false;
+		//		// r : Rejouer animation///////////////////////////////////////////////////////////////////////////
+		//	case osgGA::GUIEventAdapter::KEY_R :
+		//		//_world->getSelected()->FONCTION(false);
+		//		return false;
+		//		// w : Cube////////////////////////////////////////////////////////////////////////////////////////
+		//	case osgGA::GUIEventAdapter::KEY_W :
+		//		//_world->getSelected()->FONCTION(false);
+		//		return false;
+		//		// x : Isosphere///////////////////////////////////////////////////////////////////////////////////
+		//	case osgGA::GUIEventAdapter::KEY_X :
+		//		//_world->getSelected()->FONCTION(false);
+		//		return false;
+		//		// c : Suzanne/////////////////////////////////////////////////////////////////////////////////////
+		//	case osgGA::GUIEventAdapter::KEY_C :
+		//		//_world->getSelected()->FONCTION(false);
+		//		return false;
+		//		// v : Requin//////////////////////////////////////////////////////////////////////////////////////
+		//	case osgGA::GUIEventAdapter::KEY_V :
+		//		//_world->getSelected()->FONCTION(false);
+		//		return false;
+		//	default:
+		//		break;
+		//	}
 	default:
 		return false;
 	}

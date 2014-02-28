@@ -10,6 +10,7 @@
 #include "PhysicsSand.h"
 #include "PhysicsExplosion.h"
 #include "HUD110.h"
+#include "PhysicsFireworks.h"
 
 
 int main()
@@ -25,7 +26,8 @@ int main()
 	ref_ptr<KeyboardHandler> keyboardHandler = new KeyboardHandler(world);
 
 	//Physics
-	ref_ptr<PhysicsExplosion> physicsEngine = new PhysicsExplosion;
+	//ref_ptr<PhysicsExplosion> physicsEngine = new PhysicsExplosion;
+	ref_ptr<PhysicsFireworks> physicsEngine = new PhysicsFireworks;
 
 	Loader110 load;
 

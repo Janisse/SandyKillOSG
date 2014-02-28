@@ -20,6 +20,7 @@ private:
 	ref_ptr<Geometry> _geom;
 	ref_ptr<Vec3Array> _vertexs;
 	ref_ptr<Vec3Array> _faces;
+	ref_ptr<Vec4Array> _colors;
 
 public:
 
@@ -37,6 +38,7 @@ public:
 	ref_ptr<Geometry> getGeometry() {return _geom;}
 	ref_ptr<Vec3Array> getVertexs() {return _vertexs;}
 	ref_ptr<Vec3Array> getFaces() {return _faces;}
+	ref_ptr<Vec4Array> getColors() {return _colors;}
 
 	void setFaces(ref_ptr<Vec3Array> faces) {_faces = faces;}
 

@@ -5,6 +5,7 @@
 #include <string.h>//pour strstr
 #include <conio.h>//pour getch
 #include <time.h>
+#include <ctime>
 #include <windows.h> 
 #include <RefPtrCo.h>
 #include <sstream>

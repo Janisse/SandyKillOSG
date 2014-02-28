@@ -41,6 +41,9 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 		case osgGA::GUIEventAdapter::KEY_Z :
 			//_world->getSelected()->FONCTION(true);
 			return false;
+		case osgGA::GUIEventAdapter::KEY_Q :
+			//_world->getSelected()->FONCTION(false);
+			return false;
 			// r : Rejouer animation///////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_R :
 			//_world->getSelected()->FONCTION(true);
@@ -88,6 +91,10 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			return false;
 			// z : Effet Fireworks/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Z :
+			//_world->getSelected()->FONCTION(false);
+			return false;
+			// z : Effet Explosion/////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_Q :
 			//_world->getSelected()->FONCTION(false);
 			return false;
 			// r : Rejouer animation///////////////////////////////////////////////////////////////////////////

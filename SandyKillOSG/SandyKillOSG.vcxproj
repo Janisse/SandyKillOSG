@@ -153,6 +153,7 @@
     <ClCompile Include="Node110.cpp" />
     <ClCompile Include="Physics110.cpp" />
     <ClCompile Include="PhysicsExplosion.cpp" />
+    <ClCompile Include="PhysicsFireworks.cpp" />
     <ClCompile Include="PhysicsSand.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Subdivisor.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Node110.h" />
     <ClInclude Include="Physics110.h" />
     <ClInclude Include="PhysicsExplosion.h" />
+    <ClInclude Include="PhysicsFireworks.h" />
     <ClInclude Include="PhysicsSand.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Subdivisor.h" />

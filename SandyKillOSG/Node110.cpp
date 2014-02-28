@@ -12,6 +12,7 @@ Node110::Node110()
 	this->addChild(_trf);
 	_vertexs = new Vec3Array();
 	_faces = new Vec3Array();
+	_colors = new Vec4Array();
 }
 
 Node110::Node110(ref_ptr<Geometry> geom)

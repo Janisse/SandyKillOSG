@@ -17,7 +17,7 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 	node110 = new Node110;
 	ref_ptr<Vec3Array> vertices = node110->getVertexs();
 	ref_ptr<Vec3Array> faces = node110->getFaces();
-	ref_ptr<Vec4Array> colors = new Vec4Array();
+	ref_ptr<Vec4Array> colors = node110->getColors();
 
 
 	ref_ptr<DrawElementsUInt> face = new osg::DrawElementsUInt(osg::PrimitiveSet::POINTS);
@@ -66,7 +66,7 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 			face->push_back(vertexIndex[1]-1);
 			face->push_back(vertexIndex[2]-1);
 			faces->push_back(Vec3(vertexIndex[0]-1, vertexIndex[1]-1, vertexIndex[2]-1));
-			colors->push_back(Vec4(1.0,0.0,0.0,1.0));
+			colors->push_back(Vec4(1.0,1.0,1.0,1.0));
 		}
 	}
 

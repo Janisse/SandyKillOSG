@@ -59,6 +59,7 @@ int main()
 	world->getScenegraph()->addChild(myNode110);
 
 	// Fonction effet sable
+	physicsEngine->init(myNode110);
 	myNode110->addUpdateCallback(new Physics110CallBack(physicsEngine));
 
 	// Evénements

@@ -9,6 +9,7 @@ private:
 	ref_ptr<Vec4Array> _colors;
 	float _frottements;
 	float _distance_ground;
+	ref_ptr<FloatArray> _masses;
 
 public:
 	PhysicsSand(void);

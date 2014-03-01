@@ -21,7 +21,7 @@ void PhysicsSand::run(double temps)
 		//On calcule la nouvelle vitesse
 		_speed->at(i) += _projection->at(i);
 		_speed->at(i) += _movement->at(i);
-		_speed->at(i) += _gravity*_mass*temps;
+		_speed->at(i) += _gravity*_masses->at(i)*temps;
 		_speed->at(i) *= _speed_attenuation * _frottements;
 
 		//On met à jour les accélérations
@@ -55,6 +55,8 @@ void PhysicsSand::init(ref_ptr<Node110> node110)
 
 	std::srand(std::time(NULL));
 
+	_masses = new FloatArray(_vertices->size());
+
 	// On calcule les vecteurs de départ
 #pragma omp parallel for
 	for (int i=0; i<_nbVertices; i++)
@@ -62,5 +64,8 @@ void PhysicsSand::init(ref_ptr<Node110> node110)
 		_projection->at(i) = Vec3(0,0,0);
 		_movement->at(i) = Vec3(0,0,0);
 		_speed->at(i) = Vec3(0,0,0);
+		_masses->at(i) = _mass * (0.8 + (rand()%10/100.*4. + 0.2));
 	}
+
+
 }

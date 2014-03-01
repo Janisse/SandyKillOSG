@@ -55,11 +55,6 @@ void PhysicsFireworks::run(double temps)
 	{
 		//On actualise la couleur
 		_colors->at(i).a() /= _luminance_attenuation;
-		/*_colors->at(i) = Vec4(
-			(rand()%100 <50) ? 1.0 : 0.0,
-			(rand()%100 <50) ? 1.0 : 0.0,
-			(rand()%100 <50) ? 1.0 : 0.0,
-			1.0);*/
 	}
 }
 
@@ -89,6 +84,13 @@ void PhysicsFireworks::init(ref_ptr<Node110> node110)
 		_movement->at(i) = Vec3(0,0,0);
 		_speed->at(i) = Vec3(0,0,0);
 	}
+
+	_colors = new Vec4Array(_colors->size(),
+		new Vec4(
+			(rand()%100 <50) ? 1.0 : 0.0,
+			(rand()%100 <50) ? 1.0 : 0.0,
+			(rand()%100 <50) ? 1.0 : 0.0,
+			1.0));
 }
 
 /*void PhysicsFireworks::computeFireworks()

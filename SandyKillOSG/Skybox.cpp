@@ -10,9 +10,8 @@ SkyBox::~SkyBox()
 
 }
 
-void chooseCubeMape()
-{
-
+std::string SkyBox::computeFilename(std::string dir){
+	return "Cubemap"+_name+"/"+dir+".bmp";
 }
 
 osg::TextureCubeMap* SkyBox::readCubeMap()
@@ -23,12 +22,12 @@ osg::TextureCubeMap* SkyBox::readCubeMap()
 #define CUBEMAP_FILENAME(face, type) #type "/" #face ".bmp"
 //#define CUBEMAP_FILENAME(face) "CubemapSand/" #face ".bmp"
 	try{
-		osg::Image* imagePosX = osgDB::readImageFile(CUBEMAP_FILENAME(posx, CubemapFireworks));
-		osg::Image* imageNegX = osgDB::readImageFile(CUBEMAP_FILENAME(negx, CubemapFireworks));
-		osg::Image* imagePosY = osgDB::readImageFile(CUBEMAP_FILENAME(posy, CubemapFireworks));
-		osg::Image* imageNegY = osgDB::readImageFile(CUBEMAP_FILENAME(negy, CubemapFireworks));
-		osg::Image* imagePosZ = osgDB::readImageFile(CUBEMAP_FILENAME(posz, CubemapFireworks));
-		osg::Image* imageNegZ = osgDB::readImageFile(CUBEMAP_FILENAME(negz, CubemapFireworks));
+		osg::Image* imagePosX = osgDB::readImageFile(computeFilename("posx"));
+		osg::Image* imageNegX = osgDB::readImageFile(computeFilename("negx"));
+		osg::Image* imagePosY = osgDB::readImageFile(computeFilename("posy"));
+		osg::Image* imageNegY = osgDB::readImageFile(computeFilename("negy"));
+		osg::Image* imagePosZ = osgDB::readImageFile(computeFilename("posz"));
+		osg::Image* imageNegZ = osgDB::readImageFile(computeFilename("negz"));
 
 		if (imagePosX && imageNegX && imagePosY && imageNegY && imagePosZ && imageNegZ)
 		{
@@ -115,8 +114,9 @@ public:
 };
 
 
-osg::Node* SkyBox::createSkyBox()
+osg::Node* SkyBox::createSkyBox(std::string name)
 {
+	_name = name;
 
 	osg::StateSet* stateset = new osg::StateSet();
 

@@ -1,3 +1,4 @@
+#pragma warning(disable: C4290)
 #include "CONSTANTES_LITTERALES.h"
 
 #include "World110.h"
@@ -22,8 +23,9 @@ int main()
 	ref_ptr<World110> world = new World110;
 
 	//Physics
-	ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
-	//ref_ptr<PhysicsFireworks> physicsEngine = new PhysicsFireworks;
+	//ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
+	ref_ptr<PhysicsFireworks> physicsEngine = new PhysicsFireworks;
+	//ref_ptr<PhysicsExplosion> physicsEngine = new PhysicsExplosion;
 
 	Loader110 load;
 
@@ -39,7 +41,7 @@ int main()
 	int nbSubdivision;
 	// Chargement d'un cube A LA MAIN
 	ref_ptr<Node110> myNode110 = new Node110();
-	Loader110::loadFromFile("resources/suzanne.obj", myNode110);
+	Loader110::loadFromFile("resources/coeur.obj", myNode110);
 
 	cout<<"Entrer le nombre de Subdivision souhaite: ";
 	cin>>nbSubdivision;

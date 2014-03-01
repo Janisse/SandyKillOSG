@@ -10,6 +10,10 @@ SkyBox::~SkyBox()
 
 }
 
+void chooseCubeMape()
+{
+
+}
 
 osg::TextureCubeMap* SkyBox::readCubeMap()
 {

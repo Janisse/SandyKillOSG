@@ -37,6 +37,17 @@ void HUD110::createLabel()
     labelFireworksEffect->setPosition(Vec3(20.0f, 920.0f, 0.0f));
 
 	_tabLabel.push_back(labelFireworksEffect);
+
+			///////////////////////////// Effet Explosion ///////////////////////////////////////////////
+	osgText::Text* labelExplosionEffect = new osgText::Text();
+
+    labelExplosionEffect->setFont(font);
+    labelExplosionEffect->setCharacterSize(size);
+    labelExplosionEffect->setFontResolution(size, size);
+    labelExplosionEffect->setColor(color);
+    labelExplosionEffect->setPosition(Vec3(20.0f, 870.0f, 0.0f));
+
+	_tabLabel.push_back(labelExplosionEffect);
 		///////////////////////////// Rejouer l'animation ///////////////////////////////////////////////
 	osgText::Text* labelRejouerAnimation = new osgText::Text();
 
@@ -106,6 +117,7 @@ void HUD110::createLabel()
     // It seems to be important we do this last to get best results?
 	labelSableEffect->setText("a : Effet Sable");
 	labelFireworksEffect->setText("z : Effet Feux d'artifice");
+	labelExplosionEffect->setText("q : Effet Explosion");
     labelRejouerAnimation->setText("r : Rejouer l'animation");
 	labelCube->setText("w : Cube");
 	labelIcosphere->setText("x : Icosphere");

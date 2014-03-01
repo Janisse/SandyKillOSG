@@ -1,8 +1,7 @@
 #pragma once
 #include "CONSTANTES_LITTERALES.h"
 #include "physics110.h"
-class PhysicsFireworks :
-	public Physics110
+class PhysicsFireworks : public Physics110
 {
 private:
 

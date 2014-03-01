@@ -15,9 +15,7 @@ public:
 	PhysicsFireworks(void);
 	~PhysicsFireworks(void);
 
-	//void fireworksEffect(double temps);
 	void run(double temps);
 	void init(ref_ptr<Node110> node110);
-	//void computeFireworks();
 };
 

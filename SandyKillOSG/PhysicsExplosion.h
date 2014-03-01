@@ -5,19 +5,17 @@
 class PhysicsExplosion : public Physics110
 {
 private:
-	bool haveComputeExplosion;
+
 	Vec3 _center;
-	ref_ptr<Vec3Array> _directionExplosion;
-	ref_ptr<FloatArray> _randomSpeedFall;
-	ref_ptr<FloatArray> _randomSpeedExplosion;
-	float time;
+	ref_ptr<Vec4Array> _colors;
+	float _explosion_size;
+	float _frottements;
 
 public:
 	PhysicsExplosion(void);
 	~PhysicsExplosion(void);
 
-	void explosionEffect(double temps, ref_ptr<Node110> node110);
-	void run(double temps, ref_ptr<Node110> node110);
-	void computeExplosion(ref_ptr<Node110> node110);
+	void run(double temps);
+	void init(ref_ptr<Node110> node110);
 };
 

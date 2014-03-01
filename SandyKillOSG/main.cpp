@@ -12,6 +12,7 @@
 #include "PhysicsExplosion.h"
 #include "HUD110.h"
 #include "PhysicsFireworks.h"
+#include "PhysicsHeart.h"
 
 
 int main()
@@ -24,7 +25,7 @@ int main()
 
 	//Physics
 	//ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
-	ref_ptr<PhysicsExplosion> physicsEngine = new PhysicsExplosion;
+	ref_ptr<PhysicsHeart> physicsEngine = new PhysicsHeart;
 	//ref_ptr<PhysicsExplosion> physicsEngine = new PhysicsExplosion;
 
 	Loader110 load;

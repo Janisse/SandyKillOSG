@@ -2,7 +2,10 @@
 
 
 PhysicsSand::PhysicsSand(void)
+	: _frottements(0.9984)
+	, _distance_ground(-6)
 {
+	_mass = 0.09;
 }
 
 
@@ -10,21 +13,54 @@ PhysicsSand::~PhysicsSand(void)
 {
 }
 
-
-void PhysicsSand::sandEffect(double temps, ref_ptr<Node110> node110)
+void PhysicsSand::run(double temps)
 {
-	for(int i = 0; i < node110->getVertexs()->size(); i++)
+	#pragma omp parallel for
+	for (int i=0; i<_nbVertices; i++)
 	{
-		if(node110->getVertexs()->at(i).z() > HAUTEUR_SOL)
-		{
-			node110->getVertexs()->at(i).z() -= 1.0 * temps + (rand()%100)/8000.;
-		}
-		else
-			node110->getVertexs()->at(i).z() = HAUTEUR_SOL;
+		//On calcule la nouvelle vitesse
+		_speed->at(i) += _projection->at(i);
+		_speed->at(i) += _movement->at(i);
+		_speed->at(i) += _gravity*_mass*temps;
+		_speed->at(i) *= _speed_attenuation * _frottements;
+
+		//On met à jour les accélérations
+		_projection->at(i) = Vec3(0,0,0);
+
+		//On actualise la position
+		_vertices->at(i) += _speed->at(i);
+		if(_vertices->at(i).z() < _distance_ground) _vertices->at(i).z() = _distance_ground;
+	}
+
+#pragma omp parallel for
+	for (int i=0; i<_colors->size(); i++)
+	{
+		//On actualise la couleur
+
+		/*_colors->at(i) = Vec4(
+			(rand()%100 <50) ? 1.0 : 0.0,
+			(rand()%100 <50) ? 1.0 : 0.0,
+			(rand()%100 <50) ? 1.0 : 0.0,
+			1.0);*/
 	}
 }
 
-void PhysicsSand::run(double temps, ref_ptr<Node110> node110)
+void PhysicsSand::init(ref_ptr<Node110> node110)
 {
-	sandEffect(temps, node110);
+	Physics110::init(node110);
+	_projection = new Vec3Array(_nbVertices);
+	_movement = new Vec3Array(_nbVertices);
+	_speed = new Vec3Array(_nbVertices);
+	_colors = node110->getColors();
+
+	std::srand(std::time(NULL));
+
+	// On calcule les vecteurs de départ
+#pragma omp parallel for
+	for (int i=0; i<_nbVertices; i++)
+	{
+		_projection->at(i) = Vec3(0,0,0);
+		_movement->at(i) = Vec3(0,0,0);
+		_speed->at(i) = Vec3(0,0,0);
+	}
 }

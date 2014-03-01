@@ -4,11 +4,19 @@
 
 class PhysicsSand : public Physics110
 {
+private:
+
+	ref_ptr<Vec4Array> _colors;
+	float _frottements;
+	float _distance_ground;
+
 public:
 	PhysicsSand(void);
 	~PhysicsSand(void);
 
-	void sandEffect(double temps, ref_ptr<Node110> node110);
-	void run(double temps, ref_ptr<Node110> node110);
+	//void fireworksEffect(double temps);
+	void run(double temps);
+	void init(ref_ptr<Node110> node110);
+	//void computeFireworks();
 };
 

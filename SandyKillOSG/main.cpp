@@ -24,7 +24,7 @@ int main()
 
 	//Physics
 	//ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
-	ref_ptr<PhysicsFireworks> physicsEngine = new PhysicsFireworks;
+	ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
 	//ref_ptr<PhysicsExplosion> physicsEngine = new PhysicsExplosion;
 
 	Loader110 load;

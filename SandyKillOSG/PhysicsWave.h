@@ -1,7 +1,7 @@
 #pragma once
-#include "CONSTANTES_LITTERALES.h"
 #include "physics110.h"
-class PhysicsHeart :
+#include "CONSTANTES_LITTERALES.h"
+class PhysicsWave :
 	public Physics110
 {
 private:
@@ -10,10 +10,9 @@ private:
 	ref_ptr<Vec4Array> _colors;
 
 public:
-	PhysicsHeart(void);
-	~PhysicsHeart(void);
+	PhysicsWave(void);
+	~PhysicsWave(void);
 
 	void run(double temps);
 	void init(ref_ptr<Node110> node110);
 };
-

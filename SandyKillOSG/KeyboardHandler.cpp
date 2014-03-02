@@ -42,7 +42,12 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 		case osgGA::GUIEventAdapter::KEY_Z :
 			//_world->getSelected()->FONCTION(true);
 			return false;
+			// q : Effet Explosion/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Q :
+			//_world->getSelected()->FONCTION(false);
+			return false;
+			// s : Effet Vague/////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_S :
 			//_world->getSelected()->FONCTION(false);
 			return false;
 			// r : Rejouer animation///////////////////////////////////////////////////////////////////////////

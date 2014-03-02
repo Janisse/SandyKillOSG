@@ -1,42 +1,38 @@
-#include "PhysicsSand.h"
+#include "PhysicsWave.h"
 
 
-PhysicsSand::PhysicsSand(void)
-	: _frottements(0.9984)
-	, _distance_ground(-8)
+PhysicsWave::PhysicsWave(void)
 {
-	_mass = 0.09;
+	_center = Vec3(0,0,0);
+	_mass = 0.00;
 }
 
 
-PhysicsSand::~PhysicsSand(void)
+PhysicsWave::~PhysicsWave(void)
 {
 }
 
-void PhysicsSand::run(double temps)
+
+void PhysicsWave::run(double temps)
 {
-	#pragma omp parallel for
+#pragma omp parallel for
 	for (int i=0; i<_nbVertices; i++)
 	{
 		//On calcule la nouvelle vitesse
 		_speed->at(i) += _projection->at(i);
 		_speed->at(i) += _movement->at(i);
-		_speed->at(i) += _gravity*_mass*temps;
-		_speed->at(i) *= _speed_attenuation * _frottements;
 
 		//On met à jour les accélérations
 		_projection->at(i) = Vec3(0,0,0);
 
 		//On actualise la position
 		_vertices->at(i) += _speed->at(i);
-		if(_vertices->at(i).z() < _distance_ground) _vertices->at(i).z() = _distance_ground;
 	}
 
 #pragma omp parallel for
 	for (int i=0; i<_colors->size(); i++)
 	{
 		//On actualise la couleur
-
 		/*_colors->at(i) = Vec4(
 			(rand()%100 <50) ? 1.0 : 0.0,
 			(rand()%100 <50) ? 1.0 : 0.0,
@@ -45,7 +41,7 @@ void PhysicsSand::run(double temps)
 	}
 }
 
-void PhysicsSand::init(ref_ptr<Node110> node110)
+void PhysicsWave::init(ref_ptr<Node110> node110)
 {
 	Physics110::init(node110);
 	_projection = new Vec3Array(_nbVertices);
@@ -54,6 +50,14 @@ void PhysicsSand::init(ref_ptr<Node110> node110)
 	_colors = node110->getColors();
 
 	std::srand(std::time(NULL));
+
+	//On calcule le centre de l'explosion
+#pragma omp parallel for
+	for (int i=0; i<_nbVertices; i++)
+	{
+		_center += _vertices->at(i);
+	}
+	_center /= _vertices->size();
 
 	// On calcule les vecteurs de départ
 #pragma omp parallel for

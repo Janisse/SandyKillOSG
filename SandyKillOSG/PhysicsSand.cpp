@@ -29,7 +29,14 @@ void PhysicsSand::run(double temps)
 
 		//On actualise la position
 		_vertices->at(i) += _speed->at(i);
-		if(_vertices->at(i).z() < _distance_ground) _vertices->at(i).z() = _distance_ground;
+		if(_vertices->at(i).z() <= _distance_ground)
+		{
+			_vertices->at(i).z() = _distance_ground;
+			_projection->at(i) = Vec3(
+				(rand()%100 - 50) / 4000.,
+				(rand()%100 - 50) / 4000.,
+				0);
+		}
 	}
 
 #pragma omp parallel for

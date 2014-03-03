@@ -25,7 +25,7 @@ int main()
 
 	//Physics
 	//ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
-	ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
+	ref_ptr<Physics110> physicsEngine = new PhysicsFireworks;
 	//ref_ptr<PhysicsExplosion> physicsEngine = new PhysicsExplosion;
 
 	Loader110 load;
@@ -42,7 +42,7 @@ int main()
 	int nbSubdivision;
 	// Chargement d'un cube A LA MAIN
 	ref_ptr<Node110> myNode110 = new Node110();
-	Loader110::loadFromFile("resources/coeur.obj", myNode110);
+	Loader110::loadFromFile("resources/icosphere.obj", myNode110);
 
 	cout<<"Entrer le nombre de Subdivision souhaite: ";
 	cin>>nbSubdivision;

@@ -2,8 +2,8 @@
 
 
 PhysicsExplosion::PhysicsExplosion(void)
-	: _explosion_size(0.02)
-	, _frottements(0.999989)
+	: _explosion_size(0.2)
+	, _frottements(1)
 {
 	_center = Vec3(0,0,0);
 	_mass = 0;
@@ -83,7 +83,7 @@ void PhysicsExplosion::init(ref_ptr<Node110> node110)
 #pragma omp parallel for
 	for (int i=0; i<_nbVertices; i++)
 	{
-		_projection->at(i) = Vec3(_vertices->at(i) - _center) * _explosion_size * (rand()%100 /100.);
+		_projection->at(i) = Vec3(_vertices->at(i) - _center) * _explosion_size * ((rand()%100 /100.)+0.1);
 		_movement->at(i) = Vec3(0,0,0);
 		_speed->at(i) = Vec3(0,0,0);
 	}

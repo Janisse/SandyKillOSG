@@ -2,8 +2,7 @@
 
 
 PhysicsFireworks::PhysicsFireworks(void)
-	: _luminance_attenuation(0.9)
-	, _explosion_size(0.06)
+	: _explosion_size(0.06)
 	, _frottements(0.9984)
 {
 	_center = Vec3(0,0,0);
@@ -51,10 +50,12 @@ void PhysicsFireworks::run(double temps)
 	}
 
 #pragma omp parallel for
-	for (int i=0; i<_colors->size(); i++)
+	for (int i=0; i<_nbFaces; i++)
 	{
 		//On actualise la couleur
-		_colors->at(i).a() /= _luminance_attenuation;
+		_colors->at(i).r() *= _luminance_attenuations->at(i);
+		_colors->at(i).g() *= _luminance_attenuations->at(i);
+		_colors->at(i).b() *= _luminance_attenuations->at(i);
 	}
 }
 
@@ -65,6 +66,8 @@ void PhysicsFireworks::init(ref_ptr<Node110> node110)
 	_movement = new Vec3Array(_nbVertices);
 	_speed = new Vec3Array(_nbVertices);
 	_colors = node110->getColors();
+
+	_luminance_attenuations = new FloatArray(_nbFaces);
 
 	std::srand(std::time(NULL));
 
@@ -80,17 +83,20 @@ void PhysicsFireworks::init(ref_ptr<Node110> node110)
 #pragma omp parallel for
 	for (int i=0; i<_nbVertices; i++)
 	{
-		_projection->at(i) = Vec3(_vertices->at(i) - _center) * _explosion_size;
+		_projection->at(i) = Vec3(_vertices->at(i) - _center) * _explosion_size * ((rand()%100 /400.)+0.75);
 		_movement->at(i) = Vec3(0,0,0);
 		_speed->at(i) = Vec3(0,0,0);
 	}
 
-	_colors = new Vec4Array(_colors->size(),
-		new Vec4(
-			(rand()%100 <50) ? 1.0 : 0.0,
-			(rand()%100 <50) ? 1.0 : 0.0,
-			(rand()%100 <50) ? 1.0 : 0.0,
-			1.0));
+#pragma omp parallel for
+	for (int i=0; i<_nbFaces; i++)
+	{
+		_colors->at(i).r() = (rand()%100 <50) ? 1.0 : 0.0;
+		_colors->at(i).g() = (rand()%100 <50) ? 1.0 : 0.0;
+		_colors->at(i).b() = (rand()%100 <50) ? 1.0 : 0.0;
+		_colors->at(i).a() = 1.0;
+		_luminance_attenuations->at(i) = 0.98 + (rand()%100/40000.);
+	}
 }
 
 /*void PhysicsFireworks::computeFireworks()

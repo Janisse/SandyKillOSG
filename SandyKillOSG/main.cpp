@@ -25,7 +25,7 @@ int main()
 
 	//Physics
 	//ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
-	ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
+	ref_ptr<Physics110> physicsEngine = new PhysicsFireworks;
 	//ref_ptr<PhysicsExplosion> physicsEngine = new PhysicsExplosion;
 
 	Loader110 load;
@@ -98,6 +98,6 @@ int main()
 		viewer->frame();
 	}
 
-	return viewer->run();
+	//return viewer->run();
 }
 

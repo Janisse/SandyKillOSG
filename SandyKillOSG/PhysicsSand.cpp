@@ -66,6 +66,4 @@ void PhysicsSand::init(ref_ptr<Node110> node110)
 		_speed->at(i) = Vec3(0,0,0);
 		_masses->at(i) = _mass * (0.8 + (rand()%10/100.*4. + 0.2));
 	}
-
-
 }

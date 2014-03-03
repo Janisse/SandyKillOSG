@@ -98,6 +98,6 @@ int main()
 		viewer->frame();
 	}
 
-	return viewer->run();
+	//return viewer->run();
 }
 

@@ -78,6 +78,8 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 	return true;
 }
 
+
+// à mettre dans les physiques
 osg::StateSet* Loader110::makeStateSet(float size)
 {
 	osg::StateSet *set = new osg::StateSet();

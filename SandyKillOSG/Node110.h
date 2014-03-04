@@ -24,10 +24,13 @@ private:
 	ref_ptr<Vec3Array> _faces;
 	ref_ptr<Vec4Array> _colors;
 
+	ref_ptr<Switch> _swh;
+	ref_ptr<Geode> _gdeSubSave;
+	ref_ptr<Geode> _gdeOriginal;
+
 	unsigned int _nbSubdivisions;
 
 public:
-
 
 	//	Constructeurs & Destructeur	================================================================================================================
 
@@ -43,6 +46,8 @@ public:
 	ref_ptr<Vec3Array> getVertexs() {return _vertexs;}
 	ref_ptr<Vec3Array> getFaces() {return _faces;}
 	ref_ptr<Vec4Array> getColors() {return _colors;}
+	ref_ptr<Geode> getSubSave() {return _gdeSubSave;}
+	ref_ptr<Geode> getOriginal() {return _gdeOriginal;}
 
 	void setFaces(ref_ptr<Vec3Array> faces) {_faces = faces;}
 	void setNbSubdivisions( unsigned int n) { _nbSubdivisions = n;}
@@ -55,7 +60,5 @@ public:
 	void event_RotationDroite(bool acceleration);
 	void convertToSprites();
 	void subdivide110();
-
-	//bool loadFromFile(const char * path);
 };
 

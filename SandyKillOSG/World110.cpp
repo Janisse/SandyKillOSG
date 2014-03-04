@@ -34,7 +34,7 @@ void World110::reset()
 	ref_ptr<Node110> myNode110 = new Node110();
 	Loader110::loadFromFile("resources/coeur.obj", myNode110);
 	_scenegraph->addChild(myNode110);
-	_selected = myNode110;
+	_selected = myNode110; 
 	Subdivisor subdivisor(_selected);
 	subdivisor.subdivide(3);
 	Loader110 load;

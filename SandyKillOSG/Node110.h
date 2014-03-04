@@ -2,7 +2,9 @@
 
 #include "CONSTANTES_LITTERALES.h"
 
+
 class Loader110;
+class Subdivisor;
 
 class Node110 :
 	public Group
@@ -22,13 +24,15 @@ private:
 	ref_ptr<Vec3Array> _faces;
 	ref_ptr<Vec4Array> _colors;
 
+	unsigned int _nbSubdivisions;
+
 public:
 
 
 	//	Constructeurs & Destructeur	================================================================================================================
 
 	Node110();
-	Node110::Node110(ref_ptr<Geometry> geom);
+	Node110::Node110(ref_ptr<Geometry> geom, unsigned int nbSubs);
 	~Node110(void);
 
 	//	Accesseurs & Mutateurs		================================================================================================================
@@ -41,6 +45,7 @@ public:
 	ref_ptr<Vec4Array> getColors() {return _colors;}
 
 	void setFaces(ref_ptr<Vec3Array> faces) {_faces = faces;}
+	void setNbSubdivisions( unsigned int n) { _nbSubdivisions = n;}
 
 	//	Fonctionnalités				================================================================================================================
 	
@@ -49,6 +54,7 @@ public:
 	void event_RotationGauche(bool acceleration);
 	void event_RotationDroite(bool acceleration);
 	void convertToSprites();
+	void subdivide110();
 
 	//bool loadFromFile(const char * path);
 };

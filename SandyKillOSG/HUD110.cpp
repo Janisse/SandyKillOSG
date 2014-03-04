@@ -48,6 +48,18 @@ void HUD110::createLabel()
     labelExplosionEffect->setPosition(Vec3(20.0f, 870.0f, 0.0f));
 
 	_tabLabel.push_back(labelExplosionEffect);
+
+			///////////////////////////// Effet Vague ///////////////////////////////////////////////
+	osgText::Text* labelWaveEffect = new osgText::Text();
+
+    labelWaveEffect->setFont(font);
+    labelWaveEffect->setCharacterSize(size);
+    labelWaveEffect->setFontResolution(size, size);
+    labelWaveEffect->setColor(color);
+    labelWaveEffect->setPosition(Vec3(20.0f, 820.0f, 0.0f));
+
+	_tabLabel.push_back(labelWaveEffect);
+
 		///////////////////////////// Rejouer l'animation ///////////////////////////////////////////////
 	osgText::Text* labelRejouerAnimation = new osgText::Text();
 
@@ -118,6 +130,7 @@ void HUD110::createLabel()
 	labelSableEffect->setText("a : Effet Sable");
 	labelFireworksEffect->setText("z : Effet Feux d'artifice");
 	labelExplosionEffect->setText("q : Effet Explosion");
+	labelWaveEffect->setText("s : Effet Vague");
     labelRejouerAnimation->setText("r : Rejouer l'animation");
 	labelCube->setText("w : Cube");
 	labelIcosphere->setText("x : Icosphere");

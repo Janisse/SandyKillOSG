@@ -4,6 +4,10 @@
 
 #include "Node110.h"
 #include "PhysicsSand.h"
+#include "PhysicsFireworks.h"
+#include "PhysicsExplosion.h"
+#include "PhysicsWave.h"
+#include "PhysicsWave.h"
 #include "Loader110.h"
 
 
@@ -16,6 +20,9 @@ private:
 	ref_ptr<Group> _scenegraph;
 	ref_ptr<Node110> _selected;
 	ref_ptr<Node> _skybox;
+	unsigned int _nbSubdivisions;
+	std::string _model;
+	ref_ptr<Physics110> _physicsEngine;
 
 	//	Variables membres			================================================================================================================
 
@@ -31,11 +38,14 @@ public:
 	ref_ptr<Group> getScenegraph() {return _scenegraph;}
 	ref_ptr<Node110> getSelected() {return _selected;}
 	void setSelected(ref_ptr<Node110> s) { _selected = s;}
+	void setNbSubdivisions( unsigned int n) { _nbSubdivisions = n;}
+	void setModelName(std::string m){_model = m;}
 
 	//	Fonctionnalités				================================================================================================================
 
-	void setSandWorld(ref_ptr<Physics110> p);
-	void reset();
+	void setSandWorld();
+	void setFireworksWorld();
+	void resetModel();
 
 };
 

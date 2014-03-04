@@ -1,4 +1,4 @@
-#pragma warning(disable: C4290)
+#pragma warning(disable: C4290);
 #include "CONSTANTES_LITTERALES.h"
 
 #include "World110.h"
@@ -25,47 +25,32 @@ int main()
 
 	//Physics
 	//ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
-	ref_ptr<Physics110> physicsEngine = new PhysicsFireworks;
+	
 	//ref_ptr<PhysicsExplosion> physicsEngine = new PhysicsExplosion;
 
-	Loader110 load;
-
-	// Chargement d'un cube AUTOMATIQUE
-	/*
-	ref_ptr<Node> myNode = osgDB::readNodeFile("resources/cubeOSG.obj");
-	ref_ptr<Node110> myNode110auto = new Node110(myNode->asGroup()->getChild(0)->asGeode()->getDrawable(0)->asGeometry());
-	myNode110auto->setStateSet(load.makeStateSet(10.f));
-	world->setSelected(myNode110auto);
-	world->getScenegraph()->addChild(myNode110auto.get());*/
-
+	//Loader110 load;
 
 	int nbSubdivision;
-	// Chargement d'un cube A LA MAIN
-	ref_ptr<Node110> myNode110 = new Node110();
-	Loader110::loadFromFile("resources/coeur.obj", myNode110);
-
 	cout<<"Entrer le nombre de Subdivision souhaite: ";
 	cin>>nbSubdivision;
+	world->setNbSubdivisions(nbSubdivision);
 
-	Subdivisor subdivisor(myNode110);
-	subdivisor.subdivide(nbSubdivision);
-	//subdivide(myNode110, nbSubdivision);
-
-	myNode110->getGeometry()->setUseDisplayList(false);
-
-	myNode110->setStateSet(load.makeStateSet(TAILLE_SPRITES));
-	world->setSelected(myNode110);
-	world->getScenegraph()->addChild(myNode110);
+	//Sélection et chargement du model
+	world->setModelName("cubeOSG");
+	world->resetModel();
 
 	// Fonction effet sable
-	physicsEngine->init(myNode110);
-	myNode110->addUpdateCallback(new Physics110CallBack(physicsEngine));
+	//physicsEngine->init(world->getSelected());
+	//myNode110->addUpdateCallback(new Physics110CallBack(physicsEngine));
+	
+	//world->setSandWorld();	// TEST
+
 
 	// Evénements
 
 	//Handlers
 	ref_ptr<MouseHandler> mouseHandler = new MouseHandler(world);
-	ref_ptr<KeyboardHandler> keyboardHandler = new KeyboardHandler(world, physicsEngine);
+	ref_ptr<KeyboardHandler> keyboardHandler = new KeyboardHandler(world);
 
 	viewer->addEventHandler(keyboardHandler);
 	viewer->addEventHandler(mouseHandler);

@@ -1,9 +1,8 @@
 #include "KeyboardHandler.h"
 
 
-KeyboardHandler::KeyboardHandler(ref_ptr<World110> w, ref_ptr<Physics110> p)
+KeyboardHandler::KeyboardHandler(ref_ptr<World110> w)
 	: _world(w)
-	, _physics(p)
 {
 
 }
@@ -36,18 +35,25 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			return false;
 			// a : Effet Sable/////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_A :
-			_world->setSandWorld(_physics);
+			_world->resetModel();
+			_world->setSandWorld();
 			return false;
 			// z : Effet Fireworks/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Z :
-			//_world->getSelected()->FONCTION(true);
+			_world->resetModel();
+			_world->setFireworksWorld();
 			return false;
+			// q : Effet Explosion/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Q :
+			//_world->getSelected()->FONCTION(false);
+			return false;
+			// s : Effet Vague/////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_S :
 			//_world->getSelected()->FONCTION(false);
 			return false;
 			// r : Rejouer animation///////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_R :
-			_world->reset();
+			_world->resetModel();
 			return false;
 			// w : Cube////////////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_W :

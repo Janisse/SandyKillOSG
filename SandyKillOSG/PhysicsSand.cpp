@@ -43,12 +43,7 @@ void PhysicsSand::run(double temps)
 	for (int i=0; i<_colors->size(); i++)
 	{
 		//On actualise la couleur
-
-		/*_colors->at(i) = Vec4(
-			(rand()%100 <50) ? 1.0 : 0.0,
-			(rand()%100 <50) ? 1.0 : 0.0,
-			(rand()%100 <50) ? 1.0 : 0.0,
-			1.0);*/
+		_colors->at(i) = Vec4(.678, 0, 0, 1);
 	}
 }
 

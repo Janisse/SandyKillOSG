@@ -16,14 +16,13 @@ private:
 	//	Variables membres			================================================================================================================
 	
 	ref_ptr<World110> _world;		// Le graphe à visiter
-	ref_ptr<Physics110> _physics;
 
 public:
 
 
 	//	Constructeurs & Destructeur	================================================================================================================
 
-	KeyboardHandler(ref_ptr<World110> w, ref_ptr<Physics110> p);
+	KeyboardHandler(ref_ptr<World110> w);
 	~KeyboardHandler(void);
 
 	//	Accesseurs & Mutateurs		================================================================================================================

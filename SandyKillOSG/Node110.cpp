@@ -1,6 +1,6 @@
 #include "Node110.h"
 #include "Loader110.h"
-
+#include "Subdivisor.h"
 
 Node110::Node110()
 {
@@ -15,7 +15,8 @@ Node110::Node110()
 	_colors = new Vec4Array();
 }
 
-Node110::Node110(ref_ptr<Geometry> geom)
+Node110::Node110(ref_ptr<Geometry> geom, unsigned int nbSubs)
+	: _nbSubdivisions(nbSubs)
 {
 	_trf = new PositionAttitudeTransform;
 	_gde = new Geode;
@@ -69,6 +70,12 @@ void Node110::event_RotationDroite(bool acceleration)
 void Node110::convertToSprites()
 {
 	setStateSet(Loader110::makeStateSet(10.0f));
+}
+
+void Node110::subdivide110()
+{
+	Subdivisor subdivisor(this);
+	subdivisor.subdivide(_nbSubdivisions);
 }
 
 

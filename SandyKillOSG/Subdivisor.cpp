@@ -13,13 +13,15 @@ void Subdivisor::subdivide(int nbSub)
 {
 	//Variable temps
 	Timer time;
+
+	//Init
+	ref_ptr<DrawElementsUInt> face = new DrawElementsUInt(PrimitiveSet::POINTS);
+
 	for (int k = 0; k<nbSub; k++)
 	{
-		//Init
-		ref_ptr<DrawElementsUInt> face = new DrawElementsUInt(PrimitiveSet::POINTS);
-
 		//Vide les faces de la geometry
 		geom->getPrimitiveSetList().clear();
+		face->clear();
 		ref_ptr<Vec3Array> newFaces = new Vec3Array;
 
 		endIndexOldArray = vertexs->size();
@@ -107,6 +109,13 @@ void Subdivisor::subdivide(int nbSub)
 		std::cout<<"Subdivision "<<k+1<<" Fait en "<<time.time_s()<<endl;
 		std::cout<<vertexs->size()<<endl;
 	}
+
+	//Copie la geometry subdivisée pour la sauvegarder
+	node110->setVertexsSubSave(dynamic_cast<Vec3Array*>(node110->getVertexs()->clone(CopyOp(CopyOp::DEEP_COPY_ALL ))));
+	node110->setFacesSubSave(dynamic_cast<Vec3Array*>(node110->getFaces()->clone(CopyOp(CopyOp::DEEP_COPY_ALL ))));
+	//On crée la geometry subdivisée sauvegardée
+	node110->getGeometrySubSave()->setVertexArray(node110->getVertexsSubSave());
+	node110->getGeometrySubSave()->addPrimitiveSet(dynamic_cast<DrawElementsUInt*>(face->clone(CopyOp(CopyOp::DEEP_COPY_ALL ))));
 }
 
 void Subdivisor::searchPoint()

@@ -17,10 +17,9 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 	node110 = new Node110;
 	ref_ptr<Vec3Array> vertices = node110->getVertexs();
 	ref_ptr<Vec3Array> faces = node110->getFaces();
-	ref_ptr<Vec4Array> colors = node110->getColors();
 
 
-	ref_ptr<DrawElementsUInt> face = new osg::DrawElementsUInt(osg::PrimitiveSet::POINTS);
+	ref_ptr<DrawElementsUInt> face = new osg::DrawElementsUInt(osg::PrimitiveSet::TRIANGLES);
 
 	//On charge les elements du fichier
 	FILE * file = fopen(path, "r");
@@ -66,18 +65,26 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 			face->push_back(vertexIndex[1]-1);
 			face->push_back(vertexIndex[2]-1);
 			faces->push_back(Vec3(vertexIndex[0]-1, vertexIndex[1]-1, vertexIndex[2]-1));
-			colors->push_back(Vec4(1.0,1.0,1.0,1.0));
 		}
 	}
 
 	//On crée la geometry à partir des données chargées
 	node110->getGeometry()->addPrimitiveSet(face);
 	node110->getGeometry()->setVertexArray(vertices);
-	node110->getGeometry()->setColorArray(colors, osg::Array::BIND_PER_PRIMITIVE_SET);
+
+	//Copie la geometry pour la sauvegarder
+	node110->setVertexsOriginal(dynamic_cast<Vec3Array*>(vertices->clone(osg::CopyOp::DEEP_COPY_ALL)));
+	node110->setFacesOriginal(dynamic_cast<Vec3Array*>(face->clone(osg::CopyOp::DEEP_COPY_ALL)));
+
+	//On crée la geometry sauvegardée
+	node110->getGeometryOriginal()->setVertexArray(node110->getVertexsOriginal());
+	node110->getGeometryOriginal()->addPrimitiveSet(dynamic_cast<DrawElementsUInt*>(face->clone(osg::CopyOp::DEEP_COPY_ALL)));
 
 	return true;
 }
 
+
+// à mettre dans les physiques
 osg::StateSet* Loader110::makeStateSet(float size)
 {
 	osg::StateSet *set = new osg::StateSet();

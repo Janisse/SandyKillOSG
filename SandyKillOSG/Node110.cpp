@@ -8,11 +8,32 @@ Node110::Node110()
 	_gde = new Geode;
 	_geom = new Geometry;
 	_gde->addDrawable(_geom);
-	_trf->addChild(_gde);
-	this->addChild(_trf);
 	_vertexs = new Vec3Array();
 	_faces = new Vec3Array();
 	_colors = new Vec4Array();
+
+	_gdeSubSave = new Geode;
+	_geomSubSave = new Geometry;
+	_gdeSubSave->addDrawable(_geomSubSave);
+	_vertexsSubSave = new Vec3Array();
+	_facesSubSave = new Vec3Array();
+	_colorsSubSave = new Vec4Array();
+
+	_gdeOriginal = new Geode;
+	_geomOriginal = new Geometry;
+	_gdeOriginal->addDrawable(_geomOriginal);
+	_vertexsOriginal = new Vec3Array();
+	_facesOriginal = new Vec3Array();
+	_colorsOriginal = new Vec4Array();
+
+	_swh = new Switch();
+	_trf->addChild(_swh);
+	this->addChild(_trf);
+
+	_swh->addChild(_gdeOriginal);
+	_swh->addChild(_gdeSubSave);
+	_swh->addChild(_gde);
+	_swh->setSingleChildOn(0);
 }
 
 Node110::Node110(ref_ptr<Geometry> geom, unsigned int nbSubs)
@@ -69,7 +90,7 @@ void Node110::event_RotationDroite(bool acceleration)
 
 void Node110::convertToSprites()
 {
-	setStateSet(Loader110::makeStateSet(10.0f));
+	_gde->setStateSet(Loader110::makeStateSet(10.0f));
 }
 
 void Node110::subdivide110()
@@ -77,3 +98,4 @@ void Node110::subdivide110()
 	Subdivisor subdivisor(this);
 	subdivisor.subdivide(_nbSubdivisions);
 }
+

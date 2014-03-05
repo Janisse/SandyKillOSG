@@ -120,3 +120,13 @@ bool Node110::switchGeometry(int i)
 		return false;
 	}
 }
+
+void Node110::restoreSubdivision()
+{
+	//Copie la geometry subdivisée pour la sauvegarder
+	_vertexs = dynamic_cast<Vec3Array*>(_vertexsSubSave->clone(CopyOp(CopyOp::DEEP_COPY_ALL)));
+	_faces = dynamic_cast<Vec3Array*>(_facesSubSave->clone(CopyOp(CopyOp::DEEP_COPY_ALL)));
+	//On crée la geometry subdivisée sauvegardée
+	_geom->setVertexArray(_vertexs);
+	_geom->setPrimitiveSetList(_geomSubSave->getPrimitiveSetList());
+}

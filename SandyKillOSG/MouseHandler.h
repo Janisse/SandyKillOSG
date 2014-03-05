@@ -40,7 +40,7 @@ public:
 
 private :
 
-	bool pickCible (osgViewer::Viewer* viewer, float mx, float my);
+	bool pickCible (osgViewer::Viewer* viewer, const osgGA::GUIEventAdapter& ea);
 
 	void onClick();
 	void onRelease();

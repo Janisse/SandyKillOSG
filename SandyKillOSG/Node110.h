@@ -39,6 +39,7 @@ private:
 	ref_ptr<Vec4Array> _colorsOriginal;
 
 	unsigned int _nbSubdivisions;
+	bool _subdivided;
 
 public:
 
@@ -75,6 +76,7 @@ public:
 
 	void setFaces(ref_ptr<Vec3Array> faces) {_faces = faces;}
 	void setNbSubdivisions( unsigned int n) { _nbSubdivisions = n;}
+	bool isSubdivided(){return _subdivided;}
 
 	//	Fonctionnalités				================================================================================================================
 	

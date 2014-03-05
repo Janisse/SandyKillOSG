@@ -8,6 +8,7 @@ MouseHandler::MouseHandler(ref_ptr<World110> w)
 	, _mX(0)
 	, _mY(0)
 {
+	_picked = 0;
 }
 
 
@@ -36,11 +37,12 @@ bool MouseHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			_mY = ea.getY();
 			if (_mX && _mY)
 			{
-				if (pickCible( viewer, ea.getXnormalized(), ea.getYnormalized()))
+				if (pickCible( viewer, ea))
 				{
-					_world->setSelected(_picked);
 					if(_picked)
-						//_world->resetModel();
+						_world->setSelected(_picked);
+						_picked->convertToSprites();
+						_world->resetPhysics();
 					return true;
 				}
 				else
@@ -54,33 +56,33 @@ bool MouseHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 	}
 }
 
-bool MouseHandler::pickCible (osgViewer::Viewer* viewer, float mx, float my)
+bool MouseHandler::pickCible (osgViewer::Viewer* viewer, const osgGA::GUIEventAdapter& ea)
 {
 	if (!viewer->getSceneData())
 		// Nothing to pick.
 		return false;
 
-	double w( .05 ), h( .05 );
-	osgUtil::PolytopeIntersector* picker = new osgUtil::PolytopeIntersector(osgUtil::Intersector::PROJECTION,mx-w, my-h, mx+w, my+h );
-
-	osgUtil::IntersectionVisitor iv( picker );
-	viewer->getCamera()->accept( iv );
-
-	if (picker->containsIntersections())
+	osgUtil::LineSegmentIntersector::Intersections intersections;
+	if (viewer->computeIntersections(ea,intersections, 0x2))
 	{
-		const osg::NodePath& nodePath = picker->getFirstIntersection().nodePath;
+		if(intersections.size()){
 
-		//0:Scengraph
-		//1:Node110
-		//2:Transform
-		//3:Switch
-		//4:Geode
-		ref_ptr<osg::Node> node = (nodePath.size() >= 2)?nodePath[1]:0;			
-		//ref_ptr<osg::Node> nde = nodePath.back();
-		if(node)
-			_picked = dynamic_cast<Node110*>(node.get());
+			const osg::NodePath& nodePath = intersections.begin()->nodePath;
+
+			ref_ptr<Node> current = nodePath.back();
+			Node* parent;
+			while(current->getParents().size()){
+				parent = current->getParent(0);
+				if(dynamic_cast<Node110*>(parent)){
+					_picked = static_cast<Node110*>(parent);
+					return true;
+				}
+				else
+					current = parent;
+			}
+		}
 	}
-	return _picked.valid();
+	return false;
 }
 
 void MouseHandler::onClick()

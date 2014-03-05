@@ -4,6 +4,7 @@
 
 Node110::Node110(unsigned int nbSubs)
 	: _nbSubdivisions(nbSubs)
+	, _subdivided(false)
 {
 	_trf = new PositionAttitudeTransform;
 	_gde = new Geode;
@@ -34,7 +35,9 @@ Node110::Node110(unsigned int nbSubs)
 	_swh->addChild(_gdeOriginal);
 	_swh->addChild(_gdeSubSave);
 	_swh->addChild(_gde);
-	_swh->setSingleChildOn(2);
+	_swh->setSingleChildOn(0);
+
+	_gdeOriginal->setNodeMask(0x2);
 }
 
 Node110::~Node110(void)
@@ -79,13 +82,15 @@ void Node110::event_RotationDroite(bool acceleration)
 
 void Node110::convertToSprites()
 {
-	_gde->setStateSet(Loader110::makeStateSet(10.0f));
+	_gde->setStateSet(Loader110::makeStateSet(TAILLE_SPRITES));
+	_swh->setSingleChildOn(2);
 }
 
 void Node110::subdivide110()
 {
 	Subdivisor subdivisor(this);
 	subdivisor.subdivide(_nbSubdivisions);
+	_subdivided = true;
 }
 
 //Passe d'une geometry a une autre

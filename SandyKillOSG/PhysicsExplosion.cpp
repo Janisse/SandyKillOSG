@@ -60,10 +60,10 @@ void PhysicsExplosion::run(double temps)
 			1.0);*/
 	}
 }
-
-void PhysicsExplosion::init(ref_ptr<Node110> node110)
 {
 	Physics110::init(node110);
+
+void PhysicsExplosion::init(ref_ptr<Node110> node110)
 	_projection = new Vec3Array(_nbVertices);
 	_movement = new Vec3Array(_nbVertices);
 	_speed = new Vec3Array(_nbVertices);

@@ -88,5 +88,7 @@ public:
 	void subdivide110();
 	bool switchGeometry(int i);
 	void restoreSubdivision();
+	void setUpdateCallback (NodeCallback *nc);
+	void removeUpdateCallback (NodeCallback *nc);
 };
 

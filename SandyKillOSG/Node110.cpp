@@ -90,7 +90,6 @@ void Node110::subdivide110()
 {
 	Subdivisor subdivisor(this);
 	subdivisor.subdivide(_nbSubdivisions);
-	_subdivided = true;
 }
 
 //Passe d'une geometry a une autre
@@ -123,4 +122,14 @@ void Node110::restoreSubdivision()
 	//On crée la geometry subdivisée sauvegardée
 	_geom->setVertexArray(_vertexs);
 	_geom->setPrimitiveSetList(_geomSubSave->getPrimitiveSetList());
+}
+
+void Node110::setUpdateCallback (NodeCallback *nc){
+	_subdivided = true;
+	Node::setUpdateCallback(nc);
+}
+
+void Node110::removeUpdateCallback (NodeCallback *nc){
+	_subdivided = false;
+	Node::removeUpdateCallback(nc);
 }

@@ -54,12 +54,14 @@ void World110::setSandWorld()
 	_skybox->setNodeMask(0x1);
 
 	//changement de physique
-	if(_selected)
-		_selected->removeUpdateCallback(_selected->getUpdateCallback());
 	_physicsEngine = new PhysicsSand;
-	_physicsEngine->init(_selected);
-	if(_selected && _selected->isSubdivided())
-		_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	if(_selected){
+		bool continueCallback = _selected->isSubdivided();
+		_selected->removeUpdateCallback(_selected->getUpdateCallback());
+		_physicsEngine->init(_selected);
+		if(continueCallback)
+			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	}
 
 }
 
@@ -73,12 +75,14 @@ void World110::setFireworksWorld()
 	_skybox->setNodeMask(0x1);
 
 	//changement de physique
-	if(_selected)
-		_selected->removeUpdateCallback(_selected->getUpdateCallback());
 	_physicsEngine = new PhysicsFireworks;
-	_physicsEngine->init(_selected);
-	if(_selected && _selected->isSubdivided())
-		_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	if(_selected){
+		bool continueCallback = _selected->isSubdivided();
+		_selected->removeUpdateCallback(_selected->getUpdateCallback());
+		_physicsEngine->init(_selected);
+		if(continueCallback)
+			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	}
 
 }
 
@@ -93,12 +97,14 @@ void World110::setExplosionWorld()
 	_skybox->setNodeMask(0x1);
 
 	//changement de physique
-	if(_selected)
-		_selected->removeUpdateCallback(_selected->getUpdateCallback());
 	_physicsEngine = new PhysicsExplosion;
-	_physicsEngine->init(_selected);
-	if(_selected && _selected->isSubdivided())
-		_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	if(_selected){
+		bool continueCallback = _selected->isSubdivided();
+		_selected->removeUpdateCallback(_selected->getUpdateCallback());
+		_physicsEngine->init(_selected);
+		if(continueCallback)
+			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	}
 }
 
 void World110::setWaveWorld()
@@ -111,12 +117,14 @@ void World110::setWaveWorld()
 	_skybox->setNodeMask(0x1);
 
 	//changement de physique
-	if(_selected)
-		_selected->removeUpdateCallback(_selected->getUpdateCallback());
 	_physicsEngine = new PhysicsWave;
-	_physicsEngine->init(_selected);
-	if(_selected && _selected->isSubdivided())
-		_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	if(_selected){
+		bool continueCallback = _selected->isSubdivided();
+		_selected->removeUpdateCallback(_selected->getUpdateCallback());
+		_physicsEngine->init(_selected);
+		if(continueCallback)
+			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	}
 }
 
 void World110::setHeartWorld()
@@ -129,12 +137,14 @@ void World110::setHeartWorld()
 	_skybox->setNodeMask(0x1);
 
 	//changement de physique
-	if(_selected)
-		_selected->removeUpdateCallback(_selected->getUpdateCallback());
 	_physicsEngine = new PhysicsHeart;
-	_physicsEngine->init(_selected);
-	if(_selected && _selected->isSubdivided())
-		_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	if(_selected){
+		bool continueCallback = _selected->isSubdivided();
+		_selected->removeUpdateCallback(_selected->getUpdateCallback());
+		_physicsEngine->init(_selected);
+		if(continueCallback)
+			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	}
 }
 
 void World110::setWeirdWorld()
@@ -147,12 +157,14 @@ void World110::setWeirdWorld()
 	_skybox->setNodeMask(0x1);
 
 	//changement de physique
-	if(_selected)
-		_selected->removeUpdateCallback(_selected->getUpdateCallback());
 	_physicsEngine = new PhysicsWeird;
-	_physicsEngine->init(_selected);
-	if(_selected && _selected->isSubdivided())
-		_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	if(_selected){
+		bool continueCallback = _selected->isSubdivided();
+		_selected->removeUpdateCallback(_selected->getUpdateCallback());
+		_physicsEngine->init(_selected);
+		if(continueCallback)
+			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	}
 }
 
 void World110::subPlus()

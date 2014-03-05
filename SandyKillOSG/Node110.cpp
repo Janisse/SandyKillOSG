@@ -33,7 +33,7 @@ Node110::Node110()
 	_swh->addChild(_gdeOriginal);
 	_swh->addChild(_gdeSubSave);
 	_swh->addChild(_gde);
-	_swh->setSingleChildOn(2);
+	_swh->setSingleChildOn(0);
 }
 
 Node110::Node110(ref_ptr<Geometry> geom, unsigned int nbSubs)

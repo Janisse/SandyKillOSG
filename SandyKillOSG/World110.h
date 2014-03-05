@@ -45,6 +45,7 @@ public:
 	//	Fonctionnalités				================================================================================================================
 
 	void loadModel();
+	void resetPhysics();
 
 	void setSandWorld();
 	void setFireworksWorld();

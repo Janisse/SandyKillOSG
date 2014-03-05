@@ -35,53 +35,58 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			return false;
 			// a : Effet Sable/////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_A :
-			//_world->resetModel();
+			_world->getSelected()->restoreSubdivision();
 			_world->setSandWorld();
 			return false;
 			// z : Effet Fireworks/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Z :
-			//_world->resetModel();
+			_world->getSelected()->restoreSubdivision();
 			_world->setFireworksWorld();
 			return false;
 			// q : Effet Explosion/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_E :
-			//_world->resetModel();
+			_world->getSelected()->restoreSubdivision();
 			_world->setExplosionWorld();
 			return false;
 			// s : Effet Vague/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_R :
-			//_world->resetModel();
+			_world->getSelected()->restoreSubdivision();
 			_world->setWaveWorld();
 			return false;
 			// s : Effet Battement coeur/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_T :
-			//_world->resetModel();
+			_world->getSelected()->restoreSubdivision();
 			_world->setHeartWorld();
 			return false;
 			// s : Effet Bizarre/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Y :
-			//_world->resetModel();
+			_world->getSelected()->restoreSubdivision();
 			_world->setWeirdWorld();
 			return false;
 			// r : Rejouer animation///////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Space :
-			//_world->resetModel();
+			_world->getSelected()->restoreSubdivision();
+			_world->resetPhysics();
 			return false;
 			// w : Cube////////////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_W :
-			//_world->getSelected()->FONCTION(true);
+			_world->setModelName("cubeOSG");
+			_world->loadModel();
 			return false;
-			// x : Isosphere///////////////////////////////////////////////////////////////////////////////////
+			// x : Icosphere///////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_X :
-			//_world->getSelected()->FONCTION(true);
+			_world->setModelName("icosphere");
+			_world->loadModel();
 			return false;
 			// c : Suzanne/////////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_C :
-			//_world->getSelected()->FONCTION(true);
+			_world->setModelName("suzanne");
+			_world->loadModel();
 			return false;
 			// v : Coeur//////////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_V :
-			//_world->getSelected()->FONCTION(true);
+			_world->setModelName("coeur");
+			_world->loadModel();
 			return false;
 		default:
 			break;

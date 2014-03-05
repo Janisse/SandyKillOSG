@@ -32,6 +32,10 @@ void World110::loadModel()
 	Loader110 load;
 	_selected->setStateSet(load.makeStateSet(TAILLE_SPRITES));
 	_selected->getGeometry()->setUseDisplayList(false);
+	resetPhysics();
+}
+
+void World110::resetPhysics(){
 	if(_physicsEngine){
 		_physicsEngine->init(_selected);
 		_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
@@ -130,6 +134,8 @@ void World110::setWeirdWorld()
 	_physicsEngine->init(_selected);
 	_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
 }
+
+
 
 void World110::setCubeWorld()
 {

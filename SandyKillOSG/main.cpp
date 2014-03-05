@@ -31,7 +31,7 @@ int main()
 	world->setNbSubdivisions(nbSubdivision);
 
 	//Sélection et chargement du model
-	world->setModelName("cubeOSG");
+	world->setModelName("coeur");
 	world->resetModel();
 
 	// Evénements

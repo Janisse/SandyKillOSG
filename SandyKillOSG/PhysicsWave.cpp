@@ -29,10 +29,12 @@ void PhysicsWave::run(double temps)
 		_projection->at(i) = Vec3(0,0,0);
 
 		//On actualise la position
-		_vertices->at(i) += _speed->at(i);
+		_prevertices->at(i) += _speed->at(i);
 
 		//On calcul les vagues
-		_vertices->at(i).z() = .5 - cos((_timesomm + _vertices->at(i).x())* 3.0) * 0.5;
+
+		_vertices->at(i).z() = _prevertices->at(i).z() + .8 - cos((_timesomm + _vertices->at(i).x())* 3.0) * 0.2;
+		_vertices->at(i).y() = _prevertices->at(i).y() + .8 - cos((_timesomm + _vertices->at(i).x())* 3.0) * 0.2;
 	}
 
 #pragma omp parallel for

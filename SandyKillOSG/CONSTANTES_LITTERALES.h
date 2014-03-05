@@ -1,5 +1,7 @@
 #pragma once
 
+#pragma warning (disable : 4290 4018)
+
 #include <stdio.h> //pour printf, sscanf, stderr, fprintf, fopen, fseek, fread, ftell, fclose, FILE
 #include <stdlib.h>//pour malloc, free
 #include <string.h>//pour strstr

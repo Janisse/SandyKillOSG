@@ -85,5 +85,6 @@ public:
 	void convertToSprites();
 	void subdivide110();
 	bool switchGeometry(int i);
+	void restoreSubdivision();
 };
 

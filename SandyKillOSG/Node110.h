@@ -44,7 +44,7 @@ public:
 
 	//	Constructeurs & Destructeur	================================================================================================================
 
-	Node110();
+	Node110(unsigned int nbSubs=2);
 	Node110::Node110(ref_ptr<Geometry> geom, unsigned int nbSubs);
 	~Node110(void);
 

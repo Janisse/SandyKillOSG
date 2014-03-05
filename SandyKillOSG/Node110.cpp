@@ -2,7 +2,8 @@
 #include "Loader110.h"
 #include "Subdivisor.h"
 
-Node110::Node110()
+Node110::Node110(unsigned int nbSubs)
+	: _nbSubdivisions(nbSubs)
 {
 	_trf = new PositionAttitudeTransform;
 	_gde = new Geode;
@@ -33,20 +34,8 @@ Node110::Node110()
 	_swh->addChild(_gdeOriginal);
 	_swh->addChild(_gdeSubSave);
 	_swh->addChild(_gde);
-	_swh->setSingleChildOn(0);
+	_swh->setSingleChildOn(2);
 }
-
-Node110::Node110(ref_ptr<Geometry> geom, unsigned int nbSubs)
-	: _nbSubdivisions(nbSubs)
-{
-	_trf = new PositionAttitudeTransform;
-	_gde = new Geode;
-	_geom = geom;
-	_gde->addDrawable(_geom);
-	_trf->addChild(_gde);
-	this->addChild(_trf);
-}
-
 
 Node110::~Node110(void)
 {

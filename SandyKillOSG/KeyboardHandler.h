@@ -3,6 +3,7 @@
 #include "CONSTANTES_LITTERALES.h"
 
 #include "World110.h"
+#include "HUD110.h"
 
 class KeyboardHandler
 	: public osgGA::GUIEventHandler
@@ -16,13 +17,14 @@ private:
 	//	Variables membres			================================================================================================================
 	
 	ref_ptr<World110> _world;		// Le graphe à visiter
+	ref_ptr<HUD110> _hud;
 
 public:
 
 
 	//	Constructeurs & Destructeur	================================================================================================================
 
-	KeyboardHandler(ref_ptr<World110> w);
+	KeyboardHandler(ref_ptr<World110> w, ref_ptr<HUD110> h);
 	~KeyboardHandler(void);
 
 	//	Accesseurs & Mutateurs		================================================================================================================

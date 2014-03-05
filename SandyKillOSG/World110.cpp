@@ -3,8 +3,10 @@
 #include "Subdivisor.h"
 
 World110::World110(void)
-	: _nbSubdivisions(0)
+	: nbSubdivisions(2)
 	, _model("cubeOSG")
+	, minSubs(0)
+	, maxSubs(9)
 {
 	_scenegraph = new Group();
 	_selected = 0;
@@ -23,11 +25,11 @@ void World110::loadModel()
 	if(_selected)
 		_scenegraph->removeChild(_selected);
 	//Loader110::loadFromFile("resources/cubeOSG.obj", _selected);
-	ref_ptr<Node110> myNode110 = new Node110();
+	ref_ptr<Node110> myNode110 = new Node110(nbSubdivisions);
 	Loader110::loadFromFile((std::string("resources/")+_model+".obj").c_str(), myNode110);
 	_scenegraph->addChild(myNode110);
 	_selected = myNode110;
-	_selected->setNbSubdivisions(_nbSubdivisions);
+	_selected->setNbSubdivisions(nbSubdivisions);
 	_selected->subdivide110();
 	Loader110 load;
 	_selected->setStateSet(load.makeStateSet(TAILLE_SPRITES));
@@ -135,9 +137,21 @@ void World110::setWeirdWorld()
 	_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
 }
 
-
-
-void World110::setCubeWorld()
+void World110::subPlus()
 {
-	
+	if(nbSubdivisions < maxSubs) nbSubdivisions++;
+	if(_selected) _selected->setNbSubdivisions(nbSubdivisions);
+}
+
+void World110::subMoins()
+{
+	if(nbSubdivisions > minSubs) nbSubdivisions--;
+	if(_selected) _selected->setNbSubdivisions(nbSubdivisions);
+}
+
+void World110::subOK()
+{
+	if(!_selected) return;
+	_selected->setNbSubdivisions(nbSubdivisions);
+	_selected->subdivide110();
 }

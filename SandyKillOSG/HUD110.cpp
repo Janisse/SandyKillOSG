@@ -1,7 +1,8 @@
 #include "HUD110.h"
 
 
-HUD110::HUD110()
+HUD110::HUD110(ref_ptr<World110> w)
+	: _world(w)
 {
 }
 
@@ -14,9 +15,9 @@ void HUD110::createLabel()
 	double size = 20;
 	Vec4 color(1.0f, 1.0f, 1.0f, 1.0f);
     osgText::Font* font  = osgText::readFontFile("fonts/arial.ttf");
+	static osg::Vec3 pos(10.0f, 10.0f, 0.0f);
 
 	///////////////////////////// Effet Sable ///////////////////////////////////////////////
-	static osg::Vec3 pos(10.0f, 10.0f, 0.0f);
 	osgText::Text* labelSableEffect = new osgText::Text();
 
     labelSableEffect->setFont(font);
@@ -126,18 +127,18 @@ void HUD110::createLabel()
 
 	_tabLabel.push_back(labelSuzanne);
 
-	///////////////////////////// Model Requin ///////////////////////////////////////////////
-	osgText::Text* labelRequin = new osgText::Text();
+	///////////////////////////// Model coeur ///////////////////////////////////////////////
+	osgText::Text* labelCoeur = new osgText::Text();
 
-    labelRequin->setFont(font);
-    labelRequin->setCharacterSize(size);
-    labelRequin->setFontResolution(size, size);
-    labelRequin->setColor(color);
-    labelRequin->setPosition(Vec3(1100.0f, 400.0f, 0.0f));
+    labelCoeur->setFont(font);
+    labelCoeur->setCharacterSize(size);
+    labelCoeur->setFontResolution(size, size);
+    labelCoeur->setColor(color);
+    labelCoeur->setPosition(Vec3(1100.0f, 400.0f, 0.0f));
 
-	_tabLabel.push_back(labelRequin);
+	_tabLabel.push_back(labelCoeur);
 
-			///////////////////////////// Rotation ///////////////////////////////////////////////
+	///////////////////////////// Rotation ///////////////////////////////////////////////
 	osgText::Text* labelRotation = new osgText::Text();
 
     labelRotation->setFont(font);
@@ -147,6 +148,28 @@ void HUD110::createLabel()
     labelRotation->setPosition(Vec3(1000.0f, 50.0f, 0.0f));
 
 	_tabLabel.push_back(labelRotation);
+
+	///////////////////////////// Nombre subdivisions ///////////////////////////////////////////////
+	labelNbSub = new osgText::Text();
+
+    labelNbSub->setFont(font);
+    labelNbSub->setCharacterSize(size);
+    labelNbSub->setFontResolution(size, size);
+    labelNbSub->setColor(color);
+    labelNbSub->setPosition(Vec3(850.0f, 970.0f, 0.0f));
+
+	_tabLabel.push_back(labelNbSub);
+
+		///////////////////////////// Nombre sub OK ///////////////////////////////////////////////
+	osgText::Text* labelOK = new osgText::Text();
+
+    labelOK->setFont(font);
+    labelOK->setCharacterSize(size);
+    labelOK->setFontResolution(size, size);
+    labelOK->setColor(color);
+    labelOK->setPosition(Vec3(850.0f, 920.0f, 0.0f));
+
+	_tabLabel.push_back(labelOK);
 
     // It seems to be important we do this last to get best results?
 	labelSableEffect->setText("a : Sable");
@@ -159,9 +182,22 @@ void HUD110::createLabel()
 	labelCube->setText("w : Cube");
 	labelIcosphere->setText("x : Icosphere");
 	labelSuzanne->setText("c : Suzanne");
-	labelRequin->setText("v : Coeur");
+	labelCoeur->setText("v : Coeur");
 	labelRotation->setText("fleches : Rotation");
 
+	std::stringstream stream;
+	stream<<_world->nbSubdivisions;
+
+	labelNbSub->setText("Nombre de subdivisions +/- : " + stream.str());
+	labelOK->setText("Entrer : Subdiviser");
+
+}
+
+void HUD110::update()
+{
+	std::stringstream stream;
+	stream<<_world->nbSubdivisions;
+	labelNbSub->setText("Nombre de subdivisions +/- : " + stream.str());
 }
 
 osg::Camera* HUD110::createOrthoCamera(double width, double height)

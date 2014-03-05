@@ -23,37 +23,26 @@ int main()
 	//World
 	ref_ptr<World110> world = new World110;
 
-	//Physics
-
-	int nbSubdivision;
-	cout<<"Entrer le nombre de Subdivision souhaite: ";
-	cin>>nbSubdivision;
-	world->setNbSubdivisions(nbSubdivision);
-
-	//Sélection et chargement du model
-	world->setModelName("coeur");
-	world->loadModel();
-
 	// Evénements
-
-	//Handlers
-	ref_ptr<MouseHandler> mouseHandler = new MouseHandler(world);
-	ref_ptr<KeyboardHandler> keyboardHandler = new KeyboardHandler(world);
-
-	viewer->addEventHandler(keyboardHandler);
-	viewer->addEventHandler(mouseHandler);
 
 	//paramétrage de la scène
 	viewer->setSceneData(world->getScenegraph());
 
-	//geode
+	//HUD
 	ref_ptr<Geode> gdeHUD = new Geode;
-	HUD110 hud;
-	hud.createLabel();
-	for(int i=0; i<hud.getTabLabel().size(); i++)
+	ref_ptr<HUD110> hud = new HUD110(world);
+	hud->createLabel();
+	for(int i=0; i<hud->getTabLabel().size(); i++)
 	{
-		gdeHUD->addDrawable(hud.getTabLabel()[i]);
+		gdeHUD->addDrawable(hud->getTabLabel()[i]);
 	}
+
+	//Handlers
+	ref_ptr<MouseHandler> mouseHandler = new MouseHandler(world);
+	ref_ptr<KeyboardHandler> keyboardHandler = new KeyboardHandler(world, hud);
+
+	viewer->addEventHandler(keyboardHandler);
+	viewer->addEventHandler(mouseHandler);
 
 	//Caméra
 	ref_ptr<osgGA::TrackballManipulator> manipCameraLibre = new osgGA::TrackballManipulator;
@@ -61,7 +50,7 @@ int main()
 	viewer->getCamera()->setProjectionMatrixAsPerspective(45, 1, 0.5, 1000); 
 	viewer->getCamera()->setComputeNearFarMode(CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
 
-	ref_ptr<osg::Camera> camera = hud.createOrthoCamera(1280.0f, 1024.0f);
+	ref_ptr<osg::Camera> camera = hud->createOrthoCamera(1280.0f, 1024.0f);
 
 	camera->addChild(gdeHUD);
 	world->getScenegraph()->addChild(camera);

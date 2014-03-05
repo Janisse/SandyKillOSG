@@ -13,7 +13,18 @@ Node110::Node110()
 	_colors = new Vec4Array();
 
 	_gdeSubSave = new Geode;
+	_geomSubSave = new Geometry;
+	_gdeSubSave->addDrawable(_geomSubSave);
+	_vertexsSubSave = new Vec3Array();
+	_facesSubSave = new Vec3Array();
+	_colorsSubSave = new Vec4Array();
+
 	_gdeOriginal = new Geode;
+	_geomOriginal = new Geometry;
+	_gdeOriginal->addDrawable(_geomOriginal);
+	_vertexsOriginal = new Vec3Array();
+	_facesOriginal = new Vec3Array();
+	_colorsOriginal = new Vec4Array();
 
 	_swh = new Switch();
 	_trf->addChild(_swh);
@@ -22,7 +33,7 @@ Node110::Node110()
 	_swh->addChild(_gdeOriginal);
 	_swh->addChild(_gdeSubSave);
 	_swh->addChild(_gde);
-	_swh->setSingleChildOn(2);
+	_swh->setSingleChildOn(0);
 }
 
 Node110::Node110(ref_ptr<Geometry> geom, unsigned int nbSubs)

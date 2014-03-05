@@ -44,12 +44,15 @@ public:
 
 	//	Fonctionnalités				================================================================================================================
 
-	void resetModel();
+	void loadModel();
+
 	void setSandWorld();
 	void setFireworksWorld();
 	void setExplosionWorld();
 	void setWaveWorld();
 	void setHeartWorld();
 	void setWeirdWorld();
+
+	void setCubeWorld();
 };
 

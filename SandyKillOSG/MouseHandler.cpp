@@ -40,7 +40,7 @@ bool MouseHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 				{
 					_world->setSelected(_picked);
 					if(_picked)
-						_world->resetModel();
+						//_world->resetModel();
 					return true;
 				}
 				else

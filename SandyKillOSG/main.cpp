@@ -32,7 +32,7 @@ int main()
 
 	//Sélection et chargement du model
 	world->setModelName("coeur");
-	world->resetModel();
+	world->loadModel();
 
 	// Evénements
 

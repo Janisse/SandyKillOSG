@@ -18,7 +18,7 @@ World110::~World110(void)
 {
 }
 
-void World110::resetModel()
+void World110::loadModel()
 {
 	if(_selected)
 		_scenegraph->removeChild(_selected);
@@ -69,7 +69,6 @@ void World110::setFireworksWorld()
 	_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
 
 }
-
 
 
 void World110::setExplosionWorld()
@@ -130,4 +129,9 @@ void World110::setWeirdWorld()
 	_physicsEngine = new PhysicsWeird;
 	_physicsEngine->init(_selected);
 	_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+}
+
+void World110::setCubeWorld()
+{
+	
 }

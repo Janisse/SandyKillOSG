@@ -35,37 +35,37 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			return false;
 			// a : Effet Sable/////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_A :
-			_world->resetModel();
+			//_world->resetModel();
 			_world->setSandWorld();
 			return false;
 			// z : Effet Fireworks/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Z :
-			_world->resetModel();
+			//_world->resetModel();
 			_world->setFireworksWorld();
 			return false;
 			// q : Effet Explosion/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_E :
-			_world->resetModel();
+			//_world->resetModel();
 			_world->setExplosionWorld();
 			return false;
 			// s : Effet Vague/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_R :
-			_world->resetModel();
+			//_world->resetModel();
 			_world->setWaveWorld();
 			return false;
 			// s : Effet Battement coeur/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_T :
-			_world->resetModel();
+			//_world->resetModel();
 			_world->setHeartWorld();
 			return false;
 			// s : Effet Bizarre/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Y :
-			_world->resetModel();
+			//_world->resetModel();
 			_world->setWeirdWorld();
 			return false;
 			// r : Rejouer animation///////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Space :
-			_world->resetModel();
+			//_world->resetModel();
 			return false;
 			// w : Cube////////////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_W :

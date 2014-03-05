@@ -1,4 +1,3 @@
-#pragma warning(disable: C4290);
 #include "CONSTANTES_LITTERALES.h"
 
 #include "World110.h"

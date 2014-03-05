@@ -84,5 +84,6 @@ public:
 	void event_RotationDroite(bool acceleration);
 	void convertToSprites();
 	void subdivide110();
+	bool switchGeometry(int i);
 };
 

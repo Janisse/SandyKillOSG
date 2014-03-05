@@ -99,3 +99,24 @@ void Node110::subdivide110()
 	subdivisor.subdivide(_nbSubdivisions);
 }
 
+//Passe d'une geometry a une autre
+//0 -> geometry original
+//1 -> geometry subdivisé
+//2 -> geometry modifiable
+bool Node110::switchGeometry(int i)
+{
+	switch(i)
+	{
+	case 0:
+		_swh->setSingleChildOn(0);
+		return true;
+	case 1:
+		_swh->setSingleChildOn(1);
+		return true;
+	case 2:
+		_swh->setSingleChildOn(2);
+		return true;
+	default:
+		return false;
+	}
+}

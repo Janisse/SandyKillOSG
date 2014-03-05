@@ -157,6 +157,7 @@
     <ClCompile Include="PhysicsHeart.cpp" />
     <ClCompile Include="PhysicsSand.cpp" />
     <ClCompile Include="PhysicsWave.cpp" />
+    <ClCompile Include="PhysicsWeird.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Subdivisor.cpp" />
     <ClCompile Include="World110.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="PhysicsHeart.h" />
     <ClInclude Include="PhysicsSand.h" />
     <ClInclude Include="PhysicsWave.h" />
+    <ClInclude Include="PhysicsWeird.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Subdivisor.h" />
     <ClInclude Include="World110.h" />

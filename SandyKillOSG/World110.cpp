@@ -18,43 +18,6 @@ World110::~World110(void)
 {
 }
 
-
-void World110::setSandWorld()
-{
-	//skybox
-	SkyBox skybox;
-	_scenegraph->removeChild(_skybox);
-	_skybox = skybox.createSkyBox("Sand");
-	_scenegraph->addChild(_skybox);
-
-	//changement de physique
-	_selected->removeUpdateCallback(_selected->getUpdateCallback());
-	_physicsEngine = new PhysicsSand;
-	_physicsEngine->init(_selected);
-	_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
-
-	//Modèle 3D
-	//resetModel();
-}
-
-void World110::setFireworksWorld()
-{
-	//skybox
-	SkyBox skybox;
-	_scenegraph->removeChild(_skybox);
-	_skybox = skybox.createSkyBox("Fireworks");
-	_scenegraph->addChild(_skybox);
-
-	//changement de physique
-	_selected->removeUpdateCallback(_selected->getUpdateCallback());
-	_physicsEngine = new PhysicsFireworks;
-	_physicsEngine->init(_selected);
-	_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
-
-	//Modèle 3D
-	//resetModel();
-}
-
 void World110::resetModel()
 {
 	if(_selected)
@@ -73,4 +36,98 @@ void World110::resetModel()
 		_physicsEngine->init(_selected);
 		_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
 	}
+}
+
+void World110::setSandWorld()
+{
+	//skybox
+	SkyBox skybox;
+	_scenegraph->removeChild(_skybox);
+	_skybox = skybox.createSkyBox("Sand");
+	_scenegraph->addChild(_skybox);
+
+	//changement de physique
+	_selected->removeUpdateCallback(_selected->getUpdateCallback());
+	_physicsEngine = new PhysicsSand;
+	_physicsEngine->init(_selected);
+	_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+
+}
+
+void World110::setFireworksWorld()
+{
+	//skybox
+	SkyBox skybox;
+	_scenegraph->removeChild(_skybox);
+	_skybox = skybox.createSkyBox("Fireworks");
+	_scenegraph->addChild(_skybox);
+
+	//changement de physique
+	_selected->removeUpdateCallback(_selected->getUpdateCallback());
+	_physicsEngine = new PhysicsFireworks;
+	_physicsEngine->init(_selected);
+	_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+
+}
+
+
+
+void World110::setExplosionWorld()
+{
+	//skybox
+	SkyBox skybox;
+	_scenegraph->removeChild(_skybox);
+	_skybox = skybox.createSkyBox("Fireworks");
+	_scenegraph->addChild(_skybox);
+
+	//changement de physique
+	_selected->removeUpdateCallback(_selected->getUpdateCallback());
+	_physicsEngine = new PhysicsExplosion;
+	_physicsEngine->init(_selected);
+	_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+}
+
+void World110::setWaveWorld()
+{
+	//skybox
+	SkyBox skybox;
+	_scenegraph->removeChild(_skybox);
+	_skybox = skybox.createSkyBox("Fireworks");
+	_scenegraph->addChild(_skybox);
+
+	//changement de physique
+	_selected->removeUpdateCallback(_selected->getUpdateCallback());
+	_physicsEngine = new PhysicsWave;
+	_physicsEngine->init(_selected);
+	_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+}
+
+void World110::setHeartWorld()
+{
+	//skybox
+	SkyBox skybox;
+	_scenegraph->removeChild(_skybox);
+	_skybox = skybox.createSkyBox("Fireworks");
+	_scenegraph->addChild(_skybox);
+
+	//changement de physique
+	_selected->removeUpdateCallback(_selected->getUpdateCallback());
+	_physicsEngine = new PhysicsHeart;
+	_physicsEngine->init(_selected);
+	_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+}
+
+void World110::setWeirdWorld()
+{
+	//skybox
+	SkyBox skybox;
+	_scenegraph->removeChild(_skybox);
+	_skybox = skybox.createSkyBox("");
+	_scenegraph->addChild(_skybox);
+
+	//changement de physique
+	_selected->removeUpdateCallback(_selected->getUpdateCallback());
+	_physicsEngine = new PhysicsWeird;
+	_physicsEngine->init(_selected);
+	_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
 }

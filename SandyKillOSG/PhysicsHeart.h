@@ -8,6 +8,10 @@ private:
 
 	Vec3 _center;
 	ref_ptr<Vec4Array> _colors;
+	ref_ptr<Vec3Array> _prevertices;
+	float _distance;
+	float _seuilBattement;
+	double _timesomm;
 
 public:
 	PhysicsHeart(void);

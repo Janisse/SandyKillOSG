@@ -1,23 +1,19 @@
-#include "PhysicsHeart.h"
+#include "PhysicsWeird.h"
 
 
-PhysicsHeart::PhysicsHeart(void)
-	: _seuilBattement(7.)
+PhysicsWeird::PhysicsWeird(void)
 {
 	_center = Vec3(0,0,0);
 	_mass = 0.00;
 }
 
 
-PhysicsHeart::~PhysicsHeart(void)
+PhysicsWeird::~PhysicsWeird(void)
 {
 }
 
-
-void PhysicsHeart::run(double temps)
+void PhysicsWeird::run(double temps)
 {
-	_timesomm += temps;
-
 #pragma omp parallel for
 	for (int i=0; i<_nbVertices; i++)
 	{
@@ -30,32 +26,27 @@ void PhysicsHeart::run(double temps)
 
 		//On actualise la position
 		_vertices->at(i) += _speed->at(i);
-
-		//calcul le battement du coeur
-		_distance = max((sin(_timesomm * 0.2)* 1.0), _seuilBattement);
-
 	}
 
 #pragma omp parallel for
 	for (int i=0; i<_colors->size(); i++)
 	{
 		//On actualise la couleur
-		_colors->at(i) = Vec4(1.0, 0.2, 0.2, 1.0);
+		_colors->at(i) = Vec4(0.0, 0.0, 0.0, 1.0);
 	}
 }
 
-void PhysicsHeart::init(ref_ptr<Node110> node110)
+void PhysicsWeird::init(ref_ptr<Node110> node110)
 {
 	Physics110::init(node110);
 	_projection = new Vec3Array(_nbVertices);
 	_movement = new Vec3Array(_nbVertices);
 	_speed = new Vec3Array(_nbVertices);
 	_colors = node110->getColors();
-	_prevertices = dynamic_cast<Vec3Array*>(_vertices->clone(CopyOp::DEEP_COPY_ALL));
 
 	std::srand(std::time(NULL));
 
-	//On calcule le centre
+	//On calcule le centre de l'explosion
 #pragma omp parallel for
 	for (int i=0; i<_nbVertices; i++)
 	{
@@ -71,6 +62,4 @@ void PhysicsHeart::init(ref_ptr<Node110> node110)
 		_movement->at(i) = Vec3(0,0,0);
 		_speed->at(i) = Vec3(0,0,0);
 	}
-
-
 }

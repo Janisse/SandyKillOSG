@@ -84,9 +84,6 @@ osg::StateSet* Loader110::makeStateSet(float size)
 
 	/// Setup cool blending
 	set->setMode(GL_BLEND, osg::StateAttribute::ON);
-	osg::BlendFunc *fn = new osg::BlendFunc();
-	fn->setFunction(osg::BlendFunc::SRC_ALPHA, osg::BlendFunc::DST_ALPHA);
-	set->setAttributeAndModes(fn, osg::StateAttribute::ON);
 
 	/// Setup the point sprites
 	osg::PointSprite *sprite = new osg::PointSprite();

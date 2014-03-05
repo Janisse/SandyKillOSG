@@ -27,7 +27,7 @@ void HUD110::createLabel()
 
 	_tabLabel.push_back(labelSableEffect);
 
-		///////////////////////////// Effet Feu d'artifice ///////////////////////////////////////////////
+	///////////////////////////// Effet Feu d'artifice ///////////////////////////////////////////////
 	osgText::Text* labelFireworksEffect = new osgText::Text();
 
     labelFireworksEffect->setFont(font);
@@ -38,7 +38,7 @@ void HUD110::createLabel()
 
 	_tabLabel.push_back(labelFireworksEffect);
 
-			///////////////////////////// Effet Explosion ///////////////////////////////////////////////
+	///////////////////////////// Effet Explosion ///////////////////////////////////////////////
 	osgText::Text* labelExplosionEffect = new osgText::Text();
 
     labelExplosionEffect->setFont(font);
@@ -49,7 +49,7 @@ void HUD110::createLabel()
 
 	_tabLabel.push_back(labelExplosionEffect);
 
-			///////////////////////////// Effet Vague ///////////////////////////////////////////////
+	///////////////////////////// Effet Vague ///////////////////////////////////////////////
 	osgText::Text* labelWaveEffect = new osgText::Text();
 
     labelWaveEffect->setFont(font);
@@ -60,7 +60,29 @@ void HUD110::createLabel()
 
 	_tabLabel.push_back(labelWaveEffect);
 
-		///////////////////////////// Rejouer l'animation ///////////////////////////////////////////////
+	///////////////////////////// Effet battement coeur ///////////////////////////////////////////////
+	osgText::Text* labelHeartEffect = new osgText::Text();
+
+    labelHeartEffect->setFont(font);
+    labelHeartEffect->setCharacterSize(size);
+    labelHeartEffect->setFontResolution(size, size);
+    labelHeartEffect->setColor(color);
+    labelHeartEffect->setPosition(Vec3(20.0f, 770.0f, 0.0f));
+
+	_tabLabel.push_back(labelHeartEffect);
+	
+	///////////////////////////// Effet bizarre ///////////////////////////////////////////////
+	osgText::Text* labelWeirdEffect = new osgText::Text();
+
+    labelWeirdEffect->setFont(font);
+    labelWeirdEffect->setCharacterSize(size);
+    labelWeirdEffect->setFontResolution(size, size);
+    labelWeirdEffect->setColor(color);
+    labelWeirdEffect->setPosition(Vec3(20.0f, 720.0f, 0.0f));
+
+	_tabLabel.push_back(labelWeirdEffect);
+
+	///////////////////////////// Rejouer l'animation ///////////////////////////////////////////////
 	osgText::Text* labelRejouerAnimation = new osgText::Text();
 
     labelRejouerAnimation->setFont(font);
@@ -71,7 +93,7 @@ void HUD110::createLabel()
 
 	_tabLabel.push_back(labelRejouerAnimation);
 
-		///////////////////////////// Model Cube ///////////////////////////////////////////////
+	///////////////////////////// Model Cube ///////////////////////////////////////////////
 	osgText::Text* labelCube = new osgText::Text();
 
     labelCube->setFont(font);
@@ -93,7 +115,7 @@ void HUD110::createLabel()
 
 	_tabLabel.push_back(labelIcosphere);
 
-		///////////////////////////// Model Suzanne ///////////////////////////////////////////////
+	///////////////////////////// Model Suzanne ///////////////////////////////////////////////
 	osgText::Text* labelSuzanne = new osgText::Text();
 
     labelSuzanne->setFont(font);
@@ -104,7 +126,7 @@ void HUD110::createLabel()
 
 	_tabLabel.push_back(labelSuzanne);
 
-		///////////////////////////// Model Requin ///////////////////////////////////////////////
+	///////////////////////////// Model Requin ///////////////////////////////////////////////
 	osgText::Text* labelRequin = new osgText::Text();
 
     labelRequin->setFont(font);
@@ -127,15 +149,17 @@ void HUD110::createLabel()
 	_tabLabel.push_back(labelRotation);
 
     // It seems to be important we do this last to get best results?
-	labelSableEffect->setText("a : Effet Sable");
-	labelFireworksEffect->setText("z : Effet Feux d'artifice");
-	labelExplosionEffect->setText("q : Effet Explosion");
-	labelWaveEffect->setText("s : Effet Vague");
-    labelRejouerAnimation->setText("r : Rejouer l'animation");
+	labelSableEffect->setText("a : Sable");
+	labelFireworksEffect->setText("z : Feux d'artifice");
+	labelExplosionEffect->setText("e : Explosion");
+	labelWaveEffect->setText("r : Vague");
+	labelHeartEffect->setText("t : Battement coeur");
+	labelWeirdEffect->setText("y : ???");
+    labelRejouerAnimation->setText("espace : Rejouer l'animation");
 	labelCube->setText("w : Cube");
 	labelIcosphere->setText("x : Icosphere");
 	labelSuzanne->setText("c : Suzanne");
-	labelRequin->setText("v : Requin");
+	labelRequin->setText("v : Coeur");
 	labelRotation->setText("fleches : Rotation");
 
 }

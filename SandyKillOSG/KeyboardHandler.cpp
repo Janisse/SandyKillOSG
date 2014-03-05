@@ -44,15 +44,27 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			_world->setFireworksWorld();
 			return false;
 			// q : Effet Explosion/////////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_Q :
-			//_world->getSelected()->FONCTION(false);
+		case osgGA::GUIEventAdapter::KEY_E :
+			_world->resetModel();
+			_world->setExplosionWorld();
 			return false;
 			// s : Effet Vague/////////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_S :
-			//_world->getSelected()->FONCTION(false);
+		case osgGA::GUIEventAdapter::KEY_R :
+			_world->resetModel();
+			_world->setWaveWorld();
+			return false;
+			// s : Effet Battement coeur/////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_T :
+			_world->resetModel();
+			_world->setHeartWorld();
+			return false;
+			// s : Effet Bizarre/////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_Y :
+			_world->resetModel();
+			_world->setWeirdWorld();
 			return false;
 			// r : Rejouer animation///////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_R :
+		case osgGA::GUIEventAdapter::KEY_Space :
 			_world->resetModel();
 			return false;
 			// w : Cube////////////////////////////////////////////////////////////////////////////////////////
@@ -67,7 +79,7 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 		case osgGA::GUIEventAdapter::KEY_C :
 			//_world->getSelected()->FONCTION(true);
 			return false;
-			// v : Requin//////////////////////////////////////////////////////////////////////////////////////
+			// v : Coeur//////////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_V :
 			//_world->getSelected()->FONCTION(true);
 			return false;

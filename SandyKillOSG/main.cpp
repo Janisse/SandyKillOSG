@@ -24,11 +24,6 @@ int main()
 	ref_ptr<World110> world = new World110;
 
 	//Physics
-	//ref_ptr<PhysicsSand> physicsEngine = new PhysicsSand;
-	
-	//ref_ptr<PhysicsExplosion> physicsEngine = new PhysicsExplosion;
-
-	//Loader110 load;
 
 	int nbSubdivision;
 	cout<<"Entrer le nombre de Subdivision souhaite: ";
@@ -38,13 +33,6 @@ int main()
 	//Sélection et chargement du model
 	world->setModelName("cubeOSG");
 	world->resetModel();
-
-	// Fonction effet sable
-	//physicsEngine->init(world->getSelected());
-	//myNode110->addUpdateCallback(new Physics110CallBack(physicsEngine));
-	
-	//world->setSandWorld();	// TEST
-
 
 	// Evénements
 

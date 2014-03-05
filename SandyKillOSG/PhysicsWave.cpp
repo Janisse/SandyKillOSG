@@ -5,6 +5,7 @@ PhysicsWave::PhysicsWave(void)
 {
 	_center = Vec3(0,0,0);
 	_mass = 0.00;
+	_timesomm = 0.0;
 }
 
 
@@ -15,6 +16,8 @@ PhysicsWave::~PhysicsWave(void)
 
 void PhysicsWave::run(double temps)
 {
+	_timesomm += temps;
+
 #pragma omp parallel for
 	for (int i=0; i<_nbVertices; i++)
 	{
@@ -27,17 +30,16 @@ void PhysicsWave::run(double temps)
 
 		//On actualise la position
 		_vertices->at(i) += _speed->at(i);
+
+		//On calcul les vagues
+		_vertices->at(i).z() = .5 - cos((_timesomm + _vertices->at(i).x())* 3.0) * 0.5;
 	}
 
 #pragma omp parallel for
 	for (int i=0; i<_colors->size(); i++)
 	{
 		//On actualise la couleur
-		/*_colors->at(i) = Vec4(
-			(rand()%100 <50) ? 1.0 : 0.0,
-			(rand()%100 <50) ? 1.0 : 0.0,
-			(rand()%100 <50) ? 1.0 : 0.0,
-			1.0);*/
+		_colors->at(i) = Vec4(0.1, 0.2, 9.0, 1.0);
 	}
 }
 
@@ -48,23 +50,5 @@ void PhysicsWave::init(ref_ptr<Node110> node110)
 	_movement = new Vec3Array(_nbVertices);
 	_speed = new Vec3Array(_nbVertices);
 	_colors = node110->getColors();
-
-	std::srand(std::time(NULL));
-
-	//On calcule le centre de l'explosion
-#pragma omp parallel for
-	for (int i=0; i<_nbVertices; i++)
-	{
-		_center += _vertices->at(i);
-	}
-	_center /= _vertices->size();
-
-	// On calcule les vecteurs de départ
-#pragma omp parallel for
-	for (int i=0; i<_nbVertices; i++)
-	{
-		_projection->at(i) = Vec3(0,0,0);
-		_movement->at(i) = Vec3(0,0,0);
-		_speed->at(i) = Vec3(0,0,0);
-	}
+	_prevertices = dynamic_cast<Vec3Array*>(_vertices->clone(CopyOp::DEEP_COPY_ALL));
 }

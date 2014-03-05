@@ -26,25 +26,25 @@ bool MouseHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 
 	switch( ea.getEventType() )
 	{
-	case osgGA::GUIEventAdapter::PUSH:
-	case osgGA::GUIEventAdapter::MOVE:
-		{
-			// Record mouse location for the button press
-			//   and move events.
-			_mX = ea.getX();
-			_mY = ea.getY();
-			return false;
-		}
 	case osgGA::GUIEventAdapter::RELEASE:
 		{
 			// If the mouse hasn't moved since the last
 			//   button press or move event, perform a
 			//   pick. (Otherwise, the trackball
 			//   manipulator will handle it.)
-			if (_mX == ea.getX() && _mY == ea.getY())
+			_mX = ea.getX();
+			_mY = ea.getY();
+			if (_mX && _mY)
 			{
 				if (pickCible( viewer, ea.getXnormalized(), ea.getYnormalized()))
+				{
+					_world->setSelected(_picked);
+					if(_picked)
+						_world->resetModel();
 					return true;
+				}
+				else
+					cout << "YOLO !!" << endl;
 			}
 			return false;
 		}    
@@ -69,8 +69,16 @@ bool MouseHandler::pickCible (osgViewer::Viewer* viewer, float mx, float my)
 	if (picker->containsIntersections())
 	{
 		const osg::NodePath& nodePath = picker->getFirstIntersection().nodePath;
-		ref_ptr<osg::Node> nde = nodePath.at(0);
-		//_picked = dynamic_cast<Node110*>(nde);
+
+		//0:Scengraph
+		//1:Node110
+		//2:Transform
+		//3:Switch
+		//4:Geode
+		ref_ptr<osg::Node> node = (nodePath.size() >= 2)?nodePath[1]:0;			
+		//ref_ptr<osg::Node> nde = nodePath.back();
+		if(node)
+			_picked = dynamic_cast<Node110*>(node.get());
 	}
 	return _picked.valid();
 }

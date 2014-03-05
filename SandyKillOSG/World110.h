@@ -7,7 +7,8 @@
 #include "PhysicsFireworks.h"
 #include "PhysicsExplosion.h"
 #include "PhysicsWave.h"
-#include "PhysicsWave.h"
+#include "PhysicsHeart.h"
+#include "PhysicsWeird.h"
 #include "Loader110.h"
 
 
@@ -43,9 +44,12 @@ public:
 
 	//	Fonctionnalités				================================================================================================================
 
+	void resetModel();
 	void setSandWorld();
 	void setFireworksWorld();
-	void resetModel();
-
+	void setExplosionWorld();
+	void setWaveWorld();
+	void setHeartWorld();
+	void setWeirdWorld();
 };
 

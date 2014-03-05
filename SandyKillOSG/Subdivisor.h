@@ -29,7 +29,10 @@ private:
 	Vec3 pt6;
 
 	ref_ptr<Node110> node110;
-	ref_ptr<Geometry> geom;
-	ref_ptr<Vec3Array> vertexs;
-	ref_ptr<Vec3Array> faces;
+	ref_ptr<Geometry> geomOriginal;
+	ref_ptr<Vec3Array> vertexsOriginal;
+	ref_ptr<Vec3Array> facesOriginal;
+	ref_ptr<Geometry> geomSub;
+	ref_ptr<Vec3Array> vertexsSub;
+	ref_ptr<Vec3Array> facesSub;
 };

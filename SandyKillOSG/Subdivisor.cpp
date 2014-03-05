@@ -4,9 +4,12 @@
 Subdivisor::Subdivisor(ref_ptr<Node110> in_node110)
 {
 	node110 = in_node110;
-	geom = node110->getGeometry();
-	vertexs = node110->getVertexs();
-	faces = node110->getFaces();
+	geomOriginal = node110->getGeometryOriginal();
+	vertexsOriginal = node110->getVertexsOriginal();
+	facesOriginal = node110->getFacesOriginal();
+	geomSub = node110->getGeometrySubSave();
+	vertexsSub = node110->getVertexsSubSave();
+	facesSub = node110->getFacesSubSave();
 }
 
 void Subdivisor::subdivide(int nbSub)
@@ -17,27 +20,33 @@ void Subdivisor::subdivide(int nbSub)
 	//Init
 	ref_ptr<DrawElementsUInt> face = new DrawElementsUInt(PrimitiveSet::POINTS);
 
+	//On copie la geometry original dans geometry subdivisé
+	vertexsSub = dynamic_cast<Vec3Array*>(vertexsOriginal->clone(CopyOp(CopyOp::DEEP_COPY_ALL)));
+	facesSub = dynamic_cast<Vec3Array*>(facesOriginal->clone(CopyOp(CopyOp::DEEP_COPY_ALL)));
+	node110->setVertexsSubSave(vertexsSub);
+	geomSub->setPrimitiveSetList(geomOriginal->getPrimitiveSetList());
+
 	for (int k = 0; k<nbSub; k++)
 	{
 		//Vide les faces de la geometry
-		geom->getPrimitiveSetList().clear();
+		geomSub->getPrimitiveSetList().clear();
 		face->clear();
 		ref_ptr<Vec3Array> newFaces = new Vec3Array;
 
-		endIndexOldArray = vertexs->size();
-		endIndexArray = vertexs->size();
+		endIndexOldArray = vertexsSub->size();
+		endIndexArray = vertexsSub->size();
 
 		//On parcourt toutes les faces
-		for(int i=0; i<faces->size(); i++)
+		for(int i=0; i<facesSub->size(); i++)
 		{
 			//printf("tour %d from thread %d\n", i, omp_get_thread_num());
 			//On parcourt les 3 points de la face
-			index1 = faces->at(i).x();
-			pt1 = vertexs->at(index1);
-			index2 = faces->at(i).y();
-			pt2 = vertexs->at(index2);
-			index3 = faces->at(i).z();
-			pt3 = vertexs->at(index3);
+			index1 = facesSub->at(i).x();
+			pt1 = vertexsSub->at(index1);
+			index2 = facesSub->at(i).y();
+			pt2 = vertexsSub->at(index2);
+			index3 = facesSub->at(i).z();
+			pt3 = vertexsSub->at(index3);
 
 			//On crée les 3 nouveaux points
 
@@ -54,7 +63,7 @@ void Subdivisor::subdivide(int nbSub)
 			{
 				index4 = endIndexArray;
 				//On ajoute les nouveaux points a la geometry
-				vertexs->push_back(pt4);
+				vertexsSub->push_back(pt4);
 				endIndexArray++;
 			}
 			
@@ -62,7 +71,7 @@ void Subdivisor::subdivide(int nbSub)
 			{
 				index5 = endIndexArray;
 				//On ajoute les nouveaux points a la geometry
-				vertexs->push_back(pt5);
+				vertexsSub->push_back(pt5);
 				endIndexArray++;
 			}
 
@@ -70,7 +79,7 @@ void Subdivisor::subdivide(int nbSub)
 			{
 				index6 = endIndexArray;
 				//On ajoute les nouveaux points a la geometry
-				vertexs->push_back(pt6);
+				vertexsSub->push_back(pt6);
 				endIndexArray++;
 			}
 
@@ -101,21 +110,23 @@ void Subdivisor::subdivide(int nbSub)
 		}
 
 		//On ajoute les faces mises a jour a la geometry
-		geom->addPrimitiveSet(face);
-		faces = newFaces;
+		geomSub->addPrimitiveSet(face);
+		facesSub = newFaces;
 		//node110->setFaces(newFaces);
 
 		//Affichage console
 		std::cout<<"Subdivision "<<k+1<<" Fait en "<<time.time_s()<<endl;
-		std::cout<<vertexs->size()<<endl;
+		std::cout<<vertexsSub->size()<<endl;
 	}
 
-	//Copie la geometry subdivisée pour la sauvegarder
-	node110->setVertexsSubSave(dynamic_cast<Vec3Array*>(node110->getVertexs()->clone(CopyOp(CopyOp::DEEP_COPY_ALL ))));
-	node110->setFacesSubSave(dynamic_cast<Vec3Array*>(node110->getFaces()->clone(CopyOp(CopyOp::DEEP_COPY_ALL ))));
-	//On crée la geometry subdivisée sauvegardée
-	node110->getGeometrySubSave()->setVertexArray(node110->getVertexsSubSave());
-	node110->getGeometrySubSave()->addPrimitiveSet(dynamic_cast<DrawElementsUInt*>(face->clone(CopyOp(CopyOp::DEEP_COPY_ALL ))));
+	node110->restoreSubdivision();
+
+	////Copie la geometry subdivisée pour la sauvegarder
+	//node110->setVertexsSubSave(dynamic_cast<Vec3Array*>(node110->getVertexs()->clone(CopyOp(CopyOp::DEEP_COPY_ALL ))));
+	//node110->setFacesSubSave(dynamic_cast<Vec3Array*>(node110->getFaces()->clone(CopyOp(CopyOp::DEEP_COPY_ALL ))));
+	////On crée la geometry subdivisée sauvegardée
+	//node110->getGeometrySubSave()->setVertexArray(node110->getVertexsSubSave());
+	//node110->getGeometrySubSave()->addPrimitiveSet(dynamic_cast<DrawElementsUInt*>(face->clone(CopyOp(CopyOp::DEEP_COPY_ALL ))));
 }
 
 void Subdivisor::searchPoint()
@@ -128,9 +139,9 @@ void Subdivisor::searchPoint()
 	#pragma omp parallel
 	{
 		#pragma omp for
-		for (int i=endIndexOldArray; i<vertexs->size(); i++)
+		for (int i=endIndexOldArray; i<vertexsSub->size(); i++)
 		{
-			Vec3f vecTemp = vertexs->at(i);
+			Vec3f vecTemp = vertexsSub->at(i);
 			//test pt4
 			if(pt4 == vecTemp)
 				index4 = i;

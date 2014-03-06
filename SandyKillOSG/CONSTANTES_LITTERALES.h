@@ -14,6 +14,7 @@
 #include <iostream>
 #include <omp.h>
 #include <list>
+#include <strstream>
 
 #include <osgViewer/Viewer>
 

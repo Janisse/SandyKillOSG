@@ -15,9 +15,6 @@ public :
 	
 private:
 	//	Variables membres			================================================================================================================
-	
-	bool _isLeftClicking;			// Clic gauche enfoncé ou non
-	bool _isRightClicking;			// Clic droit enfoncé ou non
 
 	float _mX, _mY;
 
@@ -41,11 +38,6 @@ public:
 private :
 
 	bool pickCible (osgViewer::Viewer* viewer, const osgGA::GUIEventAdapter& ea);
-
-	void onClick();
-	void onRelease();
-	void onMove();
-
 
 };
 

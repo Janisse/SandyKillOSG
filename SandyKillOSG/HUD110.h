@@ -3,8 +3,6 @@
 #include "CONSTANTES_LITTERALES.h"
 #include "World110.h"
 
-#include <strstream>
-
 class HUD110 : public Referenced
 {
 private:

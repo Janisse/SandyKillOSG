@@ -26,7 +26,7 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 	FILE * file = fopen(path, "r");
 	if( file == NULL )
 	{
-		printf("Impossible to open the file !\n");
+		printf("Impossible d'ouvrir le fichier!\n");
 		return false;
 	}
 
@@ -39,7 +39,7 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 		int res = fscanf(file, "%s", lineHeader);
 		if (res == EOF)
 		{
-			quitLoop = true; // EOF = End Of File. Quit the loop.
+			quitLoop = true; // EOF = End Of File. Quitte la boucle.
 			break;
 		}
 		// else : parse lineHeader
@@ -100,7 +100,7 @@ osg::StateSet* Loader110::makeStateSet(float size)
 	set->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
 	set->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
 
-	/// The texture for the sprites
+	/// Texture des sprites
 	osg::Texture2D *tex = new osg::Texture2D();
 	tex->setImage(osgDB::readImageFile("resources/star.bmp"));
 	set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);

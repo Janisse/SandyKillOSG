@@ -2,9 +2,7 @@
 
 
 MouseHandler::MouseHandler(ref_ptr<World110> w)
-	: _isLeftClicking(false)
-	, _isRightClicking(false)
-	, _world(w)
+	:_world(w)
 	, _mX(0)
 	, _mY(0)
 {
@@ -29,10 +27,6 @@ bool MouseHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 	{
 	case osgGA::GUIEventAdapter::RELEASE:
 		{
-			// If the mouse hasn't moved since the last
-			//   button press or move event, perform a
-			//   pick. (Otherwise, the trackball
-			//   manipulator will handle it.)
 			_mX = ea.getX();
 			_mY = ea.getY();
 			if (_mX && _mY)
@@ -60,7 +54,7 @@ bool MouseHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 bool MouseHandler::pickCible (osgViewer::Viewer* viewer, const osgGA::GUIEventAdapter& ea)
 {
 	if (!viewer->getSceneData())
-		// Nothing to pick.
+		// Rien à picker
 		return false;
 
 	osgUtil::LineSegmentIntersector::Intersections intersections;
@@ -84,17 +78,4 @@ bool MouseHandler::pickCible (osgViewer::Viewer* viewer, const osgGA::GUIEventAd
 		}
 	}
 	return false;
-}
-
-void MouseHandler::onClick()
-{
-}
-
-
-void MouseHandler::onRelease()
-{
-}
-
-void MouseHandler::onMove()
-{
 }

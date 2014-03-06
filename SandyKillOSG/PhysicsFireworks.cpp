@@ -15,22 +15,6 @@ PhysicsFireworks::~PhysicsFireworks(void)
 }
 
 
-/*void PhysicsFireworks::fireworksEffect(double temps)
-{
-ref_ptr<Vec3Array> vertexs = node110->getVertexs();
-
-#pragma omp parallel for schedule(dynamic)
-for(int i = 0; i < vertexs->size(); i++)
-{
-//Projection dans la direction opposé au centre de l'explosion
-vertexs->at(i) += _directionFireworks->at(i)*(time)*_randomSpeedFireworks->at(i);
-
-//Attraction au sol
-vertexs->at(i).z() -= 1.0 * temps + _randomSpeedFall->at(i);
-}
-time += 1;
-}*/
-
 void PhysicsFireworks::run(double temps)
 {
 #pragma omp parallel for

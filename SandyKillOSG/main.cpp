@@ -58,7 +58,5 @@ int main()
 	{
 		viewer->frame();
 	}
-
-	//return viewer->run();
 }
 

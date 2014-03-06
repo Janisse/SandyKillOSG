@@ -11,7 +11,7 @@ World110::World110(void)
 	_scenegraph = new Group();
 	_selected = 0;
 	SkyBox skybox;
-	_skybox = skybox.createSkyBox("Fireworks");
+	_skybox = skybox.createSkyBox("Sand");
 	_scenegraph->addChild(_skybox);
 	_skybox->setNodeMask(0x1);
 	_physicsEngine = 0;
@@ -115,7 +115,7 @@ void World110::setWaveWorld()
 	//skybox
 	SkyBox skybox;
 	_scenegraph->removeChild(_skybox);
-	_skybox = skybox.createSkyBox("Fireworks");
+	_skybox = skybox.createSkyBox("Wave");
 	_scenegraph->addChild(_skybox);
 	_skybox->setNodeMask(0x1);
 

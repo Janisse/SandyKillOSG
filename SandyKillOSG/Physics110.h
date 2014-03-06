@@ -17,10 +17,6 @@ public:
 };
 
 
-
-
-
-
 class Physics110
 	: public Referenced
 {

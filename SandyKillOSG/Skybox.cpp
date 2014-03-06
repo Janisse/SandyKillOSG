@@ -3,7 +3,6 @@
 
 SkyBox::SkyBox()
 {
-	//SkyBox::readCubeMap();
 }
 SkyBox::~SkyBox()
 {
@@ -11,16 +10,14 @@ SkyBox::~SkyBox()
 }
 
 std::string SkyBox::computeFilename(std::string dir){
-	return "Cubemap"+_name+"/"+dir+".bmp";
+	return "Cubemap/Cubemap"+_name+"/"+dir+".bmp";
 }
 
 osg::TextureCubeMap* SkyBox::readCubeMap()
 {
 	osg::TextureCubeMap* cubemap = new osg::TextureCubeMap;
-	//#define CUBEMAP_FILENAME(face) "nvlobby_" #face ".png"
-	//#define CUBEMAP_FILENAME(face) "Cubemap_axis/" #face ".png"
+
 #define CUBEMAP_FILENAME(face, type) #type "/" #face ".bmp"
-//#define CUBEMAP_FILENAME(face) "CubemapSand/" #face ".bmp"
 	try{
 		osg::Image* imagePosX = osgDB::readImageFile(computeFilename("posx"));
 		osg::Image* imageNegX = osgDB::readImageFile(computeFilename("negx"));
@@ -45,8 +42,6 @@ osg::TextureCubeMap* SkyBox::readCubeMap()
 			cubemap->setFilter(osg::Texture::MIN_FILTER, osg::Texture::LINEAR_MIPMAP_LINEAR);
 			cubemap->setFilter(osg::Texture::MAG_FILTER, osg::Texture::LINEAR);
 		}
-		//std::cout << "CubeMap ok." << std::endl;
-		printf("Cube map ok\n");
 	}
 	catch(std::exception & e)
 	{

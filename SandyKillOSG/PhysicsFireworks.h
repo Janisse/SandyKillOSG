@@ -7,7 +7,7 @@ private:
 
 	Vec3 _center;
 	ref_ptr<Vec4Array> _colors;
-	ref_ptr<FloatArray> _luminance_attenuations;
+	float _luminance_attenuation;
 	float _explosion_size;
 	float _frottements;
 

@@ -4,6 +4,7 @@
 PhysicsFireworks::PhysicsFireworks(void)
 	: _explosion_size(0.06)
 	, _frottements(0.9984)
+	, _luminance_attenuation(0.988)
 {
 	_center = Vec3(0,0,0);
 	_mass = 0.02;
@@ -37,9 +38,9 @@ void PhysicsFireworks::run(double temps)
 	for (int i=0; i<_nbFaces; i++)
 	{
 		//On actualise la couleur
-		_colors->at(i).r() *= _luminance_attenuations->at(i);
-		_colors->at(i).g() *= _luminance_attenuations->at(i);
-		_colors->at(i).b() *= _luminance_attenuations->at(i);
+		_colors->at(i).r() *= _luminance_attenuation;
+		_colors->at(i).g() *= _luminance_attenuation;
+		_colors->at(i).b() *= _luminance_attenuation;
 	}
 }
 
@@ -50,10 +51,6 @@ void PhysicsFireworks::init(ref_ptr<Node110> node110)
 	_movement = new Vec3Array(_nbVertices);
 	_speed = new Vec3Array(_nbVertices);
 	_colors = node110->getColors();
-
-	_luminance_attenuations = new FloatArray(_nbFaces);
-
-	std::srand(std::time(NULL));
 
 	//On calcule le centre de l'explosion
 #pragma omp parallel for
@@ -75,11 +72,17 @@ void PhysicsFireworks::init(ref_ptr<Node110> node110)
 #pragma omp parallel for
 	for (int i=0; i<_nbFaces; i++)
 	{
-		_colors->at(i).r() = (rand()%100 <50) ? 1.0 : 0.0;
-		_colors->at(i).g() = (rand()%100 <50) ? 1.0 : 0.0;
-		_colors->at(i).b() = (rand()%100 <50) ? 1.0 : 0.0;
-		_colors->at(i).a() = 1.0;
-		_luminance_attenuations->at(i) = 0.98 + (rand()%100/40000.);
+		int coulnum = rand()%6;
+		Vec4 couleur;
+		switch(coulnum){
+		case 0: couleur = Vec4(1,0,0,1); break;		// Rouge
+		case 1: couleur = Vec4(1,1,0,1); break;		// Jaune
+		case 2: couleur = Vec4(0,1,0,1); break;		// Vert
+		case 3: couleur = Vec4(0,1,1,1); break;		// Cyan
+		case 4: couleur = Vec4(0,0,1,1); break;		// Bleu
+		case 5: couleur = Vec4(1,0,1,1); break;		// Magenta
+		}
+		_colors->at(i) = couleur;
 	}
 }
 
@@ -89,6 +92,9 @@ osg::StateSet* PhysicsFireworks::makeStateSet()
 
 	/// Setup cool blending
 	set->setMode(GL_BLEND, osg::StateAttribute::ON);
+	osg::BlendFunc *fn = new osg::BlendFunc();
+	fn->setFunction(osg::BlendFunc::SRC_ALPHA, osg::BlendFunc::DST_ALPHA);
+	set->setAttributeAndModes(fn, osg::StateAttribute::ON);
 
 	/// Setup the point sprites
 	osg::PointSprite *sprite = new osg::PointSprite();
@@ -104,8 +110,8 @@ osg::StateSet* PhysicsFireworks::makeStateSet()
 	set->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
 
 	/// The texture for the sprites
-	osg::Texture2D *tex = new osg::Texture2D();
-	tex->setImage(osgDB::readImageFile("resources/star.bmp"));
-	set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);
+	//osg::Texture2D *tex = new osg::Texture2D();
+	//tex->setImage(osgDB::readImageFile("resources/star.bmp"));
+	//set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);
 	return set;
 }

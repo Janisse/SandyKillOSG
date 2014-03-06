@@ -42,8 +42,6 @@ void PhysicsExplosion::init(ref_ptr<Node110> node110)
 	_speed = new Vec3Array(_nbVertices);
 	_colors = node110->getColors();
 
-	std::srand(std::time(NULL));
-
 	//On calcule le centre de l'explosion
 #pragma omp parallel for
 	for (int i=0; i<_nbVertices; i++)
@@ -83,8 +81,8 @@ osg::StateSet* PhysicsExplosion::makeStateSet()
 	set->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
 
 	/// The texture for the sprites
-	osg::Texture2D *tex = new osg::Texture2D();
-	tex->setImage(osgDB::readImageFile("resources/star.bmp"));
-	set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);
+	//osg::Texture2D *tex = new osg::Texture2D();
+	//tex->setImage(osgDB::readImageFile("resources/star.bmp"));
+	//set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);
 	return set;
 }

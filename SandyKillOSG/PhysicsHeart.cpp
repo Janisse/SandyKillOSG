@@ -48,8 +48,6 @@ void PhysicsHeart::init(ref_ptr<Node110> node110)
 	_colors = node110->getColors();
 	_trf = node110->getTrf();
 
-	std::srand(std::time(NULL));
-
 	//On calcule le centre
 #pragma omp parallel for
 	for (int i=0; i<_nbVertices; i++)

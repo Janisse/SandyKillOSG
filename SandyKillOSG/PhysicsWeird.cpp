@@ -44,8 +44,6 @@ void PhysicsWeird::init(ref_ptr<Node110> node110)
 	_speed = new Vec3Array(_nbVertices);
 	_colors = node110->getColors();
 
-	std::srand(std::time(NULL));
-
 	//On calcule le centre de l'explosion
 #pragma omp parallel for
 	for (int i=0; i<_nbVertices; i++)
@@ -62,6 +60,11 @@ void PhysicsWeird::init(ref_ptr<Node110> node110)
 		_movement->at(i) = Vec3(0,0,0);
 		_speed->at(i) = Vec3(0,0,0);
 	}
+
+	for (int i=0; i<_nbFaces; i++)
+	{
+		_colors->at(i) = Vec4(0,0,0,1);
+	}
 }
 
 osg::StateSet* PhysicsWeird::makeStateSet()
@@ -77,7 +80,7 @@ osg::StateSet* PhysicsWeird::makeStateSet()
 
 	/// Give some size to the points to be able to see the sprite
 	osg::Point *point = new osg::Point();
-	point->setSize(4.0);
+	point->setSize(2.0);
 	set->setAttribute(point);
 
 	/// Disable depth test to avoid sort problems and Lighting
@@ -85,8 +88,8 @@ osg::StateSet* PhysicsWeird::makeStateSet()
 	set->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
 
 	/// The texture for the sprites
-	osg::Texture2D *tex = new osg::Texture2D();
-	tex->setImage(osgDB::readImageFile("resources/star.bmp"));
-	set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);
+	//osg::Texture2D *tex = new osg::Texture2D();
+	//tex->setImage(osgDB::readImageFile("resources/star.bmp"));
+	//set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);
 	return set;
 }

@@ -60,8 +60,6 @@ void PhysicsSand::init(ref_ptr<Node110> node110)
 	_speed = new Vec3Array(_nbVertices);
 	_colors = node110->getColors();
 
-	std::srand(std::time(NULL));
-
 	_masses = new FloatArray(_vertices->size());
 	_onGround = new ByteArray(_vertices->size());
 

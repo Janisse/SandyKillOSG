@@ -16,6 +16,8 @@
 
 int main()
 {
+	std::srand(std::time(NULL));
+
 	//viewer
 	ref_ptr<osgViewer::Viewer> viewer = new osgViewer::Viewer;
 

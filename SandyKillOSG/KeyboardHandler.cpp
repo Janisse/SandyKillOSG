@@ -66,8 +66,7 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			return false;
 		// r : Rejouer animation///////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Space :
-			_world->getSelected()->restoreSubdivision();
-			_world->resetPhysics();
+			_world->restoreSelected();
 			return false;
 		// w : Cube////////////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_W :

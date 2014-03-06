@@ -28,7 +28,7 @@ void Physics110::init(ref_ptr<Node110> node110)
 {
 	_vertices = node110->getVertexs();
 	_nbVertices = _vertices->size();
-	_faces = node110->getFaces();
+	_faces = node110->getFacesOriginal();
 	_nbFaces = _faces->size();
 }
 

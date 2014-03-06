@@ -40,8 +40,6 @@ bool MouseHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 					}
 					return true;
 				}
-				else
-					cout << "YOLO !!" << endl;
 			}
 			return false;
 		}    

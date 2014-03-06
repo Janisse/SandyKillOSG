@@ -17,7 +17,9 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 	node110 = new Node110;
 	ref_ptr<Vec3Array> vertices = node110->getVertexsOriginal();
 	ref_ptr<Vec3Array> faces = node110->getFacesOriginal();
+	ref_ptr<Vec3Array> facesPoints = node110->getFaces();
 	ref_ptr<Vec4Array> colors = node110->getColorsOriginal();
+	ref_ptr<Vec4Array> colorsPoints = node110->getColors();
 
 
 	ref_ptr<DrawElementsUInt> face = new osg::DrawElementsUInt(osg::PrimitiveSet::TRIANGLES);
@@ -66,14 +68,18 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 			face->push_back(vertexIndex[1]-1);
 			face->push_back(vertexIndex[2]-1);
 			faces->push_back(Vec3(vertexIndex[0]-1, vertexIndex[1]-1, vertexIndex[2]-1));
+			facesPoints->push_back(Vec3(vertexIndex[0]-1, vertexIndex[1]-1, vertexIndex[2]-1));
 			colors->push_back(Vec4(1.0,1.0,1.0,1.0));
+			colorsPoints->push_back(Vec4(1.0,1.0,1.0,1.0));
 		}
 	}
 
 	//On crée la geometry à partir des données chargées
 	node110->getGeometryOriginal()->addPrimitiveSet(face);
+	node110->getGeometry()->addPrimitiveSet(face);
 	node110->getGeometryOriginal()->setVertexArray(vertices);
 	node110->getGeometryOriginal()->setColorArray(colors, osg::Array::BIND_PER_PRIMITIVE_SET);
+	node110->getGeometry()->setColorArray(colorsPoints, osg::Array::BIND_PER_PRIMITIVE_SET);
 
 	return true;
 }

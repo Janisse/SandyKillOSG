@@ -61,5 +61,7 @@ public:
 	void subMoins();
 	void subOK();
 
+	void restoreSelected();
+
 };
 

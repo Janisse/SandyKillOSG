@@ -191,3 +191,9 @@ void World110::subOK()
 	_selected->setNbSubdivisions(nbSubdivisions);
 	_selected->subdivide110();
 }
+
+void World110::restoreSelected(){
+	if(!_selected || !_selected->isSubdivided()) return;
+	getSelected()->restoreSubdivision();
+	resetPhysics();
+}

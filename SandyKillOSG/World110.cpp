@@ -61,6 +61,7 @@ void World110::setSandWorld()
 		_physicsEngine->init(_selected);
 		if(continueCallback)
 			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+		_selected->convertToSprites(_physicsEngine);
 	}
 
 }
@@ -82,6 +83,7 @@ void World110::setFireworksWorld()
 		_physicsEngine->init(_selected);
 		if(continueCallback)
 			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+		_selected->convertToSprites(_physicsEngine);
 	}
 
 }
@@ -104,6 +106,7 @@ void World110::setExplosionWorld()
 		_physicsEngine->init(_selected);
 		if(continueCallback)
 			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+		_selected->convertToSprites(_physicsEngine);
 	}
 }
 
@@ -124,6 +127,7 @@ void World110::setWaveWorld()
 		_physicsEngine->init(_selected);
 		if(continueCallback)
 			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+		_selected->convertToSprites(_physicsEngine);
 	}
 }
 
@@ -144,6 +148,7 @@ void World110::setHeartWorld()
 		_physicsEngine->init(_selected);
 		if(continueCallback)
 			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+		_selected->convertToSprites(_physicsEngine);
 	}
 }
 
@@ -164,6 +169,7 @@ void World110::setWeirdWorld()
 		_physicsEngine->init(_selected);
 		if(continueCallback)
 			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+		_selected->convertToSprites(_physicsEngine);
 	}
 }
 

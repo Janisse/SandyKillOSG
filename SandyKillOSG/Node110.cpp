@@ -1,6 +1,7 @@
 #include "Node110.h"
 #include "Loader110.h"
 #include "Subdivisor.h"
+#include "Physics110.h"
 
 Node110::Node110(unsigned int nbSubs)
 	: _nbSubdivisions(nbSubs)
@@ -80,9 +81,12 @@ void Node110::event_RotationDroite(bool acceleration)
 	}
 }
 
-void Node110::convertToSprites()
+void Node110::convertToSprites(ref_ptr<Physics110> ph)
 {
-	_gde->setStateSet(Loader110::makeStateSet(TAILLE_SPRITES));
+	if(ph)
+		_gde->setStateSet( ph->makeStateSet());
+	else
+		_gde->setStateSet( Loader110::makeStateSet());
 	_swh->setSingleChildOn(2);
 }
 

@@ -99,32 +99,29 @@ void PhysicsFireworks::init(ref_ptr<Node110> node110)
 	}
 }
 
-/*void PhysicsFireworks::computeFireworks()
+osg::StateSet* PhysicsFireworks::makeStateSet()
 {
-//On creer un tableau des direction opposées au centre de l'explosion pour chaque point
-//Et un tableau de vitesse aleatiore pour chaque point
-for (int i=0; i<node110->getVertexs()->size(); i++)
-{
-_directionFireworks->push_back(node110->getVertexs()->at(i) - _center);
-_randomSpeedFall->push_back(0.06+((rand()%100)/8000.));
-_randomSpeedFireworks->push_back(.0004+((rand()%100)/1000000.));
+	osg::StateSet *set = new osg::StateSet();
+
+	/// Setup cool blending
+	set->setMode(GL_BLEND, osg::StateAttribute::ON);
+
+	/// Setup the point sprites
+	osg::PointSprite *sprite = new osg::PointSprite();
+	set->setTextureAttributeAndModes(0, sprite, osg::StateAttribute::ON);
+
+	/// Give some size to the points to be able to see the sprite
+	osg::Point *point = new osg::Point();
+	point->setSize(4.0);
+	set->setAttribute(point);
+
+	/// Disable depth test to avoid sort problems and Lighting
+	set->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
+	set->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
+
+	/// The texture for the sprites
+	osg::Texture2D *tex = new osg::Texture2D();
+	tex->setImage(osgDB::readImageFile("resources/star.bmp"));
+	set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);
+	return set;
 }
-
-//on remet les vertices au centre
-for (int i=0; i<node110->getVertexs()->size(); i++)
-{
-node110->getVertexs()->at(i) = _center;
-}
-
-//on remet les couleurs
-for (int i=0; i<node110->getColors()->size(); i++)
-{
-node110->getColors()->at(i) = Vec4(
-(rand()%100 <50) ? 1.0 : 0.0,
-(rand()%100 <50) ? 1.0 : 0.0,
-(rand()%100 <50) ? 1.0 : 0.0,
-1.0);
-}
-
-
-}*/

@@ -43,6 +43,7 @@ public:
 	ref_ptr<Node110> getSelected() {return _selected;}
 	void setSelected(ref_ptr<Node110> s) { _selected = s;}
 	void setModelName(std::string m){_model = m;}
+	ref_ptr<Physics110> getPhysics(){return _physicsEngine;}
 
 	//	Fonctionnalités				================================================================================================================
 

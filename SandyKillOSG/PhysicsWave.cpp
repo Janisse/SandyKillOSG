@@ -54,3 +54,30 @@ void PhysicsWave::init(ref_ptr<Node110> node110)
 	_colors = node110->getColors();
 	_prevertices = dynamic_cast<Vec3Array*>(_vertices->clone(CopyOp::DEEP_COPY_ALL));
 }
+
+osg::StateSet* PhysicsWave::makeStateSet()
+{
+	osg::StateSet *set = new osg::StateSet();
+
+	/// Setup cool blending
+	set->setMode(GL_BLEND, osg::StateAttribute::ON);
+
+	/// Setup the point sprites
+	osg::PointSprite *sprite = new osg::PointSprite();
+	set->setTextureAttributeAndModes(0, sprite, osg::StateAttribute::ON);
+
+	/// Give some size to the points to be able to see the sprite
+	osg::Point *point = new osg::Point();
+	point->setSize(2.0);
+	set->setAttribute(point);
+
+	/// Disable depth test to avoid sort problems and Lighting
+	set->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
+	set->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
+
+	/// The texture for the sprites
+	osg::Texture2D *tex = new osg::Texture2D();
+	tex->setImage(osgDB::readImageFile("resources/star.bmp"));
+	set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);
+	return set;
+}

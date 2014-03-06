@@ -80,7 +80,7 @@ bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 
 
 // à mettre dans les physiques
-osg::StateSet* Loader110::makeStateSet(float size)
+osg::StateSet* Loader110::makeStateSet()
 {
 	osg::StateSet *set = new osg::StateSet();
 
@@ -93,7 +93,7 @@ osg::StateSet* Loader110::makeStateSet(float size)
 
 	/// Give some size to the points to be able to see the sprite
 	osg::Point *point = new osg::Point();
-	point->setSize(size);
+	point->setSize(TAILLE_SPRITES);
 	set->setAttribute(point);
 
 	/// Disable depth test to avoid sort problems and Lighting
@@ -101,8 +101,8 @@ osg::StateSet* Loader110::makeStateSet(float size)
 	set->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
 
 	/// The texture for the sprites
-	osg::Texture2D *tex = new osg::Texture2D();
-	tex->setImage(osgDB::readImageFile("resources/star.bmp"));
-	set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);
+	//osg::Texture2D *tex = new osg::Texture2D();
+	//tex->setImage(osgDB::readImageFile("resources/star.bmp"));
+	//set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);
 	return set;
 }

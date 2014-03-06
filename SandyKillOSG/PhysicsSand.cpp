@@ -32,10 +32,15 @@ void PhysicsSand::run(double temps)
 		if(_vertices->at(i).z() <= _distance_ground)
 		{
 			_vertices->at(i).z() = _distance_ground;
-			_projection->at(i) = Vec3(
-				(rand()%100 - 50) / 4000.,
-				(rand()%100 - 50) / 4000.,
-				0);
+			if(!_onGround->at(i)){
+				double dirproj = (rand()%1000/1000.)*PI*2;
+				double amp = 0.014 * (rand()%1000/1000.);
+				_projection->at(i) = Vec3(
+					cos(dirproj)*amp,
+					sin(dirproj)*amp,
+					0);
+			}
+			_onGround->at(i) = true;
 		}
 	}
 
@@ -58,6 +63,7 @@ void PhysicsSand::init(ref_ptr<Node110> node110)
 	std::srand(std::time(NULL));
 
 	_masses = new FloatArray(_vertices->size());
+	_onGround = new ByteArray(_vertices->size());
 
 	// On calcule les vecteurs de départ
 #pragma omp parallel for
@@ -67,5 +73,34 @@ void PhysicsSand::init(ref_ptr<Node110> node110)
 		_movement->at(i) = Vec3(0,0,0);
 		_speed->at(i) = Vec3(0,0,0);
 		_masses->at(i) = _mass * (0.8 + (rand()%10/100.*4. + 0.2));
+		_onGround->at(i) = false;
 	}
+}
+
+// à mettre dans les physiques
+osg::StateSet* PhysicsSand::makeStateSet()
+{
+	osg::StateSet *set = new osg::StateSet();
+
+	/// Setup cool blending
+	set->setMode(GL_BLEND, osg::StateAttribute::ON);
+
+	/// Setup the point sprites
+	osg::PointSprite *sprite = new osg::PointSprite();
+	set->setTextureAttributeAndModes(0, sprite, osg::StateAttribute::ON);
+
+	/// Give some size to the points to be able to see the sprite
+	osg::Point *point = new osg::Point();
+	point->setSize(2.0);
+	set->setAttribute(point);
+
+	/// Disable depth test to avoid sort problems and Lighting
+	set->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
+	set->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
+
+	/// The texture for the sprites
+	//osg::Texture2D *tex = new osg::Texture2D();
+	//tex->setImage(osgDB::readImageFile("resources/star.bmp"));
+	//set->setTextureAttributeAndModes(0, tex, osg::StateAttribute::ON);
+	return set;
 }

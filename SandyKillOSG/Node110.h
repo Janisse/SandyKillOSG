@@ -2,7 +2,7 @@
 
 #include "CONSTANTES_LITTERALES.h"
 
-
+class Physics110;
 class Loader110;
 class Subdivisor;
 
@@ -84,7 +84,7 @@ public:
 	void event_RotationBas(bool acceleration);
 	void event_RotationGauche(bool acceleration);
 	void event_RotationDroite(bool acceleration);
-	void convertToSprites();
+	void convertToSprites(ref_ptr<Physics110> ph);
 	void subdivide110();
 	bool switchGeometry(int i);
 	void restoreSubdivision();

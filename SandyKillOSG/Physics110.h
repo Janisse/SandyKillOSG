@@ -42,4 +42,5 @@ public:
 	virtual ~Physics110(void);
 	virtual void init(ref_ptr<Node110> node110) = 0;
 	virtual void run(double temps) = 0;
+	virtual osg::StateSet* makeStateSet();
 };

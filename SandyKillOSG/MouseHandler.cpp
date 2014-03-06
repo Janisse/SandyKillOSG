@@ -39,10 +39,11 @@ bool MouseHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			{
 				if (pickCible( viewer, ea))
 				{
-					if(_picked)
+					if(_picked){
 						_world->setSelected(_picked);
-						_picked->convertToSprites();
+						_picked->convertToSprites(_world->getPhysics());
 						_world->resetPhysics();
+					}
 					return true;
 				}
 				else

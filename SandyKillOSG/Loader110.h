@@ -10,6 +10,6 @@ public:
 	~Loader110(void);
 
 	bool static loadFromFile(const char * path, ref_ptr<Node110>& node110);
-	static osg::StateSet* makeStateSet(float size);
+	static osg::StateSet* makeStateSet();
 };
 

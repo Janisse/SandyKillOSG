@@ -10,6 +10,7 @@ private:
 	float _frottements;
 	float _distance_ground;
 	ref_ptr<FloatArray> _masses;
+	ref_ptr<ByteArray> _onGround;
 
 public:
 	PhysicsSand(void);
@@ -19,5 +20,6 @@ public:
 	void run(double temps);
 	void init(ref_ptr<Node110> node110);
 	//void computeFireworks();
+	osg::StateSet* makeStateSet();
 };
 

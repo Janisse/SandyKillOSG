@@ -62,6 +62,7 @@ public:
 	void subOK();
 
 	void restoreSelected();
+	void pausePhys();
 
 };
 

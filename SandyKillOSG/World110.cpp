@@ -197,3 +197,13 @@ void World110::restoreSelected(){
 	getSelected()->restoreSubdivision();
 	resetPhysics();
 }
+
+void World110::pausePhys(){
+	//_physicsEngine = 0;
+	if(_selected && _selected->isSubdivided()){
+		_selected->removeUpdateCallback(_selected->getUpdateCallback());
+	}
+	else{
+		_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	}
+}

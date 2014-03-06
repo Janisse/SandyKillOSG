@@ -102,6 +102,10 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 		case osgGA::GUIEventAdapter::KEY_Return :
 			_world->subOK();
 			return false;
+		// tab : stop physique////////////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_Tab :
+			_world->pausePhys();
+			return false;
 		default:
 			break;
 		}

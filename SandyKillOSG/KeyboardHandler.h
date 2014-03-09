@@ -18,13 +18,14 @@ private:
 	
 	ref_ptr<World110> _world;		// Le graphe à visiter
 	ref_ptr<HUD110> _hud;
+	ref_ptr<osgViewer::Viewer> _viewer;
 
 public:
 
 
 	//	Constructeurs & Destructeur	================================================================================================================
 
-	KeyboardHandler(ref_ptr<World110> w, ref_ptr<HUD110> h);
+	KeyboardHandler(ref_ptr<World110> w, ref_ptr<HUD110> h, ref_ptr<osgViewer::Viewer> v);
 	~KeyboardHandler(void);
 
 	//	Accesseurs & Mutateurs		================================================================================================================

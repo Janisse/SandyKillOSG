@@ -29,6 +29,8 @@ private:
 	std::string _model;
 	ref_ptr<Physics110> _physicsEngine;
 
+	bool subInProgress;
+
 public:
 		unsigned int nbSubdivisions;
 
@@ -44,6 +46,7 @@ public:
 	void setSelected(ref_ptr<Node110> s) { _selected = s;}
 	void setModelName(std::string m){_model = m;}
 	ref_ptr<Physics110> getPhysics(){return _physicsEngine;}
+	bool getSubInProgress(){return subInProgress;}
 
 	//	Fonctionnalités				================================================================================================================
 

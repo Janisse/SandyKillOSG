@@ -40,7 +40,7 @@ int main()
 
 	//Handlers
 	ref_ptr<MouseHandler> mouseHandler = new MouseHandler(world);
-	ref_ptr<KeyboardHandler> keyboardHandler = new KeyboardHandler(world, hud);
+	ref_ptr<KeyboardHandler> keyboardHandler = new KeyboardHandler(world, hud, viewer);
 
 	viewer->addEventHandler(keyboardHandler);
 	viewer->addEventHandler(mouseHandler);

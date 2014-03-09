@@ -14,7 +14,7 @@ Loader110::~Loader110(void)
 bool Loader110::loadFromFile(const char * path, ref_ptr<Node110>& node110)
 {
 	//Init
-	node110 = new Node110;
+	node110 = new Node110();
 	ref_ptr<Vec3Array> vertices = node110->getVertexsOriginal();
 	ref_ptr<Vec3Array> faces = node110->getFacesOriginal();
 	ref_ptr<Vec3Array> facesPoints = node110->getFaces();

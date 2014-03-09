@@ -1,9 +1,10 @@
 #include "KeyboardHandler.h"
 
 
-KeyboardHandler::KeyboardHandler(ref_ptr<World110> w, ref_ptr<HUD110> h)
+KeyboardHandler::KeyboardHandler(ref_ptr<World110> w, ref_ptr<HUD110> h, ref_ptr<osgViewer::Viewer> v)
 	: _world(w)
 	, _hud(h)
+	, _viewer(v)
 {
 
 }
@@ -70,23 +71,35 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			return false;
 		// w : Cube////////////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_W :
+			_hud->loading(true);
+			_viewer->frame();
 			_world->setModelName("cubeOSG");
 			_world->loadModel();
+			_hud->loading(false);
 			return false;
 		// x : Icosphere///////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_X :
+			_hud->loading(true);
+			_viewer->frame();
 			_world->setModelName("icosphere");
 			_world->loadModel();
+			_hud->loading(false);
 			return false;
 		// c : Suzanne/////////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_C :
+			_hud->loading(true);
+			_viewer->frame();
 			_world->setModelName("suzanne");
 			_world->loadModel();
+			_hud->loading(false);
 			return false;
 		// v : Coeur//////////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_V :
+			_hud->loading(true);
+			_viewer->frame();
 			_world->setModelName("coeur");
 			_world->loadModel();
+			_hud->loading(false);
 			return false;
 		// + : Nombre subdiv ++///////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_KP_Add :
@@ -100,7 +113,10 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			return false;
 		// entrer : sub OK////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Return :
+			_hud->subdivisionInProgress(true);
+			_viewer->frame();	//Actualise l'image pour afficher "Subdivision en cours..." avant la subdivision
 			_world->subOK();
+			_hud->subdivisionInProgress(false);
 			return false;
 		// tab : stop physique////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Tab :

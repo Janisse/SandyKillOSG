@@ -3,10 +3,11 @@
 #include "Subdivisor.h"
 
 World110::World110(void)
-	: nbSubdivisions(2)
+	: nbSubdivisions(5)
 	, _model("cubeOSG")
 	, minSubs(0)
 	, maxSubs(9)
+	, subInProgress(false)
 {
 	_scenegraph = new Group();
 	_selected = 0;
@@ -30,7 +31,9 @@ void World110::loadModel()
 	Loader110::loadFromFile((std::string("resources/")+_model+".obj").c_str(), myNode110);
 	_scenegraph->addChild(myNode110);
 	_selected = myNode110;
+	subInProgress = true;
 	_selected->setNbSubdivisions(nbSubdivisions);
+	subInProgress = false;
 	_selected->subdivide110();
 	Loader110 load;
 	_selected->getGeometry()->setUseDisplayList(false);

@@ -10,6 +10,8 @@ private:
 	vector<osgText::Text*> _tabLabel;
 
 	osgText::Text* labelNbSub;
+	osgText::Text* labelSubInProgress;
+	osgText::Text* labelLoad;
 
 public:
 	HUD110(ref_ptr<World110> w);
@@ -21,5 +23,7 @@ public:
 	vector<osgText::Text*> getTabLabel() {return _tabLabel;}
 
 	void update();
+	void subdivisionInProgress(bool inProgress);
+	void loading(bool load);
 };
 

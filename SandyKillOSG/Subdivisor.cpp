@@ -120,13 +120,6 @@ void Subdivisor::subdivide(int nbSub)
 	}
 
 	node110->restoreSubdivision();
-
-	////Copie la geometry subdivisée pour la sauvegarder
-	//node110->setVertexsSubSave(dynamic_cast<Vec3Array*>(node110->getVertexs()->clone(CopyOp(CopyOp::DEEP_COPY_ALL ))));
-	//node110->setFacesSubSave(dynamic_cast<Vec3Array*>(node110->getFaces()->clone(CopyOp(CopyOp::DEEP_COPY_ALL ))));
-	////On crée la geometry subdivisée sauvegardée
-	//node110->getGeometrySubSave()->setVertexArray(node110->getVertexsSubSave());
-	//node110->getGeometrySubSave()->addPrimitiveSet(dynamic_cast<DrawElementsUInt*>(face->clone(CopyOp(CopyOp::DEEP_COPY_ALL ))));
 }
 
 void Subdivisor::searchPoint()
@@ -136,23 +129,20 @@ void Subdivisor::searchPoint()
 	index6 = -1;
 
 	//Optimisation: Repartition de la recherche sur plusieur processeur
-	#pragma omp parallel
+	#pragma omp parallel for
+	for (int i=endIndexOldArray; i<vertexsSub->size(); i++)
 	{
-		#pragma omp for
-		for (int i=endIndexOldArray; i<vertexsSub->size(); i++)
-		{
-			Vec3f vecTemp = vertexsSub->at(i);
-			//test pt4
-			if(pt4 == vecTemp)
-				index4 = i;
+		Vec3f vecTemp = vertexsSub->at(i);
+		//test pt4
+		if(pt4 == vecTemp)
+			index4 = i;
 
-			//test pt5
-			if(pt5 == vecTemp)
-				index5 = i;
+		//test pt5
+		if(pt5 == vecTemp)
+			index5 = i;
 
-			//test pt6
-			if(pt6 == vecTemp)
-				index6 = i;
-		}
+		//test pt6
+		if(pt6 == vecTemp)
+			index6 = i;
 	}
 }

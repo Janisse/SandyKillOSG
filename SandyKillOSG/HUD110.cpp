@@ -171,7 +171,29 @@ void HUD110::createLabel()
 
 	_tabLabel.push_back(labelOK);
 
-    // It seems to be important we do this last to get best results?
+	///////////////////////////// Subdivision in Progress ///////////////////////////////////////////////
+	labelSubInProgress = new osgText::Text();
+
+    labelSubInProgress->setFont(font);
+    labelSubInProgress->setCharacterSize(size*2);
+    labelSubInProgress->setFontResolution(size*2, size*2);
+    labelSubInProgress->setColor(color);
+    labelSubInProgress->setPosition(Vec3(350.0f, 700.0f, 0.0f));
+
+	_tabLabel.push_back(labelSubInProgress);
+
+	///////////////////////////// Loading ///////////////////////////////////////////////
+	labelLoad = new osgText::Text();
+
+    labelLoad->setFont(font);
+    labelLoad->setCharacterSize(size*2);
+    labelLoad->setFontResolution(size*2, size*2);
+    labelLoad->setColor(color);
+    labelLoad->setPosition(Vec3(350.0f, 700.0f, 0.0f));
+
+	_tabLabel.push_back(labelLoad);
+
+	//Attribution des textes
 	labelSableEffect->setText("a : Sable");
 	labelFireworksEffect->setText("z : Feux d'artifice");
 	labelExplosionEffect->setText("e : Explosion");
@@ -184,6 +206,8 @@ void HUD110::createLabel()
 	labelSuzanne->setText("c : Suzanne");
 	labelCoeur->setText("v : Coeur");
 	labelRotation->setText("fleches : Rotation");
+	labelSubInProgress->setText("");
+	labelLoad->setText("");
 
 	std::stringstream stream;
 	stream<<_world->nbSubdivisions;
@@ -218,4 +242,20 @@ osg::Camera* HUD110::createOrthoCamera(double width, double height)
     camera->setRenderOrder(osg::Camera::POST_RENDER);
 
     return camera;
+}
+
+void HUD110::subdivisionInProgress(bool inProgress)
+{
+	if(inProgress)
+		labelSubInProgress->setText("Subdivision en cours...");
+	else
+		labelSubInProgress->setText("");
+}
+
+void HUD110::loading(bool load)
+{
+	if(load)
+		labelLoad->setText("Chargement en cours...");
+	else
+		labelLoad->setText("");
 }

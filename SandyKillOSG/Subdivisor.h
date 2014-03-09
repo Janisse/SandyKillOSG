@@ -6,7 +6,7 @@ class Subdivisor
 {
 public:
 	void subdivide(int nbSub);
-	Subdivisor(ref_ptr<Node110> in_node110);
+	Subdivisor(ref_ptr<Node110> in_node110z);
 
 private:
 	void searchPoint();

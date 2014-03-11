@@ -5,7 +5,6 @@ class PhysicsWeird :
 	public Physics110
 {
 private:
-	Vec3 _center;
 	ref_ptr<Vec4Array> _colors;
 
 public:

@@ -18,7 +18,7 @@ void PhysicsWave::run(double temps)
 {
 	_timesomm += temps;
 
-#pragma omp parallel for
+#pragma omp parallel for schedule(dynamic)
 	for (int i=0; i<_nbVertices; i++)
 	{
 		//On calcule la nouvelle vitesse
@@ -37,7 +37,7 @@ void PhysicsWave::run(double temps)
 		_vertices->at(i).y() = _prevertices->at(i).y() + .8 - cos((_timesomm + _vertices->at(i).x())* 3.0) * 0.2;
 	}
 
-#pragma omp parallel for
+#pragma omp parallel for schedule(dynamic)
 	for (int i=0; i<_colors->size(); i++)
 	{
 		//On actualise la couleur

@@ -15,7 +15,7 @@ PhysicsSand::~PhysicsSand(void)
 
 void PhysicsSand::run(double temps)
 {
-	#pragma omp parallel for
+	#pragma omp parallel for schedule(dynamic)
 	for (int i=0; i<_nbVertices; i++)
 	{
 		//On calcule la nouvelle vitesse
@@ -44,7 +44,7 @@ void PhysicsSand::run(double temps)
 		}
 	}
 
-#pragma omp parallel for
+#pragma omp parallel for schedule(dynamic)
 	for (int i=0; i<_colors->size(); i++)
 	{
 		//On actualise la couleur
@@ -64,7 +64,7 @@ void PhysicsSand::init(ref_ptr<Node110> node110)
 	_onGround = new ByteArray(_vertices->size());
 
 	// On calcule les vecteurs de départ
-#pragma omp parallel for
+#pragma omp parallel for schedule(dynamic)
 	for (int i=0; i<_nbVertices; i++)
 	{
 		_projection->at(i) = Vec3(0,0,0);

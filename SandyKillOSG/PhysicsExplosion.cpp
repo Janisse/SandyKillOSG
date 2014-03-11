@@ -17,7 +17,7 @@ PhysicsExplosion::~PhysicsExplosion(void)
 
 void PhysicsExplosion::run(double temps)
 {
-#pragma omp parallel for
+#pragma omp parallel for schedule(dynamic)
 	for (int i=0; i<_nbVertices; i++)
 	{
 		//On calcule la nouvelle vitesse
@@ -43,7 +43,7 @@ void PhysicsExplosion::init(ref_ptr<Node110> node110)
 	_colors = node110->getColors();
 
 	//On calcule le centre de l'explosion
-#pragma omp parallel for
+#pragma omp parallel for schedule(dynamic)
 	for (int i=0; i<_nbVertices; i++)
 	{
 		_center += _vertices->at(i);
@@ -51,7 +51,7 @@ void PhysicsExplosion::init(ref_ptr<Node110> node110)
 	_center /= _vertices->size();
 
 	// On calcule les vecteurs de départ
-#pragma omp parallel for
+#pragma omp parallel for schedule(dynamic)
 	for (int i=0; i<_nbVertices; i++)
 	{
 		_projection->at(i) = Vec3(_vertices->at(i) - _center) * _explosion_size * ((rand()%100 /100.)+0.1);

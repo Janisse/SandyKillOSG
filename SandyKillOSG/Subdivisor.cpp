@@ -129,7 +129,7 @@ void Subdivisor::searchPoint()
 	index6 = -1;
 
 	//Optimisation: Repartition de la recherche sur plusieur processeur
-	#pragma omp parallel for
+	#pragma omp parallel for schedule(dynamic)
 	for (int i=endIndexOldArray; i<vertexsSub->size(); i++)
 	{
 		Vec3f vecTemp = vertexsSub->at(i);

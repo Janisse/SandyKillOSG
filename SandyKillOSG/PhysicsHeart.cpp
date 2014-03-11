@@ -21,7 +21,7 @@ void PhysicsHeart::run(double temps)
 	_distance = 1 + max(sin((_timesomm)* 6.0), _seuilBattement) - _seuilBattement;
 
 
-//#pragma omp parallel for
+//#pragma omp parallel for schedule(dynamic)
 	for (int i=0; i<_nbVertices; i++)
 	{
 		//On calcule la nouvelle vitesse
@@ -49,7 +49,7 @@ void PhysicsHeart::init(ref_ptr<Node110> node110)
 	_trf = node110->getTrf();
 
 	//On calcule le centre
-#pragma omp parallel for
+#pragma omp parallel for schedule(dynamic)
 	for (int i=0; i<_nbVertices; i++)
 	{
 		_center += _vertices->at(i);
@@ -58,7 +58,7 @@ void PhysicsHeart::init(ref_ptr<Node110> node110)
 	_trf->setPivotPoint(_center);
 
 	// On calcule les vecteurs de départ
-#pragma omp parallel for
+#pragma omp parallel for schedule(dynamic)
 	for (int i=0; i<_nbVertices; i++)
 	{
 		_projection->at(i) = Vec3(0,0,0);
@@ -66,7 +66,7 @@ void PhysicsHeart::init(ref_ptr<Node110> node110)
 		_speed->at(i) = Vec3(0,0,0);
 	}
 	
-#pragma omp parallel for
+#pragma omp parallel for schedule(dynamic)
 	for (int i=0; i<_colors->size(); i++)
 	{
 		//On actualise la couleur

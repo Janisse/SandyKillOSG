@@ -15,7 +15,7 @@ World110::World110(void)
 	_skybox = skybox.createSkyBox("Sand");
 	_scenegraph->addChild(_skybox);
 	_skybox->setNodeMask(0x1);
-	_physicsEngine = 0;
+	_physicsEngine = new PhysicsSand();
 }
 
 World110::~World110(void)
@@ -203,10 +203,13 @@ void World110::restoreSelected(){
 
 void World110::pausePhys(){
 	//_physicsEngine = 0;
-	if(_selected && _selected->isSubdivided()){
-		_selected->removeUpdateCallback(_selected->getUpdateCallback());
-	}
-	else{
-		_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+	if(_selected)
+	{
+		if(_selected->getUpdateCallback() != NULL){
+			_selected->removeUpdateCallback(_selected->getUpdateCallback());
+		}
+		else{
+			_selected->setUpdateCallback(new Physics110CallBack(_physicsEngine));
+		}
 	}
 }

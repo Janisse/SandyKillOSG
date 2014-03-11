@@ -223,7 +223,7 @@ void HUD110::createLabel()
 	labelHeartEffect->setText("t : Battement coeur");
 	labelWeirdEffect->setText("y : ???");
     labelRejouerAnimation->setText("espace : Rejouer l'animation");
-	labelPause->setText("suspendre/reprendre l'animation (tab) : OFF");
+	labelPause->setText("suspendre/reprendre l'animation (tab) : ON");
 	labelCube->setText("w : Cube");
 	labelIcosphere->setText("x : Icosphere");
 	labelSuzanne->setText("c : Suzanne");

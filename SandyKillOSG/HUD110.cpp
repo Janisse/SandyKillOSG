@@ -193,6 +193,17 @@ void HUD110::createLabel()
 
 	_tabLabel.push_back(labelLoad);
 
+	///////////////////////////// SelectAPhysic ///////////////////////////////////////////////
+	labelselectAPhysic = new osgText::Text();
+
+    labelselectAPhysic->setFont(font);
+    labelselectAPhysic->setCharacterSize(size*1.5);
+    labelselectAPhysic->setFontResolution(size*1.5, size*1.5);
+    labelselectAPhysic->setColor(color);
+    labelselectAPhysic->setPosition(Vec3(250.0f, 700.0f, 0.0f));
+
+	_tabLabel.push_back(labelselectAPhysic);
+
 	//Attribution des textes
 	labelSableEffect->setText("a : Sable");
 	labelFireworksEffect->setText("z : Feux d'artifice");
@@ -208,6 +219,7 @@ void HUD110::createLabel()
 	labelRotation->setText("fleches : Rotation");
 	labelSubInProgress->setText("");
 	labelLoad->setText("");
+	labelselectAPhysic->setText("");
 
 	std::stringstream stream;
 	stream<<_world->nbSubdivisions;
@@ -258,4 +270,12 @@ void HUD110::loading(bool load)
 		labelLoad->setText("Chargement en cours...");
 	else
 		labelLoad->setText("");
+}
+
+void HUD110::selectAPhysic(bool on)
+{
+	if(on)
+		labelselectAPhysic->setText("Veuillez selectionner une physique...");
+	else
+		labelselectAPhysic->setText("");
 }

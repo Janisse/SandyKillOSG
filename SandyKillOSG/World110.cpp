@@ -3,7 +3,7 @@
 #include "Subdivisor.h"
 
 World110::World110(void)
-	: nbSubdivisions(5)
+	: nbSubdivisions(2)
 	, _model("cubeOSG")
 	, minSubs(0)
 	, maxSubs(9)

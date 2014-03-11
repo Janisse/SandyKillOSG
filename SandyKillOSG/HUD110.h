@@ -12,6 +12,7 @@ private:
 	osgText::Text* labelNbSub;
 	osgText::Text* labelSubInProgress;
 	osgText::Text* labelLoad;
+	osgText::Text* labelselectAPhysic;
 
 public:
 	HUD110(ref_ptr<World110> w);
@@ -25,5 +26,6 @@ public:
 	void update();
 	void subdivisionInProgress(bool inProgress);
 	void loading(bool load);
+	void selectAPhysic(bool on);
 };
 

@@ -20,6 +20,8 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 	switch(ea.getEventType())
 	{
 	case(osgGA::GUIEventAdapter::KEYDOWN):
+		//Enleve les avertissements a l'ecran lors de la prochaine touche enfoncé
+		_hud->selectAPhysic(false);
 		switch(ea.getKey())
 		{
 		// Fleche : Rotation///////////////////////////////////////////////////////////////////////////////
@@ -102,12 +104,12 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			_hud->loading(false);
 			return false;
 		// + : Nombre subdiv ++///////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_KP_Add :
+		case osgGA::GUIEventAdapter::KEY_Plus :
 			_world->subPlus();
 			_hud->update();
 			return false;
 		// - : Nombre subdiv --///////////////////////////////////////////////////////////////////////////
-		case osgGA::GUIEventAdapter::KEY_KP_Subtract :
+		case osgGA::GUIEventAdapter::KEY_Minus :
 			_world->subMoins();
 			_hud->update();
 			return false;
@@ -120,7 +122,10 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			return false;
 		// tab : stop physique////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Tab :
-			_world->pausePhys();
+			if(_world->getPhysics() != NULL)
+				_world->pausePhys();
+			else
+				_hud->selectAPhysic(true);
 			return false;
 		default:
 			break;

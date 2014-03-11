@@ -41,31 +41,37 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 		case osgGA::GUIEventAdapter::KEY_A :
 			//_world->getSelected()->restoreSubdivision();
 			_world->setSandWorld();
+			_hud->setColorHud(Vec4(1.0f, 1.0f, 1.0f, 1.0f));
 			return false;
 		// z : Effet Fireworks/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Z :
 			//_world->getSelected()->restoreSubdivision();
 			_world->setFireworksWorld();
+			_hud->setColorHud(Vec4(1.0f, 1.0f, 1.0f, 1.0f));
 			return false;
 		// q : Effet Explosion/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_E :
 			//_world->getSelected()->restoreSubdivision();
 			_world->setExplosionWorld();
+			_hud->setColorHud(Vec4(1.0f, 1.0f, 1.0f, 1.0f));
 			return false;
 		// s : Effet Vague/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_R :
 			//_world->getSelected()->restoreSubdivision();
 			_world->setWaveWorld();
+			_hud->setColorHud(Vec4(1.0f, 1.0f, 1.0f, 1.0f));
 			return false;
 		// s : Effet Battement coeur/////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_T :
 			//_world->getSelected()->restoreSubdivision();
 			_world->setHeartWorld();
+			_hud->setColorHud(Vec4(1.0f, 1.0f, 1.0f, 1.0f));
 			return false;
 		// s : Effet Bizarre/////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Y :
 			//_world->getSelected()->restoreSubdivision();
 			_world->setWeirdWorld();
+			_hud->setColorHud(Vec4(0.0f, 0.0f, 0.0f, 1.0f));
 			return false;
 		// r : Rejouer animation///////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Space :
@@ -123,7 +129,10 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 		// tab : stop physique////////////////////////////////////////////////////////////////////////////////
 		case osgGA::GUIEventAdapter::KEY_Tab :
 			if(_world->getPhysics() != NULL)
+			{
 				_world->pausePhys();
+				_hud->updatePause();
+			}
 			else
 				_hud->selectAPhysic(true);
 			return false;

@@ -90,9 +90,20 @@ void HUD110::createLabel()
     labelRejouerAnimation->setCharacterSize(size);
     labelRejouerAnimation->setFontResolution(size, size);
     labelRejouerAnimation->setColor(color);
-    labelRejouerAnimation->setPosition(Vec3(20.0f, 50.0f, 0.0f));
+    labelRejouerAnimation->setPosition(Vec3(20.0f, 100.0f, 0.0f));
 
 	_tabLabel.push_back(labelRejouerAnimation);
+
+	///////////////////////////// Suspendre/reprendre l'animation ///////////////////////////////////////////////
+	labelPause = new osgText::Text();
+
+    labelPause->setFont(font);
+    labelPause->setCharacterSize(size);
+    labelPause->setFontResolution(size, size);
+    labelPause->setColor(color);
+    labelPause->setPosition(Vec3(20.0f, 50.0f, 0.0f));
+
+	_tabLabel.push_back(labelPause);
 
 	///////////////////////////// Model Cube ///////////////////////////////////////////////
 	osgText::Text* labelCube = new osgText::Text();
@@ -212,6 +223,7 @@ void HUD110::createLabel()
 	labelHeartEffect->setText("t : Battement coeur");
 	labelWeirdEffect->setText("y : ???");
     labelRejouerAnimation->setText("espace : Rejouer l'animation");
+	labelPause->setText("suspendre/reprendre l'animation (tab) : OFF");
 	labelCube->setText("w : Cube");
 	labelIcosphere->setText("x : Icosphere");
 	labelSuzanne->setText("c : Suzanne");
@@ -278,4 +290,23 @@ void HUD110::selectAPhysic(bool on)
 		labelselectAPhysic->setText("Veuillez selectionner une physique...");
 	else
 		labelselectAPhysic->setText("");
+}
+
+void HUD110::updatePause()
+{
+	if(_world->getSelected() != NULL)
+	{
+		if(_world->getSelected()->getUpdateCallback() != NULL)
+			labelPause->setText("suspendre/reprendre l'animation (tab) : ON");
+		else
+			labelPause->setText("suspendre/reprendre l'animation (tab) : OFF");
+	}
+}
+
+void HUD110::setColorHud(Vec4 newColor)
+{
+	for(int i=0; i<_tabLabel.size(); i++)
+	{
+		_tabLabel.at(i)->setColor(newColor);
+	}
 }

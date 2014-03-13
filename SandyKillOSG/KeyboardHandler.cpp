@@ -110,11 +110,13 @@ bool KeyboardHandler::handle( const GUIEventAdapter& ea, GUIActionAdapter& aa)
 			_hud->loading(false);
 			return false;
 		// + : Nombre subdiv ++///////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_KP_Add :
 		case osgGA::GUIEventAdapter::KEY_Plus :
 			_world->subPlus();
 			_hud->update();
 			return false;
 		// - : Nombre subdiv --///////////////////////////////////////////////////////////////////////////
+		case osgGA::GUIEventAdapter::KEY_KP_Subtract :
 		case osgGA::GUIEventAdapter::KEY_Minus :
 			_world->subMoins();
 			_hud->update();
